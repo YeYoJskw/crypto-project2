@@ -67,6 +67,20 @@
   padding-left: 14.5px;
 }
 
+.play-card-img,
+.pause-card-img {
+  opacity: 1; /* Кнопка видна */
+  visibility: visible; /* Кнопка видна */
+  transition: opacity 0.3s ease, visibility 0s 0.3s; /* Плавное исчезновение */
+}
+
+.play-card-img.hidden,
+.pause-card-img.hidden {
+  opacity: 0; /* Кнопка исчезает */
+  visibility: hidden; /* Кнопка скрыта */
+  transition: opacity 0.3s ease, visibility 0s 0s; /* Плавное исчезновение */
+}
+
 .play-card-img {
   box-sizing: border-box;
   position: absolute;
@@ -298,6 +312,10 @@
     width: calc(100% - 40px);
   }
 
+  .swiper-pagination {
+    bottom: 20px;
+  }
+
   .title-release {
     left: 40px;
   }
@@ -416,7 +434,7 @@
     left: 30px;
     gap: 40%;
     width: calc(100% - 30px);
-    padding-bottom: 20px;
+    padding-bottom: 30px;
   }
   .title-release {
     left: 30px;

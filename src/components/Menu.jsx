@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Menu.module.css'
+import { useLocation } from 'react-router-dom'
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
   const [touchStartX, setTouchStartX] = useState(null)
   const [touchStartY, setTouchStartY] = useState(null)
+
+  const isDarkBurger = location.pathname === '/Profile' || location.pathname === '/Wallet'
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,7 +64,10 @@ const Menu = () => {
 
   return (
     <>
-      <button className={styles.burgerMenu} onClick={() => setIsOpen(!isOpen)}>
+      <button
+        className={`${styles.burgerMenu} ${isDarkBurger ? styles.darkBurger : styles.lightBurger}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <span className={`${styles.burgerLine} ${isOpen ? styles.burgerLineOpen : ''}`}></span>
         <span className={`${styles.burgerLine} ${isOpen ? styles.burgerLineOpen : ''}`}></span>
         <span className={`${styles.burgerLine} ${isOpen ? styles.burgerLineOpen : ''}`}></span>

@@ -10,30 +10,31 @@ import './CardRelease.css'
 const CardRelease = ({ content }) => {
   const [loaded, setLoaded] = useState(false)
   const swiperRef = useRef(null)
-  const videoRefs = useRef([]) // Ссылки на видео
-  const [playingVideo, setPlayingVideo] = useState(null) // Текущее воспроизводимое видео
-  const [isMobile, setIsMobile] = useState(false) // Для определения мобильного устройства
+  const videoRefs = useRef([])
+  const [playingVideo, setPlayingVideo] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [showControls, setShowControls] = useState(
+    Object.fromEntries(content.map((_, index) => [index, true]))
+  )
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 50)
 
-    // Проверяем ширину экрана
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768) // Устанавливаем isMobile в true, если ширина экрана <= 768px
+      setIsMobile(window.innerWidth <= 768)
     }
 
-    handleResize() // Изначальная проверка
-    window.addEventListener('resize', handleResize) // Слушаем изменения размера окна
+    handleResize()
+    window.addEventListener('resize', handleResize)
 
-    // Добавляем обработчик кликов на документ для паузы видео
     const handleDocumentClick = event => {
-      // Если клик был не по видео или кнопке, ставим видео на паузу
       if (!event.target.closest('.video-wrapper') && !event.target.closest('.play-card-img')) {
         if (playingVideo !== null) {
           const video = videoRefs.current[playingVideo]
           if (video) {
             video.pause()
-            setPlayingVideo(null) // Сбрасываем воспроизводимое видео
+            setPlayingVideo(null)
+            setShowControls(prev => ({ ...prev, [playingVideo]: true }))
           }
         }
       }
@@ -42,33 +43,38 @@ const CardRelease = ({ content }) => {
     document.addEventListener('click', handleDocumentClick)
 
     return () => {
-      document.removeEventListener('click', handleDocumentClick) // Очистка обработчика
-      window.removeEventListener('resize', handleResize) // Очистка обработчика изменения размера
+      document.removeEventListener('click', handleDocumentClick)
+      window.removeEventListener('resize', handleResize)
     }
-  }, [playingVideo]) // Срабатывает, когда изменяется текущее воспроизводимое видео
+  }, [playingVideo])
 
-  // Функция Play/Pause
   const togglePlay = index => {
     const video = videoRefs.current[index]
 
     if (playingVideo === index) {
       video.pause()
-      setPlayingVideo(null) // Останавливаем видео
+      setPlayingVideo(null)
+      setShowControls(prev => ({ ...prev, [index]: true })) // Показываем кнопку при паузе
     } else {
       video.play()
-      setPlayingVideo(index) // Запоминаем текущее видео
+      setPlayingVideo(index)
+      setShowControls(prev => ({ ...prev, [index]: false })) // Скрываем кнопку при воспроизведении
+
+      setTimeout(() => {
+        if (videoRefs.current[index] && !videoRefs.current[index].paused) {
+          setShowControls(prev => ({ ...prev, [index]: false })) // Продолжаем скрывать кнопку через 3 секунды
+        }
+      }, 3000)
     }
   }
 
-  // Функция для обновления состояния слайдера при смене слайда
-  const handleSlideChange = () => {
-    if (playingVideo !== null) {
-      const video = videoRefs.current[playingVideo]
-      if (video) {
-        video.pause() // Ставим видео на паузу при смене слайда
-        setPlayingVideo(null) // Сбрасываем текущее воспроизводимое видео
+  const handleShowControls = index => {
+    setShowControls(prev => ({ ...prev, [index]: true }))
+    setTimeout(() => {
+      if (playingVideo === index && videoRefs.current[index] && !videoRefs.current[index].paused) {
+        setShowControls(prev => ({ ...prev, [index]: false }))
       }
-    }
+    }, 3000)
   }
 
   return (
@@ -84,14 +90,16 @@ const CardRelease = ({ content }) => {
         pagination={{ clickable: true }}
         modules={[FreeMode, Pagination]}
         className='cards-carousel4'
-        onSlideChange={handleSlideChange} // Слушаем смену слайда
+        onSlideChange={() => setPlayingVideo(null)}
       >
         {content.map((data, index) => (
           <SwiperSlide key={data.id} className={`card-release ${loaded ? 'loaded' : ''}`}>
-            <div className='video-container'>
-              {/* Обертка для видео + постер */}
+            <div
+              className='video-container'
+              onMouseMove={() => handleShowControls(index)}
+              onClick={() => handleShowControls(index)}
+            >
               <div className='video-wrapper'>
-                {/* Постер */}
                 <img
                   src={data.image}
                   alt='Card Poster'
@@ -99,34 +107,35 @@ const CardRelease = ({ content }) => {
                     isMobile ? 'mobile-hidden' : ''
                   }`}
                 />
-
-                {/* Видео */}
                 <video
                   ref={el => (videoRefs.current[index] = el)}
                   className={`video-element ${isMobile ? 'mobile-hidden' : ''}`}
                   src={data.video}
-                  onPause={() => setPlayingVideo(null)}
-                  controls={false} // Без стандартных контролов
-                  playsInline // Для предотвращения полноэкранного режима на мобильных устройствах
+                  onPause={() => {
+                    setPlayingVideo(null)
+                    setShowControls(prev => ({ ...prev, [index]: true })) // Показываем кнопку при паузе
+                  }}
+                  playsInline
                 />
               </div>
 
-              {/* Кнопка Play/Pause */}
-              <button
-                className={playingVideo === index ? 'play-card-img' : 'pause-card-img'}
-                onClick={e => {
-                  e.stopPropagation() // Предотвращаем всплытие клика, чтобы не ставить на паузу при клике на кнопку
-                  togglePlay(index)
-                }}
-              >
-                <img
-                  className={playingVideo === index ? 'play-img' : 'pause-img'}
-                  src={
-                    playingVideo === index ? '/img/pause-button-svgrepo-com.svg' : '/img/play.svg'
-                  }
-                  alt='Toggle Play'
-                />
-              </button>
+              {showControls[index] && (
+                <button
+                  className={playingVideo === index ? 'play-card-img' : 'pause-card-img'}
+                  onClick={e => {
+                    e.stopPropagation()
+                    togglePlay(index)
+                  }}
+                >
+                  <img
+                    className={playingVideo === index ? 'play-img' : 'pause-img'}
+                    src={
+                      playingVideo === index ? '/img/pause-button-svgrepo-com.svg' : '/img/play.svg'
+                    }
+                    alt='Toggle Play'
+                  />
+                </button>
+              )}
             </div>
 
             <div className='card-release-content'>

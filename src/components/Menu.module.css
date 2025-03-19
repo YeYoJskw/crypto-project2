@@ -109,7 +109,7 @@
 .burgerMenu {
   display: none;
   position: fixed;
-  top: 12px;
+  top: 15px;
   left: 20px;
   width: 30px;
   height: 30px;
@@ -119,17 +119,25 @@
   z-index: 102;
 }
 
+.darkBurger span {
+  background: #000;
+}
+
+.burgerLineOpen {
+  background: #ffffff !important;
+}
+
 .burgerLine {
   display: block;
-  width: 25px;
-  height: 3px;
+  width: 20px;
+  height: 2px;
   background: white;
-  margin: 6px 0;
+  margin: 4px 0;
   transition: 0.3s;
 }
 
 .burgerLineOpen:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(4.2px) rotate(45deg);
 }
 
 .burgerLineOpen:nth-child(2) {

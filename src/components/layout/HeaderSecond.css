@@ -205,15 +205,19 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .header2 {
-    width: calc(100% - 60px);
+    width: calc(100% - 80px);
   }
 }
 
 @media screen and (max-width: 768px) {
   .container {
     padding: 0 10px;
+  }
+
+  .header2 {
+    width: calc(100% - 80px);
   }
 
   .header2 ul {
@@ -271,7 +275,7 @@
   }
 
   .header2 {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px);
   }
 
   .header2 ul {
@@ -322,6 +326,10 @@
     padding: 0 10px;
   }
 
+  .header2 {
+    width: calc(100% - 60px);
+  }
+
   .header2 ul {
     gap: 10px;
     padding-right: 0.5rem;
@@ -345,7 +353,7 @@
   }
 
   .search-field-header {
-    width: 140px;
+    width: 130px;
     height: 28px;
     font-size: 8px;
     padding-left: 2px;
@@ -354,7 +362,7 @@
   .search-button-header {
     width: 22px;
     height: 21px;
-    left: 165px;
+    left: 156px;
     box-sizing: border-box;
     padding-bottom: 3px;
     top: 4px;
@@ -394,7 +402,7 @@
   }
 
   .search-field-header {
-    width: 125px;
+    width: 110px;
     height: 30px;
     font-size: 8px;
     padding-left: 2px;
@@ -403,12 +411,12 @@
   .search-button-header {
     width: 22px;
     height: 22px;
-    left: 140px;
-    top: 4px;
+    left: 128px;
+    top: 4.5px;
   }
 
   .search-button-header img {
-    padding-top: 2px;
+    padding-top: 3px;
     padding-right: 1px;
   }
 }

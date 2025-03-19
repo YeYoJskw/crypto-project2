@@ -15,6 +15,19 @@ li {
   height: 80px;
   margin-left: 405px;
   width: 1295px;
+  position: fixed;
+  top: 0;
+  z-index: 101;
+}
+
+.background-header2 {
+  width: calc(100% - 260px);
+  left: 260px;
+  height: 80px;
+  top: 0;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 100;
 }
 
 .header2 nav {
@@ -71,6 +84,17 @@ li {
 
 .logo-header b {
   font-weight: 1000;
+}
+
+@media screen and (max-width: 1024px) {
+  .background-header2 {
+    width: calc(100%);
+    position: fixed;
+    height: 60px;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
 }
 
 /* --- АДАПТАЦИЯ --- */
@@ -169,15 +193,22 @@ li {
   }
 }
 
+@media (max-width: 1000px) {
+  .header2 {
+    height: 58px;
+    margin-left: 60px;
+  }
+}
+
 @media (max-width: 768px) {
   .header2 {
-    margin-left: 20px;
-    width: calc(100% - 20px);
+    margin-left: 52px;
+    width: calc(100% - 80px);
   }
 }
 
 @media (max-width: 480px) {
   .header2 {
-    margin-left: 12px;
+    margin-left: 52px;
   }
 }
