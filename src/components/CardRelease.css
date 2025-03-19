@@ -1,0 +1,435 @@
+.card-release {
+  position: relative;
+  height: 278px;
+  width: 265px;
+}
+
+.cards-carousel4 {
+  position: absolute;
+  left: 355px;
+  top: 155px;
+  width: calc(100% - 355px);
+  overflow-x: hidden;
+}
+
+.title-release {
+  position: absolute;
+  left: 355px;
+  top: 95px;
+}
+
+.title-cards-release {
+  font-size: 26px;
+  color: #fff;
+  font-weight: 400;
+  margin: 10px 0px;
+  padding-bottom: 10px;
+}
+
+.btn-card-beginner,
+.btn-card-advance {
+  background-color: rgba(0, 0, 0, 0.2);
+  will-change: transform, opacity;
+  position: absolute;
+  right: 13.5px;
+  top: 3px;
+  padding: 7px 12px;
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.05px;
+  opacity: 0.99;
+  animation: fixRepaint 0.05s linear;
+}
+.btn-card-beginner {
+  color: #77ed91;
+}
+
+.btn-card-advance {
+  color: #ffe773;
+}
+
+.pause-card-img {
+  box-sizing: border-box;
+  position: absolute;
+  top: 33%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  background-color: #77ed91;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  padding-left: 14.5px;
+}
+
+.play-card-img {
+  box-sizing: border-box;
+  position: absolute;
+  top: 33%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  background-color: #00000050;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  padding-left: 14.5px;
+}
+
+.card-release-content {
+  background-color: rgba(0, 0, 0, 0.2);
+  will-change: transform, opacity;
+  box-sizing: border-box;
+  position: absolute;
+  width: 265px;
+  height: 95px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  padding: 15px 14px;
+  opacity: 0.99;
+  animation: fixRepaint 0.05s linear;
+}
+
+.title-card-release {
+  font-size: 14px;
+  color: #fff;
+  width: 182px;
+  padding-bottom: 12px;
+}
+
+.times-card-release {
+  color: #a1a1a1;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-release {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-release.loaded {
+  opacity: 1;
+}
+
+.swiper-button-next {
+  position: absolute;
+  background-color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  z-index: 2;
+  right: 10px;
+  top: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next img {
+  width: 14px;
+  height: 14px;
+}
+
+.swiper-button-next:hover {
+  opacity: 0.8;
+}
+
+.play-img {
+  width: 20px;
+  height: 20px;
+}
+
+.play-img {
+  width: 18px;
+  height: 18px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.video-poster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  border-radius: 22px;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-element {
+  width: 99.5%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 25px;
+}
+
+.play-card-release {
+  transition: opacity 1s ease-in-out;
+}
+
+.play-card-release.fading {
+  opacity: 0.5; /* Полупрозрачная */
+}
+
+.play-card-release.hidden {
+  opacity: 0; /* Полностью исчезает */
+  pointer-events: none; /* Чтобы нельзя было кликнуть */
+}
+
+@keyframes fixRepaint {
+  from {
+    opacity: 0.99;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cards-carousel4 {
+    left: 300px;
+    width: calc(100% - 200px);
+  }
+  .title-release {
+    left: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cards-carousel4 {
+    left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  .title-release {
+    left: 60px;
+  }
+
+  .card-release {
+    height: 258px;
+    width: 225px;
+  }
+
+  .background-video {
+    width: 225px;
+    height: 260px;
+  }
+
+  .title-cards-release {
+    font-size: 23px;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+  }
+
+  .btn-card-beginner,
+  .btn-card-advance {
+    right: 8px;
+    top: 10px;
+    padding: 7px 11px;
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .play-card-release {
+    top: 34%;
+    left: 51%;
+    width: 45px;
+    height: 45px;
+    padding-left: 15px;
+  }
+
+  .play-card-release img {
+    width: 18px;
+    padding-top: 2px;
+  }
+
+  .card-release-content {
+    width: 224.2px;
+    height: 95px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    bottom: 0;
+    padding: 15px 14px;
+  }
+
+  .title-card-release {
+    font-size: 14px;
+    width: 182px;
+    padding-bottom: 12px;
+  }
+
+  .times-card-release {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-carousel4 {
+    left: 40px;
+    width: calc(100% - 40px);
+  }
+
+  .title-release {
+    left: 40px;
+  }
+
+  .title-release {
+    left: 60px;
+  }
+
+  .card-release {
+    height: 208px;
+    width: 195px;
+    border-radius: 20px;
+  }
+
+  .background-video {
+    width: 195px;
+    height: 208px;
+    border-radius: 20px;
+  }
+
+  .title-cards-release {
+    font-size: 23px;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+  }
+
+  .btn-card-beginner,
+  .btn-card-advance {
+    right: 8px;
+    top: 2px;
+    padding: 7px 11px;
+    margin-top: 10px;
+    font-size: 9px;
+  }
+
+  .play-card-release {
+    top: 42%;
+    left: 51%;
+    width: 38px;
+    height: 38px;
+    padding-left: 13px;
+  }
+
+  .play-card-release img {
+    width: 16px;
+    padding-top: 0px;
+  }
+
+  .card-release-content {
+    width: 194.2px;
+    height: 72px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    bottom: -0px;
+    padding: 8px 10px;
+  }
+
+  .title-card-release {
+    font-size: 11px;
+    width: 182px;
+    padding-bottom: 12px;
+  }
+
+  .times-card-release {
+    font-size: 10px;
+  }
+
+  .swiper-button-next {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 2;
+    right: 8px;
+    top: 270px;
+  }
+}
+
+/* Стили для видео на мобильных устройствах */
+@media (max-width: 768px) {
+  .video-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-release-content {
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  /* Скрытие видео и кнопки на мобильных устройствах */
+  @media (max-width: 768px) {
+    .video-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Убедитесь, что видео не будет показываться в полноэкранном режиме */
+    .video-element {
+      object-fit: cover; /* Сохраняет видео в пределах карточки */
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Скрываем контролы и постер, если видео играет */
+    .video-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-carousel4 {
+    left: 30px;
+    gap: 40%;
+    width: calc(100% - 30px);
+    padding-bottom: 20px;
+  }
+  .title-release {
+    left: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cards-carousel4 {
+    left: 30px;
+    gap: 40%;
+    width: calc(100% - 0px);
+  }
+  .title-release {
+    left: 30px;
+  }
+}

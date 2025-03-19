@@ -1,0 +1,18 @@
+.portfolio-table-container {
+  padding-top: 10px;
+  color: #fff;
+}
+
+.name-portfolio-th {
+  padding-left: 8.5px;
+}
+
+.crypto-table .names-portfolio {
+  padding-left: 10px;
+}
+
+@media (max-width: 1400px) {
+  .portfolio-table-container {
+    overflow-x: auto;
+  }
+}

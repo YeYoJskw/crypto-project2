@@ -1,0 +1,134 @@
+.myCoins-block {
+  padding-top: 113px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Watchlist-content {
+  position: absolute;
+  left: 355px;
+  width: calc(100% - 500px);
+}
+
+.primary {
+  width: 62px;
+  height: 22px;
+  background-color: #77ed91;
+  border-radius: 15px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.coins-list {
+  font-size: 26px;
+  color: #fff;
+  padding-right: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.buttons-coins {
+  display: flex;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.button-edit {
+  box-sizing: border-box;
+  display: flex;
+  background-color: #1a1d1e;
+  width: 100px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 20px;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.button-new-watchlist {
+  display: flex;
+  background-color: #77ed91;
+  width: 180px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #000;
+  border-radius: 30px;
+}
+
+@media (max-width: 1200px) {
+  .Watchlist-content {
+    left: 355px;
+    width: calc(100% - 400px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .Watchlist-content {
+    left: 120px;
+    width: calc(100% - 150px);
+  }
+}
+
+@media (max-width: 768px) {
+  .Watchlist-content {
+    left: 90px;
+    width: calc(100% - 120px);
+    padding-bottom: 80px;
+  }
+
+  .button-new-watchlist {
+    width: 140px;
+    height: 40px;
+    gap: 3px;
+    font-size: 14px;
+  }
+
+  .button-new-watchlist img {
+    width: 20px;
+  }
+
+  .button-edit {
+    width: 85px;
+    height: 40px;
+    gap: 4px;
+    padding-left: 12px;
+    font-size: 14px;
+  }
+
+  .button-edit img {
+    width: 20px;
+  }
+
+  .coins-list {
+    font-size: 22px;
+    gap: 10px;
+    padding-bottom: 10px;
+  }
+
+  .primary {
+    width: 52px;
+    height: 20px;
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .myCoins-block {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .Watchlist-content {
+    left: 30px;
+    width: calc(320px + 10%);
+  }
+}

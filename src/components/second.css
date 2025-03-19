@@ -1,0 +1,78 @@
+.BLOCKCHAIN {
+  font-family: 'Rubik';
+  margin: 0;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.qr-code {
+  height: 100%;
+  padding-right: 8px;
+}
+.QR-block {
+  display: flex;
+  gap: 40px;
+  padding-top: 165px;
+}
+
+.qr-data {
+  display: flex;
+  gap: 29px;
+}
+
+.qr-label {
+  font-weight: 600;
+}
+
+.qr-value {
+  color: #5a6773;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 7px;
+}
+
+.recent-history {
+  font-size: 24px;
+  padding-top: 102px;
+  padding-left: 13px;
+}
+
+@media (max-width: 1000px) {
+  .QR-block {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .qr-data {
+    gap: 5px;
+  }
+
+  .qr-code {
+    width: 150px;
+    padding-right: 0;
+  }
+  .qr-label {
+    width: auto;
+  }
+
+  .qr-value {
+    font-size: 14px;
+    padding-top: 2px;
+  }
+
+  .qr-content {
+    width: 300px;
+  }
+
+  .recent-history {
+    padding-top: 50px;
+    padding-bottom: 15px;
+    padding-left: 0;
+  }
+}

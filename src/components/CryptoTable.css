@@ -1,0 +1,201 @@
+/* Общий контейнер таблицы */
+.crypto-table-container {
+  color: #ffffff;
+  padding-top: 40px;
+}
+
+/* Кнопки управления */
+.crypto-table-buttons {
+  display: flex;
+  justify-content: end;
+}
+
+.crypto-table .chart-img {
+  width: 117px;
+  height: 100%;
+}
+
+.crypto-table-buttonsContent {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: end;
+}
+
+.btn-add,
+.btn-share,
+.btn-more {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  transition: background 0.2s;
+  background-color: #1a1d1e;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+  height: 32px;
+}
+
+.btn-add {
+  width: 113px;
+}
+
+.btn-share {
+  width: 84px;
+}
+
+.logo-coin {
+  width: 24px;
+}
+
+.btn-more {
+  padding: 0px 12px;
+}
+.btn-add:hover,
+.btn-share:hover,
+.btn-more:hover {
+  opacity: 0.8;
+}
+
+/* Таблица */
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Заголовки таблицы */
+.crypto-table thead {
+  background: #1a1d1e;
+  border-bottom: 2px solid #212325;
+  border-top: 2px solid #212325;
+}
+
+.crypto-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #b2b2b2;
+  padding: 12px 10px;
+}
+
+/* Строки таблицы */
+.crypto-table tbody tr {
+  border-bottom: 1px solid #1e1e1e;
+  transition: background 0.2s;
+}
+
+.crypto-table tbody tr:hover {
+  background: #1a1a1a57;
+}
+
+/* Ячейки таблицы */
+.crypto-table td {
+  padding: 16.5px 8px;
+  font-size: 14px;
+}
+
+.coins-name-td {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Название монеты и символ */
+.coin-name {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.coin-symbol {
+  color: #b2b2b2;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/* Цвета для процентов */
+.text-green {
+  color: #16c784;
+}
+.text-red {
+  color: #ea3943;
+}
+
+/* График */
+.chart-img {
+  height: 24px;
+  width: 80px;
+}
+
+/* Кнопка действий */
+.action-btns {
+  background: none;
+  border: none;
+  color: #b2b2b2;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  transition: color 0.2s;
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn:hover {
+  color: white;
+}
+
+.crypto-table .stars {
+  display: flex;
+  gap: 11px;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.menu-table,
+.setting-table {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #212325;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stars-th {
+  padding-left: 30px;
+}
+
+.stars .market-th,
+.volume-th {
+  position: relative;
+}
+
+.market-th img,
+.volume-th img {
+  position: absolute;
+  top: 12px;
+  left: 49px;
+}
+
+.market-th img {
+  position: absolute;
+  top: 12px;
+  left: 72px;
+}
+
+@media (max-width: 1400px) {
+  .crypto-table-container {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 1400px) {
+  .crypto-table-buttons {
+    justify-content: start;
+  }
+}

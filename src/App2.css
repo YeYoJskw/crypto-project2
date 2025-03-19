@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700;800&display=swap');
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1295px;
+  margin-left: 405px;
+  background-color: #fff;
+  padding-right: 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    margin-left: 290px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    margin-left: 20px;
+  }
+}

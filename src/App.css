@@ -1,0 +1,30 @@
+@import url('https://fonts.cdnfonts.com/css/lufga');
+
+.dark-theme {
+  background-color: #0d0d0d;
+  font-family: 'lufga';
+}
+
+.light-theme {
+  background-color: white;
+  font-family: 'Rubik';
+}
+
+button,
+input {
+  all: unset;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+/*                          */
+
+.cards-carousel {
+  display: flex;
+  flex-wrap: wrap;
+}

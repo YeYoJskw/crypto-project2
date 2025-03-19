@@ -1,0 +1,301 @@
+.table {
+  max-width: 634px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10rem;
+}
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.th {
+  text-align: left;
+
+  color: #1e2022;
+  padding: 22px 22.5px;
+}
+
+.view-blocks {
+  box-sizing: border-box;
+  width: 153px;
+  height: 36px;
+  border: 1px solid #eff3f9;
+  color: #5a6773;
+  font-size: 12px;
+  position: relative;
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  padding-left: 10px;
+  transition: background-color 0.2s ease-in;
+}
+
+.view-blocks:hover {
+  background-color: #f0eeee;
+}
+
+.view-blocks-img {
+  position: absolute;
+  right: 16px;
+  top: 15px;
+}
+
+.view-transactions {
+  box-sizing: border-box;
+  width: 189px;
+  height: 36px;
+  border: 1px solid #eff3f9;
+  color: #5a6773;
+  font-size: 12px;
+  position: relative;
+  font-weight: 600;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.view-transactions:hover {
+  background-color: #f0eeee;
+}
+
+.view-transactions-img {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+}
+
+.block-td {
+  padding: 20px 28px;
+}
+
+.tr:last-child td {
+  border-bottom: none;
+}
+
+.block-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background: #f8fafd;
+  justify-content: center;
+  align-items: center;
+  color: #5a6773;
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+.item-id {
+  color: #4285f4;
+  font-size: 14px;
+  cursor: pointer;
+  padding-bottom: 3px;
+}
+
+.item-id:hover {
+  text-decoration: underline;
+}
+
+.time-ago {
+  font-size: 12px;
+  color: #5a6773;
+}
+
+.validated a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+.validated a:hover {
+  text-decoration: underline;
+}
+
+.time-txns {
+  font-size: 12px;
+  color: #4285f4;
+}
+
+.table-to {
+  color: #1e2022;
+  font-size: 14px;
+}
+
+.time-txns a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.time-txns a:hover {
+  text-decoration: underline;
+}
+
+.amount {
+  font-weight: 400;
+  font-size: 12px;
+  color: #5a6773;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.validated-info {
+  padding-left: 0px;
+}
+
+.validated {
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+.table {
+  overflow-x: auto;
+}
+
+.validated-td {
+  padding-left: 77px;
+  padding-right: 48px;
+  margin: 0;
+}
+
+.table-container.blocks .validated-td {
+  padding-left: 77px;
+  padding-right: 48px;
+}
+
+.table-container.transactions .validated-td {
+  padding-left: 14px;
+}
+
+.table-row {
+  transition: background-color 0.3s ease-in;
+}
+
+.table-row:hover {
+  background-color: #e0dff373;
+}
+
+@media (max-width: 1260px) {
+  .table-container.transactions,
+  .table-container.blocks {
+    padding-left: 0;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .table-container .table {
+    font-size: 12px;
+    overflow-x: auto;
+    margin-bottom: 50px;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .tables {
+    display: block !important;
+  }
+
+  th,
+  .td {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-container-blocks {
+    overflow-x: auto;
+    margin-bottom: 100px;
+  }
+
+  .block-td {
+    padding: 12px 18px;
+  }
+
+  th,
+  .td {
+    font-size: 12px;
+  }
+
+  .tr {
+    display: flex;
+    position: relative;
+  }
+
+  .view-blocks {
+    position: absolute;
+    left: 160px;
+    top: 11px;
+  }
+
+  .amount {
+    padding-top: 22px;
+  }
+
+  .view-transactions {
+    position: absolute;
+    left: 175px;
+    top: 11px;
+    width: 180px;
+  }
+
+  .table-container.blocks .validated-td {
+    padding: 12px 15px;
+  }
+
+  .table-container.transactions .validated-td {
+    padding: 12px 15px;
+  }
+
+  .avatar {
+    width: 35px;
+  }
+}
+
+@media (max-width: 380px) {
+  .table-container-blocks {
+    overflow-x: auto;
+    margin-bottom: 100px;
+  }
+
+  th,
+  .td {
+    font-size: 12px;
+  }
+
+  .tr {
+    display: flex;
+    position: relative;
+  }
+
+  .view-blocks {
+    position: absolute;
+    left: 150px;
+    top: 11px;
+  }
+
+  .view-transactions {
+    position: absolute;
+    left: 155px;
+    top: 11px;
+    width: 175px;
+  }
+
+  .validated-td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .avatar {
+    width: 35px;
+  }
+}

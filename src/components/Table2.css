@@ -1,0 +1,144 @@
+.tab {
+  display: flex;
+  padding-left: 19px;
+  padding-top: 2px;
+  margin-bottom: 208px;
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  overflow: hidden;
+}
+.th-table2 {
+  text-align: left;
+  padding: 29.5px 17px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e2022;
+  background-color: #fff;
+}
+
+.td-table2 {
+  padding: 14px 17px;
+  font-size: 14px;
+  color: #5a6773;
+  white-space: nowrap;
+}
+
+.message-td,
+.age-td {
+  color: #5a6773;
+  font-size: 14px;
+}
+
+.from-td a,
+.to-td a {
+  color: #4285f4;
+  font-size: 14px;
+}
+
+.status {
+  width: 60px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-in {
+  color: #3ed598;
+  background-color: #3ed59927;
+}
+
+.btn-out {
+  color: #ea3943;
+  background-color: #ea394314;
+}
+
+.age-td {
+  padding-right: 95px;
+  padding-left: 34px;
+}
+.from-td {
+  padding-right: 117px;
+}
+.to-td {
+  padding-right: 126px;
+}
+
+.ton-td {
+  padding-right: 44px;
+}
+.status-td {
+  padding-right: 20px;
+}
+
+/* Добавляем адаптивность */
+@media (max-width: 1500px) {
+  .tab {
+    overflow: auto;
+    width: calc(100% - 20px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .tab {
+    overflow: auto;
+  }
+
+  .tab {
+    padding-left: 0;
+  }
+
+  .table2 {
+    font-size: 12px;
+  }
+
+  .status-td {
+    width: 50px;
+    height: 25px;
+    font-size: 10px;
+  }
+}
+
+/* Для мобильных (узких экранов) */
+@media (max-width: 768px) {
+  .tab {
+    overflow-x: auto;
+    margin-bottom: 100px;
+  }
+
+  .age-td {
+    padding: 18px 20px;
+  }
+
+  .from-td {
+    padding-right: 35px;
+  }
+
+  .to-td {
+    padding-right: 30px;
+  }
+
+  .table2 {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .status {
+    width: 60px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .th-table2,
+  .td-table2 {
+    font-size: 12px;
+  }
+}

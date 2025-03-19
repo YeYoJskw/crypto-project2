@@ -1,0 +1,719 @@
+@keyframes fadeInUp {
+  from {
+    transform: translateY(5px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.BLOCKCHAIN {
+  font-family: 'Rubik';
+  margin: 0;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.hero-block {
+  height: 400px;
+  background-color: #000;
+  border-radius: 25px;
+  margin-top: 96px;
+}
+
+.hero-block h1 {
+  font-size: 32px;
+  letter-spacing: 0.03rem;
+  color: #fff;
+  padding-bottom: 10px;
+}
+
+.content-hero {
+  padding-top: 6.75rem;
+  padding-left: 3.42rem;
+}
+
+.form-search {
+  display: flex;
+  position: relative;
+  padding-left: 3px;
+}
+
+.selected-filter,
+.selected-def {
+  font-family: 'Rubik';
+  background-image: url('/img/down.svg');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  width: 130px;
+  height: 50px;
+  border: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  margin-right: 1px;
+  padding-left: 14px;
+  appearance: none;
+  color: #5a6773;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: -0.8px;
+}
+
+.selected-filter:focus,
+.selected-def:focus,
+.search-field:focus {
+  border: none;
+  outline: none;
+}
+
+.search-field {
+  font-family: 'Rubik';
+  box-sizing: border-box;
+  width: 406px;
+  height: 50px;
+  border: none;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  font-size: 14px;
+  padding-left: 18px;
+  background-color: #fff;
+}
+
+.search-button {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 30px;
+  background-color: #4285f4;
+  left: 495px;
+  top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button img {
+  padding-left: 2.5px;
+}
+
+.search-button {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.search-button:focus {
+  transform: scale(1.1);
+}
+
+.search-button:hover {
+  background-color: #5b94f1;
+}
+
+.cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.cards {
+  padding-top: 6rem;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 857px;
+}
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  width: 416px;
+  height: 128px;
+  margin-bottom: 0px;
+  margin-right: 25px;
+  padding-left: 40px;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.card:nth-last-child(2n + 1) {
+  margin-right: 0px;
+}
+
+.img-card {
+  height: 32px;
+  padding-right: 15px;
+  padding-top: 3px;
+}
+
+.coin-name {
+  color: #5a6773;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+}
+
+.price {
+  font-size: 14px;
+  padding-right: 7px;
+}
+
+.price-details {
+  display: flex;
+  padding-top: 9px;
+}
+
+.exchange-rate {
+  color: #5a6773;
+  font-size: 14px;
+  padding-right: 18px;
+}
+
+.price-change-red,
+.price-change-green {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.price-change-green {
+  color: #3ed598;
+}
+
+.price-change-red {
+  color: #ea3943;
+}
+
+.percent {
+  height: 100%;
+  margin-top: -3px;
+}
+
+.percent img {
+  padding-bottom: 2px;
+  padding-right: 4px;
+}
+
+.count {
+  font-size: 14px;
+  padding-right: 3px;
+}
+
+.transition {
+  color: #5a6773;
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0;
+  text-align: end;
+}
+
+.transition-content {
+  padding-top: 7px;
+  height: 17px;
+}
+
+.tps {
+  color: #5a6773;
+  font-size: 14px;
+}
+
+.main-card {
+  display: flex;
+  gap: 60px;
+}
+
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  width: 416px;
+  height: 256px;
+  align-items: flex-start;
+  background-color: #eff3f9;
+  background-image: url('/img/graph2.svg');
+  background-repeat: no-repeat;
+  background-position: 61px 79px;
+  margin-top: 59px;
+}
+
+.graph-h {
+  font-size: 16px;
+  color: #4f4f4f;
+  margin: 0;
+  padding-right: 33px;
+}
+
+.graph-title {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.graph-settings {
+  position: absolute;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding-top: 3px;
+  padding-left: 353px;
+}
+
+.graph-value {
+  font-size: 12px;
+  color: #4f4f4f;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: end;
+}
+
+.graph-values {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  padding-right: 328px;
+}
+
+.graph-dates {
+  display: flex;
+  padding-left: 80px;
+}
+
+.graph-content {
+  padding-left: 28px;
+}
+
+.graph-date {
+  font-size: 12px;
+  color: #4f4f4f;
+}
+
+.graph-sticks {
+  display: flex;
+  gap: 46.5px;
+  padding-left: 81px;
+  padding-bottom: 7px;
+}
+
+.graph-stick2 {
+  width: 0.5px;
+  height: 3.5px;
+  background-color: #5a6773;
+}
+
+.graph-stick1 {
+  width: 2.5px;
+  height: 0.5px;
+  background-color: #5a6773;
+}
+
+.tables {
+  display: flex;
+  gap: 55px;
+}
+
+@media screen and (max-width: 1290px) {
+  .tables {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-search {
+    padding-left: 3px;
+  }
+
+  .selected-filter {
+    width: 75px;
+    height: 40px;
+    margin-right: 1px;
+    padding-left: 7px;
+    font-size: 9.5px;
+    background-image: url('/img/down.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  .selected-def {
+    width: 75px;
+    height: 40px;
+    margin-right: 1px;
+    padding-left: 7px;
+    font-size: 9.5px;
+    background: none;
+    background-color: #fff;
+  }
+
+  .search-field {
+    width: 240px;
+    height: 40px;
+    font-size: 9.5px;
+    padding-left: 2px;
+  }
+
+  .search-button {
+    width: 28px;
+    height: 28px;
+    left: 287px;
+    top: 6.5px;
+  }
+
+  .search-button img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .content-hero {
+    padding-top: 4rem;
+    padding-left: 1.2rem;
+  }
+
+  .hero-block {
+    height: 260px;
+  }
+
+  .hero-block h1 {
+    font-size: 22px;
+    padding-bottom: 4px;
+  }
+
+  .cards-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .cards {
+    padding-top: 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 346px;
+  }
+
+  .cards-section .card {
+    width: 347px;
+    height: 128px;
+    margin-right: 0px;
+    padding-left: 0px;
+  }
+
+  .card:nth-last-child(2n + 1) {
+    margin-right: 0px;
+  }
+
+  .img-card {
+    height: 32px;
+    padding-right: 15px;
+    padding-top: 3px;
+  }
+
+  .coin-name {
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+  }
+  .cards-section.card {
+    padding-left: 10px;
+  }
+  .price {
+    font-size: 14px;
+    padding-right: 7px;
+  }
+
+  .price-details {
+    display: flex;
+    padding-top: 9px;
+  }
+
+  .exchange-rate {
+    font-size: 14px;
+    padding-right: 18px;
+  }
+
+  .price-change-red,
+  .price-change-green {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .percent {
+    height: 100%;
+    margin-top: -3px;
+  }
+
+  .percent img {
+    padding-bottom: 2px;
+    padding-right: 4px;
+  }
+
+  .count {
+    font-size: 14px;
+    padding-right: 3px;
+  }
+
+  .transition {
+    font-size: 16px;
+    margin: 0;
+    text-align: end;
+  }
+
+  .transition-content {
+    padding-top: 7px;
+    height: 17px;
+  }
+
+  .tps {
+    color: #5a6773;
+    font-size: 14px;
+  }
+
+  .main-card {
+    display: flex;
+    gap: 30px;
+  }
+
+  .graph-container {
+    width: 383px;
+    height: 256px;
+    align-items: flex-start;
+    background-position: 35px 79px;
+    margin-top: 15px;
+  }
+
+  .graph-h {
+    font-size: 15px;
+    padding-right: 33px;
+  }
+
+  .graph-title {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .graph-settings {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding-top: 3px;
+    padding-left: 320px;
+  }
+
+  .graph-value {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: end;
+  }
+
+  .graph-values {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding-right: 328px;
+  }
+
+  .graph-dates {
+    display: flex;
+    padding-left: 40px;
+  }
+
+  .graph-content {
+    padding-left: 10px;
+  }
+
+  .graph-date {
+    font-size: 11px;
+    color: #4f4f4f;
+  }
+
+  .graph-sticks {
+    display: flex;
+    gap: 45.5px;
+    padding-left: 55px;
+    padding-bottom: 7px;
+  }
+
+  .graph-stick2 {
+    width: 0.5px;
+    height: 3.5px;
+  }
+
+  .graph-stick1 {
+    width: 2.5px;
+    height: 0.5px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .form-search {
+    padding-left: 2px;
+  }
+
+  .selected-filter {
+    width: 75px;
+    height: 35px;
+    margin-right: 1px;
+    padding-left: 6px;
+    font-size: 8.5px;
+    background: none;
+    background-color: #fff;
+  }
+
+  .search-field {
+    width: 170px;
+    height: 35px;
+    font-size: 7.8px;
+    padding-left: 2px;
+  }
+
+  .search-button {
+    width: 22px;
+    height: 22px;
+    left: 224px;
+    top: 5.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-button img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .content-hero {
+    padding-top: 4rem;
+    padding-left: 1.2rem;
+  }
+
+  .hero-block {
+    height: 250px;
+  }
+
+  .hero-block h1 {
+    font-size: 20px;
+    letter-spacing: 0.03rem;
+    padding-bottom: 4px;
+  }
+
+  .cards-section .card {
+    width: 295px;
+    height: 128px;
+    margin-right: 0px;
+    padding-left: 0px;
+  }
+
+  .cards {
+    width: 295px;
+  }
+  .img-card {
+    padding-right: 8px;
+  }
+  .coin-name {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 12px;
+    padding-right: 7px;
+  }
+
+  .exchange-rate {
+    font-size: 12px;
+  }
+
+  .price-change-red,
+  .price-change-green {
+    font-size: 12px;
+  }
+
+  .transition {
+    font-size: 14px;
+  }
+
+  .tps {
+    font-size: 12px;
+  }
+
+  .main-card {
+    gap: 3px;
+  }
+
+  .graph-container {
+    width: 310px;
+    height: 240px;
+    align-items: flex-start;
+    background-position: 25px 79px;
+    margin-top: 59px;
+    box-sizing: border-box;
+  }
+
+  .graph-h {
+    font-size: 14px;
+    margin: 0;
+    padding-right: 33px;
+  }
+
+  .graph-title {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .graph-settings {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding-top: 3px;
+    padding-left: 270px;
+  }
+
+  .graph-value {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: end;
+  }
+
+  .graph-values {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    padding-right: 270px;
+  }
+
+  .graph-dates {
+    display: flex;
+    padding-left: 45px;
+  }
+
+  .graph-content {
+    padding-left: 6px;
+  }
+
+  .graph-date {
+    font-size: 11px;
+  }
+
+  .graph-sticks {
+    display: flex;
+    gap: 36.5px;
+    padding-left: 63px;
+    padding-bottom: 7px;
+  }
+
+  .graph-stick2 {
+    width: 0.5px;
+    height: 3.5px;
+  }
+
+  .graph-stick1 {
+    width: 2.5px;
+    height: 0.5px;
+  }
+}

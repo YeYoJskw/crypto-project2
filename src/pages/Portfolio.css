@@ -1,0 +1,576 @@
+.portfolio-content {
+  position: absolute;
+  left: 355px;
+  width: calc(100% - 500px);
+}
+
+.myCoins-block {
+  padding-top: 100px !important;
+}
+
+.button-new-transaction {
+  display: flex;
+  background-color: #77ed91;
+  width: 180px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #000;
+  border-radius: 30px;
+}
+
+.current-balance-text {
+  color: #e1e1e1b4;
+  font-size: 12px;
+  font-weight: 300;
+  padding-bottom: 6px;
+}
+
+.current-balance {
+  font-size: 28px;
+  color: #fff;
+  padding-bottom: 8px;
+}
+
+.current-balance-profit {
+  color: #f92c2c;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.current-balance-time {
+  width: 40px;
+  height: 20px;
+  background-color: #1a1d1e;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-balance-profitBlock {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.title-quality {
+  font-size: 12px;
+  color: #e1e1e1b4;
+  padding-bottom: 4px;
+  font-weight: 300;
+}
+
+.quality-good {
+  color: #2dc24e;
+}
+
+.quality-bad {
+  color: #f92c2c;
+}
+
+.quality-block {
+  display: flex;
+  gap: 65px;
+  padding-top: 20px;
+}
+
+.quality-coin {
+  display: flex;
+}
+
+.quality-coin img {
+  width: 24px;
+  padding-right: 4px;
+}
+
+.statistics {
+  display: flex;
+  gap: 15px;
+  padding-top: 30px;
+}
+
+.chart-stat,
+.allocation-stat,
+.statistics-stat {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid #e1e1e1;
+}
+
+.chart-stat {
+  width: 72px;
+  color: #e1e1e1;
+}
+
+.allocation-stat {
+  width: 101px;
+  background-color: #ffffff;
+}
+
+.statistics-stat {
+  width: 94px;
+  color: #e1e1e1;
+}
+
+.Tether-chart {
+  width: 380px;
+  height: 10px;
+  background-color: #45e3b8;
+}
+
+.Tether-charts {
+  display: flex;
+}
+
+.Sushi-chart {
+  width: 44px;
+  height: 10px;
+  background-color: #c277ed;
+}
+
+.Sushi-charts {
+  display: flex;
+  gap: 8px;
+}
+
+.Bitcoin-chart {
+  width: 13px;
+  height: 10px;
+  background-color: #edd777;
+}
+
+.Bitcoin-charts {
+  display: flex;
+  gap: 5px;
+}
+
+.coins-charts {
+  display: flex;
+  padding-top: 20px;
+  gap: 15px;
+}
+
+.coins-chart-precent {
+  display: flex;
+  padding-top: 6px;
+}
+
+.coin-chart-precent1 {
+  display: flex;
+  padding-right: 450px;
+  align-items: center;
+  gap: 4px;
+}
+
+.coin-chart-precent2 {
+  display: flex;
+  align-items: center;
+  padding-right: 342px;
+  gap: 4px;
+}
+
+.coin-chart-precent3 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.coin-chart-precent {
+  display: flex;
+  align-items: center;
+}
+
+.circle-coin-chart1 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #45e3b8;
+}
+
+.circle-coin-chart2 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #c277ed;
+}
+
+.circle-coin-chart3 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #edd777;
+}
+
+.coin-name-precent {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.coin-precent {
+  color: #a1a1a1;
+  font-size: 12px;
+}
+
+.your-holdings {
+  color: #ffffff;
+  font-size: 26px;
+  font-weight: 300;
+  padding-top: 35px;
+  padding-bottom: 15px;
+  margin: 0;
+}
+
+@media (max-width: 1660px) {
+  .Tether-chart {
+    width: 270px;
+    height: 10px;
+  }
+
+  .Sushi-chart {
+    width: 40px;
+    height: 10px;
+  }
+
+  .Sushi-charts {
+    gap: 8px;
+  }
+
+  .Bitcoin-chart {
+    width: 7px;
+    height: 10px;
+  }
+
+  .Bitcoin-charts {
+    gap: 5px;
+  }
+
+  .coins-charts {
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .coins-chart-precent {
+    padding-top: 6px;
+  }
+
+  .coin-chart-precent1 {
+    padding-right: 318px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent2 {
+    padding-right: 200px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent3 {
+    gap: 4px;
+  }
+
+  .coin-name-precent {
+    font-size: 14px;
+  }
+
+  .coin-precent {
+    font-size: 12px;
+  }
+
+  .your-holdings {
+    font-size: 26px;
+    font-weight: 300;
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .portfolio-content {
+    left: 355px;
+    width: calc(100% - 400px);
+  }
+
+  .Tether-chart {
+    width: 200px;
+    height: 8px;
+  }
+
+  .Sushi-chart {
+    width: 30px;
+    height: 8px;
+  }
+
+  .Sushi-charts {
+    gap: 8px;
+  }
+
+  .Bitcoin-chart {
+    width: 5px;
+    height: 8px;
+  }
+
+  .Bitcoin-charts {
+    gap: 5px;
+  }
+
+  .coins-charts {
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .coins-chart-precent {
+    padding-top: 6px;
+  }
+
+  .coin-chart-precent1 {
+    padding-right: 200px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent2 {
+    padding-right: 150px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .portfolio-content {
+    left: 120px;
+    width: calc(100% - 150px);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-content {
+    left: 90px;
+    width: calc(100% - 120px);
+    padding-bottom: 80px;
+  }
+
+  .button-new-transaction {
+    width: 150px;
+    height: 40px;
+    gap: 2px;
+    font-size: 14px;
+  }
+
+  .button-new-transaction img {
+    width: 20px;
+  }
+
+  .button-edit {
+    width: 85px;
+    height: 40px;
+    gap: 4px;
+    padding-left: 12px;
+    font-size: 14px;
+  }
+
+  .button-edit img {
+    width: 20px;
+  }
+
+  .quality-good,
+  .quality-bad {
+    font-size: 12px;
+  }
+
+  .quality-block {
+    gap: 20px;
+  }
+
+  .Tether-chart {
+    width: 130px;
+    height: 5px;
+  }
+
+  .Sushi-chart {
+    width: 20px;
+    height: 5px;
+  }
+
+  .Sushi-charts {
+    gap: 8px;
+  }
+
+  .Bitcoin-chart {
+    width: 3px;
+    height: 5px;
+  }
+
+  .Bitcoin-charts {
+    gap: 5px;
+  }
+
+  .coins-charts {
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .coins-chart-precent {
+    padding-top: 6px;
+  }
+
+  .coin-chart-precent1 {
+    padding-right: 80px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent2 {
+    padding-right: 102px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 610px) {
+  .Tether-chart {
+    width: 100px;
+    height: 4px;
+  }
+
+  .Sushi-chart {
+    width: 13px;
+    height: 4px;
+  }
+
+  .Sushi-charts {
+    gap: 8px;
+  }
+
+  .Bitcoin-chart {
+    width: 3px;
+    height: 4px;
+  }
+
+  .Bitcoin-charts {
+    gap: 3px;
+  }
+
+  .coins-charts {
+    padding-top: 20px;
+    gap: 15px;
+  }
+
+  .coins-chart-precent {
+    padding-top: 6px;
+  }
+
+  .coin-chart-precent1 {
+    padding-right: 34px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent2 {
+    padding-right: 67px;
+    gap: 4px;
+  }
+
+  .coin-name-precent {
+    font-size: 12px;
+  }
+
+  .coin-precent {
+    font-size: 11px;
+  }
+
+  .chart-stat {
+    width: 60px;
+    height: 30px;
+  }
+
+  .allocation-stat {
+    width: 85px;
+    height: 30px;
+  }
+
+  .statistics-stat {
+    width: 80px;
+    height: 30px;
+  }
+
+  .title-quality {
+    font-size: 11px;
+  }
+
+  .quality-good,
+  .quality-bad {
+    font-size: 11px;
+  }
+
+  .button-edit {
+    width: 50px;
+  }
+
+  .button-new-transaction {
+    width: 155px;
+  }
+
+  .quality-block {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-content {
+    left: 30px;
+    width: calc(320px + 8%);
+  }
+
+  .Tether-chart {
+    width: 90px;
+    height: 4px;
+  }
+
+  .Sushi-chart {
+    width: 11px;
+    height: 4px;
+  }
+
+  .Sushi-charts {
+    gap: 6px;
+  }
+
+  .Bitcoin-chart {
+    width: 3px;
+    height: 4px;
+  }
+
+  .Bitcoin-charts {
+    gap: 2.5px;
+  }
+
+  .coins-charts {
+    padding-top: 20px;
+    gap: 10px;
+  }
+
+  .coins-chart-precent {
+    padding-top: 6px;
+  }
+
+  .coin-chart-precent1 {
+    padding-right: 14px;
+    gap: 4px;
+  }
+
+  .coin-chart-precent2 {
+    padding-right: 48px;
+    gap: 4px;
+  }
+
+  .coin-name-precent {
+    font-size: 11px;
+  }
+
+  .coin-precent {
+    font-size: 10px;
+  }
+}

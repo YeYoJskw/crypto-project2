@@ -1,0 +1,45 @@
+.menu-bottom {
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+}
+
+.menu-content {
+  position: fixed;
+  bottom: 13px;
+  width: 290px;
+  height: 50px;
+  background-color: #151718;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 3px;
+  z-index: 100;
+  border: 1px solid #00000027;
+  align-items: center;
+  padding-top: 2px;
+}
+
+.menu-bottom-link {
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+  align-items: center;
+  background-color: none !important;
+}
+
+.menu-bottom-button {
+  border-radius: 6px;
+  padding: 2px 7px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.menu-bottom-button:hover {
+  filter: blur(1px);
+}
+
+.menu-bottom-link.active {
+  filter: blur(1px); /* Размытие активной ссылки */
+}

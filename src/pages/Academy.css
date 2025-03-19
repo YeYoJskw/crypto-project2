@@ -1,0 +1,829 @@
+.content-academy {
+  position: absolute;
+  left: 355px;
+  top: 418px;
+}
+
+/*                  */
+
+.laptop {
+  position: relative;
+}
+
+.audio-content {
+  position: absolute;
+  top: 21px;
+  left: 19px;
+  width: 693px;
+}
+
+.you {
+  width: 68px;
+  height: 30px;
+  backdrop-filter: blur(20px);
+  display: flex;
+  background-color: #ffffff0a;
+  border-radius: 30px;
+  align-items: center;
+  gap: 8px;
+}
+
+.you-text {
+  color: #fff;
+  font-size: 12px;
+}
+
+.avatar-audio {
+  width: 26px;
+  height: 26px;
+  background-color: #77ed91;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 3px;
+}
+
+.recording-content {
+  width: 131px;
+  height: 30px;
+  background-color: #ffffff11;
+  display: flex;
+  border-radius: 18px;
+  align-items: center;
+}
+
+.top-audio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recording {
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3.5px;
+  margin-right: 8.5px;
+}
+
+.recording-center {
+  width: 8px;
+  height: 8px;
+  background-color: #f92c2c;
+  border-radius: 50%;
+}
+
+.recording-text {
+  color: #fff;
+  font-size: 12px;
+  padding-right: 12px;
+}
+
+.pause {
+  width: 26px;
+  height: 26px;
+  background-color: #ffffff15;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 4.5px;
+}
+
+.stop {
+  width: 26px;
+  height: 26px;
+  background-color: #ffffff15;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audio {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  padding-left: 14px;
+  align-items: center;
+  width: 617px;
+  height: 54px;
+  border-radius: 30px;
+  background-color: #0000003a;
+  gap: 10.3px;
+}
+.audio-track {
+  display: flex;
+  align-items: center;
+  margin-top: 300px;
+  gap: 10px;
+}
+
+.time-audio {
+  color: #fff;
+  font-size: 12px;
+  padding-left: 28px;
+}
+
+.close {
+  width: 50px;
+  height: 50px;
+  background-color: #0000003a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.premium-block {
+  width: 358px;
+  height: 480px;
+  border-radius: 25px;
+  background-color: #77ed91;
+  position: relative;
+}
+
+.content-academy {
+  display: flex;
+  padding-top: 31px;
+  gap: 30px;
+}
+
+.lines-img {
+  position: absolute;
+}
+
+.energy-img {
+  position: absolute;
+  left: 118px;
+  top: 48px;
+}
+
+.text-premium {
+  text-align: center;
+  padding: 0px 20px;
+  padding-top: 185px;
+  line-height: 24px;
+}
+
+.get-premium {
+  display: flex;
+  justify-content: center;
+  padding-top: 65px;
+}
+
+.get-premium-btn {
+  width: 232px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+
+@media (max-width: 1800px) {
+  .live-Now {
+    width: 600px;
+  }
+
+  .laptop-img {
+    width: 580px;
+  }
+
+  .audio-content {
+    top: 18px;
+    left: 19px;
+    width: 543px;
+  }
+
+  .you {
+    width: 68px;
+    height: 30px;
+    gap: 8px;
+  }
+
+  .you-text {
+    font-size: 12px;
+  }
+
+  .avatar-audio {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+    margin-left: 3px;
+  }
+
+  .recording-content {
+    width: 131px;
+    height: 30px;
+  }
+
+  .recording {
+    width: 22px;
+    height: 22px;
+    margin-left: 3.5px;
+    margin-right: 8.5px;
+  }
+
+  .recording-center {
+    width: 8px;
+    height: 8px;
+  }
+
+  .recording-text {
+    font-size: 12px;
+    padding-right: 12px;
+  }
+
+  .pause {
+    width: 26px;
+    height: 26px;
+    margin-right: 3.5px;
+  }
+
+  .stop {
+    width: 26px;
+    height: 26px;
+  }
+
+  .audio {
+    padding-left: 14px;
+    width: 500px;
+    height: 54px;
+    gap: 10.3px;
+  }
+
+  .audio-track {
+    margin-top: 225px;
+    gap: 8px;
+  }
+
+  .time-audio {
+    font-size: 11px;
+    padding-left: 10px;
+  }
+
+  .close {
+    width: 50px;
+    height: 50px;
+  }
+
+  .audio-sound {
+    width: 100px;
+  }
+
+  .audio-sound1 {
+    width: 55px;
+  }
+
+  .premium-block {
+    width: 308px;
+    height: 450px;
+    margin-top: 10px;
+  }
+
+  .content-academy {
+    padding-top: 31px;
+    gap: 30px;
+  }
+
+  .energy-img {
+    left: 100px;
+    top: 48px;
+    width: 110px;
+  }
+
+  .lines-img {
+    width: 310px;
+  }
+
+  .text-premium {
+    padding: 0px 20px;
+    padding-top: 165px;
+    font-size: 15px;
+  }
+
+  .get-premium {
+    padding-top: 50px;
+  }
+
+  .get-premium-btn {
+    width: 212px;
+    height: 50px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1520px) {
+  .content-academy {
+    display: block;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-academy {
+    left: 300px;
+    width: calc(100% - 310px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .content-academy {
+    left: 60px;
+    width: calc(100% - 190px);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-academy {
+    left: 40px;
+    width: calc(100% - 135px);
+    padding-bottom: 100px;
+  }
+
+  .live-Now {
+    width: 400px;
+  }
+
+  .laptop-img {
+    width: 400px;
+  }
+
+  .audio-content {
+    top: 18px;
+    left: 19px;
+    width: 353px;
+  }
+
+  .you {
+    width: 58px;
+    height: 20px;
+    gap: 8px;
+  }
+
+  .you-text {
+    font-size: 12px;
+  }
+
+  .avatar-audio {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    margin-left: 2px;
+  }
+
+  .recording-content {
+    width: 111px;
+    height: 22px;
+  }
+
+  .recording {
+    width: 18px;
+    height: 18px;
+    margin-left: 3.5px;
+    margin-right: 8.5px;
+  }
+
+  .recording-center {
+    width: 8px;
+    height: 8px;
+  }
+
+  .recording-text {
+    font-size: 10px;
+    padding-right: 12px;
+  }
+
+  .pause {
+    width: 18px;
+    height: 18px;
+    margin-right: 3.5px;
+  }
+
+  .stop {
+    width: 18px;
+    height: 18px;
+  }
+
+  .audio {
+    padding-left: 14px;
+    width: 300px;
+    height: 35px;
+    gap: 10.3px;
+  }
+
+  .audio-track {
+    margin-top: 150px;
+    gap: 8px;
+  }
+
+  .time-audio {
+    font-size: 8px;
+    padding-left: 0px;
+  }
+
+  .close {
+    width: 35px;
+    height: 35px;
+  }
+
+  .audio-sound {
+    width: 58px;
+  }
+
+  .audio-sound1 {
+    width: 31px;
+  }
+
+  .premium-block {
+    width: 258px;
+    height: 350px;
+    margin-top: 10px;
+  }
+
+  .content-academy {
+    padding-top: 31px;
+    gap: 30px;
+  }
+
+  .energy-img {
+    left: 84px;
+    top: 35px;
+    width: 90px;
+  }
+
+  .lines-img {
+    width: 258px;
+  }
+
+  .text-premium {
+    padding: 0px 20px;
+    padding-top: 135px;
+    font-size: 12px;
+  }
+
+  .get-premium {
+    padding-top: 18px;
+  }
+
+  .get-premium-btn {
+    width: 182px;
+    height: 42px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 520px) {
+  .content-academy {
+    left: 40px;
+    width: calc(100% - 135px);
+    padding-top: 0px;
+    padding-bottom: 100px;
+  }
+
+  .live-Now {
+    width: 350px;
+  }
+
+  .laptop-img {
+    width: 350px;
+  }
+
+  .audio-content {
+    top: 15px;
+    left: 15px;
+    width: 273px;
+  }
+
+  .you {
+    width: 50px;
+    height: 18px;
+    gap: 5px;
+  }
+
+  .you-text {
+    font-size: 11px;
+  }
+
+  .avatar-audio {
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    margin-left: 2px;
+  }
+
+  .recording-content {
+    width: 90px;
+    height: 18px;
+  }
+
+  .recording {
+    width: 15px;
+    height: 15px;
+    margin-left: 3.5px;
+    margin-right: 8.5px;
+  }
+
+  .recording-center {
+    width: 7px;
+    height: 7px;
+  }
+
+  .recording-text {
+    font-size: 8.5px;
+    padding-right: 8px;
+  }
+
+  .pause {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+  }
+
+  .pause img {
+    width: 8px;
+    height: 8px;
+  }
+
+  .stop {
+    width: 15px;
+    height: 15px;
+  }
+
+  .stop img {
+    width: 8px;
+    height: 8px;
+  }
+
+  .audio {
+    padding-left: 14px;
+    width: 230px;
+    height: 30px;
+    gap: 10.3px;
+  }
+
+  .audio-track {
+    margin-top: 105px;
+    gap: 8px;
+  }
+
+  .time-audio {
+    font-size: 7px;
+    padding-left: 0px;
+  }
+
+  .close {
+    width: 30px;
+    height: 30px;
+  }
+
+  .audio-sound {
+    width: 39px;
+  }
+
+  .audio-sound1 {
+    width: 23px;
+  }
+
+  .premium-block {
+    width: 208px;
+    height: 300px;
+    margin-top: 10px;
+  }
+
+  .content-academy {
+    padding-top: 31px;
+    gap: 30px;
+  }
+
+  .energy-img {
+    left: 67px;
+    top: 28px;
+    width: 75px;
+  }
+
+  .lines-img {
+    width: 210px;
+  }
+
+  .text-premium {
+    padding: 0px 8px;
+    padding-top: 130px;
+    font-size: 9px;
+    line-height: 16px;
+  }
+
+  .get-premium {
+    padding-top: 18px;
+  }
+
+  .get-premium-btn {
+    width: 152px;
+    height: 38px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-academy {
+    left: 29px;
+    width: calc(100% - 135px);
+    gap: 40%;
+    padding-top: 0px;
+  }
+
+  .live-Now {
+    width: 350px;
+  }
+
+  .laptop-img {
+    width: 350px;
+  }
+
+  .audio-content {
+    top: 15px;
+    left: 15px;
+    width: 320px;
+  }
+
+  .you {
+    width: 50px;
+    height: 18px;
+    gap: 5px;
+  }
+
+  .you-text {
+    font-size: 10px;
+  }
+
+  .avatar-audio {
+    width: 15px;
+    height: 15px;
+    font-size: 11px;
+    margin-left: 2px;
+  }
+
+  .recording-content {
+    width: 90px;
+    height: 18px;
+  }
+
+  .recording {
+    width: 15px;
+    height: 15px;
+    margin-left: 3.5px;
+    margin-right: 8.5px;
+  }
+
+  .recording-center {
+    width: 7px;
+    height: 7px;
+  }
+
+  .recording-text {
+    font-size: 8.5px;
+    padding-right: 8px;
+  }
+
+  .pause {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+  }
+
+  .pause img {
+    width: 7px;
+    height: 7px;
+  }
+
+  .stop {
+    width: 15px;
+    height: 15px;
+  }
+
+  .stop img {
+    width: 7px;
+    height: 7px;
+  }
+
+  .audio {
+    padding-left: 14px;
+    width: 260px;
+    height: 30px;
+    gap: 10.3px;
+  }
+
+  .audio-track {
+    margin-top: 120px;
+    gap: 8px;
+  }
+
+  .time-audio {
+    font-size: 7px;
+    padding-left: 0px;
+  }
+
+  .close {
+    width: 30px;
+    height: 30px;
+  }
+
+  .audio-sound {
+    width: 48px;
+  }
+
+  .audio-sound1 {
+    width: 26px;
+  }
+
+  .premium-block {
+    width: 208px;
+    height: 300px;
+    margin-top: 10px;
+  }
+
+  .energy-img {
+    left: 67px;
+    top: 28px;
+    width: 75px;
+  }
+
+  .lines-img {
+    width: 210px;
+  }
+
+  .text-premium {
+    padding: 0px 8px;
+    padding-top: 130px;
+    font-size: 9px;
+    line-height: 16px;
+  }
+
+  .get-premium {
+    padding-top: 18px;
+  }
+
+  .get-premium-btn {
+    width: 152px;
+    height: 38px;
+    letter-spacing: 0.2px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 360px) {
+  .live-Now {
+    width: 320px;
+  }
+
+  .laptop-img {
+    width: 320px;
+  }
+
+  .audio-content {
+    top: 15px;
+    left: 15px;
+    width: 290px;
+  }
+
+  .audio {
+    padding-left: 8px;
+    width: 260px;
+    height: 30px;
+    gap: 10.3px;
+  }
+
+  .audio-track {
+    margin-top: 120px;
+    gap: 8px;
+  }
+
+  .time-audio {
+    font-size: 7px;
+    padding-left: 0px;
+  }
+
+  .close {
+    width: 30px;
+    height: 30px;
+  }
+
+  .audio-sound {
+    width: 48px;
+  }
+
+  .audio-sound1 {
+    width: 26px;
+  }
+}
