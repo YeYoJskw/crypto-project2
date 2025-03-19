@@ -152,7 +152,7 @@ footer {
 
 @media (max-width: 480px) {
   .foot {
-    left: 10px;
-    width: calc(100% - 40px);
+    left: 12px;
+    width: calc(100% - 20px);
   }
 }
