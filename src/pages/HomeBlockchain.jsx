@@ -53,8 +53,10 @@ function HomeBlockchain() {
                   <div className='price-info'>
                     <h3 className='coin-name'>Toncoin Price</h3>
                     <div className='price-details'>
-                      <span className='price'>2.45 USDT</span>
-                      <span className='exchange-rate'>0.009972 TONCOIN </span>
+                      <div>
+                        <span className='price'>2.45 USDT</span>
+                        <span className='exchange-rate'>0.009972 TONCOIN </span>
+                      </div>
                       <div className='percent'>
                         <img src='/img/red.svg' alt='' />
                         <span className='price-change-red'>1.12%</span>

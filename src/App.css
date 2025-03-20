@@ -10,6 +10,30 @@
   font-family: 'Rubik';
 }
 
+html,
+body {
+  overflow-x: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto; /* Прижимаем к низу */
+}
+
 button,
 input {
   all: unset;

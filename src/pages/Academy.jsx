@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import Header from '../components/Header'
 import './Academy.css'
 import CardRelease from '../components/CardRelease'
@@ -82,6 +83,12 @@ const Academy = () => {
     },
   ]
 
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const togglePlay = () => {
+    setIsPlaying(prev => !prev)
+  }
+
   useBodyClass()
 
   return (
@@ -118,8 +125,11 @@ const Academy = () => {
                   <span className='time-audio'>01:23:34</span>
                 </div>
 
-                <button className='close'>
-                  <img src='/img/add.svg' alt='' />
+                <button className='play' onClick={togglePlay}>
+                  <img
+                    src={isPlaying ? '/img/pause_button.svg' : '/img/play-button-rounded.svg'}
+                    alt=''
+                  />
                 </button>
               </div>
             </div>

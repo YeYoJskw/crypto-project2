@@ -257,7 +257,7 @@
 @media (max-width: 480px) {
   .header {
     left: 60px;
-    width: calc(100% - 0px);
+    width: calc(100% + 20px);
     gap: 40%;
   }
 
@@ -316,5 +316,13 @@
 
   .open-profile-img {
     padding-left: 5px;
+  }
+}
+
+@media (max-width: 388px) {
+  .header {
+    left: 60px;
+    width: calc(100% - 40px);
+    gap: 40%;
   }
 }

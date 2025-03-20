@@ -52,6 +52,24 @@ const Menu = () => {
     }
   }, [touchStartX])
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        isOpen &&
+        !event.target.closest(`.${styles.sidebar}`) &&
+        !event.target.closest(`.${styles.burgerMenu}`)
+      ) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [isOpen])
+
   const menuItems = [
     { name: 'Dashboard', img: '/img/user.svg', path: '/Dashboard' },
     { name: 'Portfolio', img: '/img/activity.svg', path: '/Portfolio' },

@@ -130,14 +130,18 @@
   padding-left: 28px;
 }
 
-.close {
+.play {
   width: 50px;
   height: 50px;
-  background-color: #0000003a;
+  background-color: #00000094;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+}
+
+.play img {
+  width: 25px;
 }
 
 .premium-block {
@@ -152,6 +156,7 @@
   display: flex;
   padding-top: 31px;
   gap: 30px;
+  padding-bottom: 50px;
 }
 
 .lines-img {
@@ -448,11 +453,13 @@
     width: 258px;
     height: 350px;
     margin-top: 10px;
+    display: none;
   }
 
   .content-academy {
     padding-top: 31px;
     gap: 30px;
+    padding-bottom: 0px !important;
   }
 
   .energy-img {

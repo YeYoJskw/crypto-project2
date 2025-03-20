@@ -385,11 +385,9 @@
     padding-top: 6rem;
     display: flex;
     flex-wrap: wrap;
-    max-width: 346px;
   }
 
   .cards-section .card {
-    width: 347px;
     height: 128px;
     margin-right: 0px;
     padding-left: 0px;
@@ -425,7 +423,7 @@
 
   .exchange-rate {
     font-size: 14px;
-    padding-right: 18px;
+    padding-right: 28px;
   }
 
   .price-change-red,
@@ -442,6 +440,10 @@
   .percent img {
     padding-bottom: 2px;
     padding-right: 4px;
+  }
+
+  .price-details {
+    justify-content: space-between;
   }
 
   .count {
@@ -467,7 +469,8 @@
 
   .main-card {
     display: flex;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 0px;
   }
 
   .graph-container {
@@ -544,11 +547,31 @@
     width: 2.5px;
     height: 0.5px;
   }
+
+  .card {
+    width: calc(100% - 0px) !important;
+  }
+
+  .price-info {
+    width: calc(100% + 20px);
+  }
 }
 
 @media screen and (max-width: 380px) {
   .form-search {
     padding-left: 2px;
+  }
+
+  .card {
+    width: calc(100% - 0px);
+  }
+
+  .price-info {
+    width: calc(100% + 20px);
+  }
+
+  .price-details {
+    justify-content: space-between;
   }
 
   .selected-filter {
@@ -603,10 +626,6 @@
     height: 128px;
     margin-right: 0px;
     padding-left: 0px;
-  }
-
-  .cards {
-    width: 295px;
   }
   .img-card {
     padding-right: 8px;
