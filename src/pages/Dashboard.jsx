@@ -62,7 +62,7 @@ const Dashboard = () => {
               transition={{ duration: 0.4 }}
             >
               <div className='top-card-prices'>
-                <h2 className='trending-title'>🔥 Trending</h2>
+                <h2 className='trending-title'>🔥 Trending </h2>
                 <button className='seeAll-prices' onClick={() => setIsExpanded1(!isExpanded1)}>
                   {isExpanded1 ? 'Show less' : 'See all'}
                 </button>
