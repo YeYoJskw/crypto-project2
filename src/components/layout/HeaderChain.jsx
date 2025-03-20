@@ -15,9 +15,9 @@ const HeaderChain = () => {
 
   return (
     <div>
+      <Menu />
       <div className='background-header2'></div>
       <header id='header' className='header2'>
-        <Menu />
         <a className='logo-header' onClick={() => navigate('/Wallet')}>
           <b>Q</b> BLOCKCHAIN
         </a>

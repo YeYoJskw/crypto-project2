@@ -36,6 +36,45 @@
   padding-top: 7px;
 }
 
+.copy {
+  position: absolute;
+  left: 332px;
+  top: 1px;
+  background: none;
+  border: none;
+}
+
+/* Стиль для кастомного уведомления */
+.copy-notification {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.copy-notification.hidden {
+  opacity: 0;
+  pointer-events: none; /* Чтобы уведомление не мешало взаимодействию с другими элементами */
+}
+
+.copy-img {
+  width: 20px;
+}
+
+.qr-address {
+  position: relative;
+}
+
 .recent-history {
   font-size: 24px;
   padding-top: 102px;
@@ -46,7 +85,7 @@
   .QR-block {
     flex-direction: column;
     gap: 20px;
-    padding-top: 20px;
+    padding-top: 75px;
   }
 
   .qr-data {
@@ -74,5 +113,15 @@
     padding-top: 50px;
     padding-bottom: 15px;
     padding-left: 0;
+  }
+
+  .copy {
+    position: absolute;
+    left: 280px;
+    top: 2px;
+  }
+
+  .copy-img {
+    width: 18px;
   }
 }

@@ -106,6 +106,16 @@ const Second = () => {
       message: 'TNw6v3yHUifFIkbW...',
     },
   ]
+
+  const handleCopy = () => {
+    const addressText = 'EQCuCUTCNsq2Wcmbg2oN-Jg' // Адрес, который нужно скопировать
+    navigator.clipboard
+      .writeText(addressText) // Копируем в буфер обмена
+      .catch(err => {
+        console.error('Ошибка при копировании: ', err)
+      })
+  }
+
   useBodyClass()
   return (
     <div className='BLOCKCHAIN'>
@@ -123,6 +133,9 @@ const Second = () => {
                 <div className='qr-address qr-data'>
                   <span className='qr-label'>Address</span>
                   <span className='qr-value'>EQCuCUTCNsq2Wcmbg2oN-Jg</span>
+                  <button className='copy' onClick={handleCopy}>
+                    <img className='copy-img' src='/img/file_copy_icon_134669.svg' alt='' />
+                  </button>
                 </div>
                 <div className='qr-balance qr-data'>
                   <span className='qr-label'>Balance</span>

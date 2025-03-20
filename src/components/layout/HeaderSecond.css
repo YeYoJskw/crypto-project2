@@ -252,6 +252,9 @@
     height: 30px;
     font-size: 9.5px;
     padding-left: 2px;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   .search-button-header {
