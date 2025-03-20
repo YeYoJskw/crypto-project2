@@ -66,6 +66,7 @@
   padding: 0px 15px;
   box-sizing: border-box;
   margin-bottom: 7px;
+  transition: all 5s ease-in-out !important;
 }
 
 .top-card-prices {
@@ -130,6 +131,12 @@
 
 .cards-carousel3 {
   top: 945px !important;
+}
+
+.text-blue {
+  color: #fff;
+  padding-top: 40px;
+  font-weight: 300;
 }
 
 @media (max-width: 1468px) {
@@ -316,7 +323,7 @@
 
   .card-prices-closed,
   .card-prices-opened {
-    width: 377px !important;
+    width: 410px !important;
     background-color: #151718;
     border-radius: 35px;
     padding-left: 16px;
@@ -329,12 +336,12 @@
   .top-card-prices {
     display: flex;
     justify-content: space-between;
-    width: 327px;
+    width: 367px;
   }
 
   .coin-trending {
     display: flex;
-    width: 347px;
+    width: 377px;
     height: 56px;
     background-color: #212325;
     border-radius: 30px;
@@ -343,6 +350,51 @@
     padding: 0px 15px;
     box-sizing: border-box;
     margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 460px) {
+  .card-prices-closed,
+  .card-prices-opened {
+    width: 390px !important;
+  }
+
+  .top-card-prices {
+    width: 350px;
+  }
+
+  .coin-trending {
+    width: 360px;
+  }
+}
+
+@media (max-width: 450px) {
+  .card-prices-closed,
+  .card-prices-opened {
+    width: 380px !important;
+  }
+
+  .top-card-prices {
+    width: 340px;
+  }
+
+  .coin-trending {
+    width: 350px;
+  }
+}
+
+@media (max-width: 440px) {
+  .card-prices-closed,
+  .card-prices-opened {
+    width: 370px !important;
+  }
+
+  .top-card-prices {
+    width: 330px;
+  }
+
+  .coin-trending {
+    width: 340px;
   }
 }
 

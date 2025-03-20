@@ -14,6 +14,7 @@ const Dashboard = () => {
   const [coins, setCoins] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [showPrice, setShowPrice] = useState(false) // Состояние для переключения между процентом и ценой
 
   const fetchCoins = async () => {
     setLoading(true)
@@ -32,6 +33,14 @@ const Dashboard = () => {
     fetchCoins()
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowPrice(prevState => !prevState) // Меняем состояние каждые 6 секунд
+    }, 6000) // 6000 миллисекунд = 6 секунд
+
+    return () => clearInterval(interval) // Очищаем интервал при размонтировании компонента
+  }, [])
+
   useBodyClass()
 
   return (
@@ -39,6 +48,7 @@ const Dashboard = () => {
       <MenuButtom />
       <Menu />
       <Header title={'Dashboard'} />
+      <div id='top'></div>
       <div className='prices-block'>
         <h3 className='title-prices'>
           <i>Today's prices by marketcap</i>
@@ -64,9 +74,9 @@ const Dashboard = () => {
                   <motion.div
                     className='coin-trending'
                     key={coin.id}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className='coin-content'>
@@ -79,13 +89,40 @@ const Dashboard = () => {
                       <div className='name-coin-prices'>{coin.name}</div>
                       <div className='subname-coin-prices'>{coin.symbol}</div>
                     </div>
-                    <div
+                    <motion.div
                       className={`percent ${
-                        coin.percent_change_24h >= 0 ? 'text-green' : 'text-red'
+                        showPrice
+                          ? coin.percent_change_24h >= 0
+                            ? 'text-green'
+                            : 'text-red'
+                          : 'text-blue'
                       }`}
+                      key={showPrice ? coin.percent_change_24h : coin.price_usd} // Ключ для анимации
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
                     >
-                      {coin.percent_change_24h}%
-                    </div>
+                      {showPrice ? (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {`${coin.percent_change_24h}%`}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {`$${coin.price_usd}`}
+                        </motion.div>
+                      )}
+                    </motion.div>
                   </motion.div>
                 ))}
               </AnimatePresence>
@@ -94,8 +131,10 @@ const Dashboard = () => {
             {/* Recently Added */}
             <motion.div
               className={isExpanded2 ? 'card-prices-opened' : 'card-prices-closed'}
-              animate={{ height: isExpanded2 ? 'auto' : 150 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
             >
               <div className='top-card-prices'>
                 <h2 className='trending-title'>⌛ Recently added</h2>
@@ -110,9 +149,9 @@ const Dashboard = () => {
                   <motion.div
                     className='coin-trending'
                     key={coin.id}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className='coin-content'>
@@ -125,13 +164,40 @@ const Dashboard = () => {
                       <div className='name-coin-prices'>{coin.name}</div>
                       <div className='subname-coin-prices'>{coin.symbol}</div>
                     </div>
-                    <div
+                    <motion.div
                       className={`percent ${
-                        coin.percent_change_24h >= 0 ? 'text-green' : 'text-red'
+                        showPrice
+                          ? coin.percent_change_24h >= 0
+                            ? 'text-green'
+                            : 'text-red'
+                          : 'text-blue'
                       }`}
+                      key={showPrice ? coin.percent_change_24h : coin.price_usd} // Ключ для анимации
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
                     >
-                      {coin.percent_change_24h}%
-                    </div>
+                      {showPrice ? (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {`${coin.percent_change_24h}%`}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          {`$${coin.price_usd}`}
+                        </motion.div>
+                      )}
+                    </motion.div>
                   </motion.div>
                 ))}
               </AnimatePresence>

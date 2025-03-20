@@ -16,6 +16,7 @@ function HomeBlockchain() {
       <HeaderChain />
       <Menu />
       <MenuBottom />
+      <div id='top'></div>
       <div className='container'>
         <div className='content-block'>
           <section className='hero-block'>
@@ -146,7 +147,7 @@ function HomeBlockchain() {
                     <div className='graph-stick2'></div>
                     <div className='graph-stick2'></div>
                   </div>
-                  <div className='graph-dates'>
+                  <div className='graph-dates' id='blocks'>
                     <div style={{ paddingRight: '64px' }} className='graph-date'>
                       Jan 19
                     </div>

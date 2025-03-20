@@ -194,6 +194,10 @@
   font-weight: 500;
 }
 
+.live-Now {
+  margin-bottom: 0px;
+}
+
 @media (max-width: 1800px) {
   .live-Now {
     width: 600px;
@@ -352,12 +356,11 @@
   .content-academy {
     left: 40px;
     width: calc(100% - 135px);
-    margin-bottom: 50px;
   }
 
   .live-Now {
     width: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
   }
 
   .laptop-img {

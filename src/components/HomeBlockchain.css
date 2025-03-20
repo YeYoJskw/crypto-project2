@@ -231,6 +231,7 @@
   background-repeat: no-repeat;
   background-position: 61px 79px;
   margin-top: 59px;
+  position: relative;
 }
 
 .graph-h {
@@ -238,6 +239,7 @@
   color: #4f4f4f;
   margin: 0;
   padding-right: 33px;
+  z-index: 2;
 }
 
 .graph-title {
@@ -253,7 +255,8 @@
   border: none;
   background: none;
   padding-top: 3px;
-  padding-left: 353px;
+  left: 350px;
+  width: 10px;
 }
 
 .graph-value {
@@ -357,8 +360,9 @@
   }
 
   .search-button img {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
+    padding-top: 1px;
   }
 
   .content-hero {
@@ -474,7 +478,8 @@
   }
 
   .graph-container {
-    width: 383px;
+    width: 100%;
+    max-width: 380px;
     height: 256px;
     align-items: flex-start;
     background-position: 35px 79px;
@@ -499,7 +504,7 @@
     border: none;
     background: none;
     padding-top: 3px;
-    padding-left: 320px;
+    left: 320px;
   }
 
   .graph-value {
@@ -661,7 +666,7 @@
   }
 
   .graph-container {
-    width: 310px;
+    width: 100%;
     height: 240px;
     align-items: flex-start;
     background-position: 25px 79px;
@@ -688,7 +693,7 @@
     border: none;
     background: none;
     padding-top: 3px;
-    padding-left: 270px;
+    left: 285px;
   }
 
   .graph-value {

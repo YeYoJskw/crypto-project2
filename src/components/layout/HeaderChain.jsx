@@ -3,13 +3,20 @@ import './HeaderChain.css'
 import { useNavigate } from 'react-router-dom'
 import Menu from '../Menu'
 
+const scrollToSection = id => {
+  const element = document.getElementById(id)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+
 const HeaderChain = () => {
   const navigate = useNavigate()
 
   return (
     <div>
       <div className='background-header2'></div>
-      <header className='header2'>
+      <header id='header' className='header2'>
         <Menu />
         <a className='logo-header' onClick={() => navigate('/Wallet')}>
           <b>Q</b> BLOCKCHAIN
@@ -17,13 +24,19 @@ const HeaderChain = () => {
         <nav>
           <ul>
             <li>
-              <a href='#'>Top</a>
+              <button className='link' onClick={() => scrollToSection('header')}>
+                Top
+              </button>
             </li>
             <li>
-              <a href='#'>Blocks</a>
+              <button className='link' onClick={() => scrollToSection('blocks')}>
+                Blocks
+              </button>
             </li>
             <li>
-              <a href='#'>Transactions</a>
+              <button className='link' onClick={() => scrollToSection('transactions')}>
+                Transactions
+              </button>
             </li>
           </ul>
           <button onClick={() => navigate('/Profile')} className='button-header'>

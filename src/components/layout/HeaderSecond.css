@@ -294,24 +294,25 @@
   .filter-dropdown-header {
     width: 48px;
     height: 30px;
-    margin-right: 1px;
-    padding-left: 2px;
+    display: flex;
+    justify-content: center;
     font-size: 8px;
     background: none;
     letter-spacing: -0.3px;
+    padding-left: 0;
   }
 
   .search-field-header {
     width: 140px;
     height: 30px;
-    font-size: 8.5px;
+    font-size: 9px;
     padding-left: 2px;
   }
 
   .search-button-header {
     width: 24px;
     height: 24px;
-    left: 162px;
+    left: 164px;
     top: 2.5px;
   }
 

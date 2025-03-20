@@ -8,16 +8,16 @@ const HeaderSecond = () => {
   return (
     <div>
       <div className='background-header2'></div>
-      <header className='header2'>
+      <header id='header' className='header2'>
         <a className='logo-header' onClick={() => navigate('/Wallet')}>
           <b>Q</b> BLOCKCHAIN
         </a>
         <form className='form-search-header' action=''>
           <select className='filter-dropdown-header'>
-            <option value='option1'>ALL FILTERS</option>
-            <option value='option2'>SOLANA BLOCKCHAIN</option>
-            <option value='option3'>TON BLOCKCHAIN</option>
-            <option value='option4'>Q BLOCKCHAIN</option>
+            <option value='option1'>BLOCKHAIN</option>
+            <option value='option2'>SOLANA</option>
+            <option value='option3'>TON</option>
+            <option value='option4'>Q</option>
           </select>
           <div>
             <input type='text' className='search-field-header' placeholder='Search by Address ' />
