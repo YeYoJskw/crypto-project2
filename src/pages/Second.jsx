@@ -6,6 +6,7 @@ import MenuBottom from '../components/MenuButtom'
 import Menu from '../components/Menu'
 import useBodyClass from '../hooks/useBodyClass'
 import Footer from '../components/layout/Footer'
+import { useState } from 'react'
 
 const Second = () => {
   const tableData = [
@@ -108,13 +109,16 @@ const Second = () => {
   ]
 
   const handleCopy = () => {
-    const addressText = 'EQCuCUTCNsq2Wcmbg2oN-Jg' // Адрес, который нужно скопировать
-    navigator.clipboard
-      .writeText(addressText) // Копируем в буфер обмена
-      .catch(err => {
-        console.error('Ошибка при копировании: ', err)
-      })
+    navigator.clipboard.writeText('EQCuCUTCNsq2Wcmbg2oN-Jg') // Копируем текст
+
+    setIsFading(true) // Уменьшаем прозрачность
+
+    setTimeout(() => {
+      setIsFading(false) // Возвращаем обратно через 2 секунды
+    }, 1500)
   }
+
+  const [isFading, setIsFading] = useState(false)
 
   useBodyClass()
   return (
@@ -133,7 +137,11 @@ const Second = () => {
                 <div className='qr-address qr-data'>
                   <span className='qr-label'>Address</span>
                   <span className='qr-value'>EQCuCUTCNsq2Wcmbg2oN-Jg</span>
-                  <button className='copy' onClick={handleCopy}>
+                  <button
+                    className='copy'
+                    onClick={handleCopy}
+                    style={{ opacity: isFading ? 0.5 : 1, transition: 'opacity 0.3s ease-in-out' }}
+                  >
                     <img className='copy-img' src='/img/file_copy_icon_134669.svg' alt='' />
                   </button>
                 </div>
