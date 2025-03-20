@@ -124,11 +124,11 @@ const Second = () => {
   return (
     <div className='BLOCKCHAIN'>
       <HeaderSecond />
+      <MenuBottom />
       <div id='top'></div>
       <div className='container'>
         <div>
           <Menu />
-          <MenuBottom />
 
           <div>
             <div className='QR-block'>
