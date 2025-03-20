@@ -4,11 +4,14 @@
   background-color: #151718;
   border-radius: 32px;
   position: relative;
-  margin-bottom: 40px;
 }
 
 .topCoin-content {
   padding: 18px 18px 0px 15px;
+}
+
+.cards-carouse {
+  margin-bottom: 80px;
 }
 
 .images-topCard {
