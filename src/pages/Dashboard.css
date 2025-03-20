@@ -441,21 +441,34 @@
 @media (max-width: 400px) {
   .card-prices-closed,
   .card-prices-opened {
-    width: 320px !important;
+    width: 350px !important;
   }
 
   .top-card-prices {
-    width: 280px;
+    width: 310px;
   }
 
   .coin-trending {
-    width: 290px;
+    width: 320px;
   }
 }
 
 @media (max-width: 380px) {
   .cards-carousel {
     width: calc(90%);
+  }
+
+  .card-prices-closed,
+  .card-prices-opened {
+    width: 330px !important;
+  }
+
+  .top-card-prices {
+    width: 290px;
+  }
+
+  .coin-trending {
+    width: 300px;
   }
 }
 
