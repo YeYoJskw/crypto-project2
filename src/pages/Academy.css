@@ -133,7 +133,7 @@
 .play {
   width: 50px;
   height: 50px;
-  background-color: #00000094;
+  background-color: #00000062;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,7 +276,7 @@
     padding-left: 10px;
   }
 
-  .close {
+  .play {
     width: 50px;
     height: 50px;
   }
@@ -436,7 +436,7 @@
     padding-left: 0px;
   }
 
-  .close {
+  .play {
     width: 35px;
     height: 35px;
   }
@@ -589,9 +589,13 @@
     padding-left: 0px;
   }
 
-  .close {
+  .play {
     width: 30px;
     height: 30px;
+  }
+
+  .play img {
+    width: 18px;
   }
 
   .audio-sound {
@@ -732,7 +736,7 @@
   }
 
   .audio-track {
-    margin-top: 120px;
+    margin-top: 130px;
     gap: 8px;
   }
 
