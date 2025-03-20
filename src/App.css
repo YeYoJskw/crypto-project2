@@ -33,6 +33,20 @@ button:hover {
 }
 /*                          */
 
+input {
+  width: 100%;
+  white-space: nowrap; /* Оставляем текст в одну строку */
+  overflow: auto; /* Включаем прокрутку при переполнении */
+  padding-right: 50px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  input {
+    padding-right: 35px;
+  }
+}
+
 #top {
   position: absolute;
   top: 0px;
