@@ -119,7 +119,7 @@ const Dashboard = () => {
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
                         >
-                          {`$${coin.price_usd}`}
+                          {`$ ${Number(coin.price_usd).toLocaleString('en-US')}`}
                         </motion.div>
                       )}
                     </motion.div>
@@ -194,7 +194,7 @@ const Dashboard = () => {
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
                         >
-                          {`$${coin.price_usd}`}
+                          {`$ ${Number(coin.price_usd).toLocaleString('en-US')}`}
                         </motion.div>
                       )}
                     </motion.div>

@@ -328,7 +328,7 @@
     width: 75px;
     height: 40px;
     margin-right: 1px;
-    padding-left: 7px;
+    padding-left: 5px;
     font-size: 9.5px;
     background-image: url('/img/down.svg');
     background-repeat: no-repeat;
@@ -372,6 +372,7 @@
 
   .hero-block {
     height: 260px;
+    margin-top: 75px;
   }
 
   .hero-block h1 {
@@ -386,7 +387,7 @@
   }
 
   .cards {
-    padding-top: 6rem;
+    padding-top: 3rem;
     display: flex;
     flex-wrap: wrap;
   }

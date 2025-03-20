@@ -28,10 +28,10 @@ function HomeBlockchain() {
                   value={selected}
                   onChange={e => setSelected(e.target.value)}
                 >
-                  <option value='option1'>ALL FILTERS</option>
-                  <option value='option2'>SOLANA BCHAIN</option>
-                  <option value='option3'>TON BCHAIN</option>
-                  <option value='option4'>Q BCHAIN</option>
+                  <option value='option1'>BLOCKCHAIN</option>
+                  <option value='option2'>SOLANA</option>
+                  <option value='option3'>TON</option>
+                  <option value='option4'>Q</option>
                 </select>
                 <div>
                   <input

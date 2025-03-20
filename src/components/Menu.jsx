@@ -81,7 +81,7 @@ const Menu = () => {
   ]
 
   return (
-    <>
+    <div className={`app-container ${isOpen ? 'shifted' : ''}`}>
       <button
         className={`${styles.burgerMenu} ${isDarkBurger ? styles.darkBurger : styles.lightBurger}`}
         onClick={() => setIsOpen(!isOpen)}
@@ -132,7 +132,7 @@ const Menu = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
