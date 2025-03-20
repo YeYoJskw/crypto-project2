@@ -35,10 +35,24 @@ button:hover {
 
 input {
   width: 100%;
-  white-space: nowrap; /* Оставляем текст в одну строку */
-  overflow: auto; /* Включаем прокрутку при переполнении */
+  white-space: nowrap;
+  overflow: auto;
   padding-right: 50px;
   box-sizing: border-box;
+}
+
+input {
+  appearance: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  touch-action: manipulation;
+}
+
+input {
+  font-size: 12px;
+  -webkit-text-size-adjust: 100%;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,17 @@
+import { useState, useEffect } from 'react'
 import './Header.css'
 
 const Header = ({ title, isMobile }) => {
+  const [activeUsers, setActiveUsers] = useState(0)
+
+  useEffect(() => {
+    const generateRandomUsers = () => {
+      return Math.floor(Math.random() * (271383 - 36790 + 1)) + 36790
+    }
+
+    setActiveUsers(generateRandomUsers())
+  }, []) // Запустится один раз при загрузке
+
   return (
     <div>
       <div className='background-header'></div>
@@ -8,11 +19,11 @@ const Header = ({ title, isMobile }) => {
         <div className='name-page'>
           <div className='title-page'>{title}</div>
           <div className='updatedOn'>
-            <i>Updated on 23 May 2023</i>
+            <i>Active users: {activeUsers}</i>
           </div>
         </div>
         <div className='header-user'>
-          {!isMobile && ( // Показываем инпут в хедере, только если экран > 768px
+          {!isMobile && (
             <div className='search-block'>
               <input className='search-input' type='text' placeholder='Search your coins...' />
               <button className='search-button2'>
