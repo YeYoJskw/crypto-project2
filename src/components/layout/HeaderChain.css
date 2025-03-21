@@ -189,14 +189,14 @@ li {
 @media (max-width: 1200px) {
   .header2 {
     margin-left: 300px;
-    width: calc(100% - 310px);
+    width: calc(100% - 310px) !important;
   }
 }
 
 @media (max-width: 1024px) {
   .header2 {
     margin-left: 20px;
-    width: calc(100% - 190px);
+    width: calc(100% - 80px) !important;
   }
 }
 
@@ -210,7 +210,7 @@ li {
 @media (max-width: 768px) {
   .header2 {
     margin-left: 52px;
-    width: calc(100% - 80px);
+    width: calc(100% - 65px) !important;
   }
 }
 
