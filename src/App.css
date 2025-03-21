@@ -50,11 +50,6 @@ html {
   touch-action: manipulation;
 }
 
-input {
-  font-size: 12px;
-  -webkit-text-size-adjust: 100%;
-}
-
 @media (max-width: 768px) {
   input {
     padding-right: 35px;

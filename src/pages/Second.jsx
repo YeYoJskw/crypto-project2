@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import HeaderSecond from '../components/layout/HeaderSecond'
 import Table2 from '../components/Table2'
 import '../components/second.css'
@@ -6,7 +6,7 @@ import MenuBottom from '../components/MenuButtom'
 import Menu from '../components/Menu'
 import useBodyClass from '../hooks/useBodyClass'
 import Footer from '../components/layout/Footer'
-import { useState } from 'react'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const Second = () => {
   const tableData = [
@@ -108,13 +108,24 @@ const Second = () => {
     },
   ]
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText('EQCuCUTCNsq2Wcmbg2oN-Jg') // Копируем текст
+  const [qrCode, setQrCode] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-    setIsFading(true) // Уменьшаем прозрачность
-
+  useEffect(() => {
     setTimeout(() => {
-      setIsFading(false) // Возвращаем обратно через 2 секунды
+      const apiResponse = '/img/Animation.json' // Путь к Lottie-анимации
+      if (apiResponse) {
+        setQrCode(apiResponse)
+      }
+      setLoading(false)
+    }, 2000)
+  }, [])
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('EQCuCUTCNsq2Wcmbg2oN-Jg')
+    setIsFading(true)
+    setTimeout(() => {
+      setIsFading(false)
     }, 1500)
   }
 
@@ -129,10 +140,18 @@ const Second = () => {
       <div className='container'>
         <div>
           <Menu />
-
           <div>
             <div className='QR-block'>
-              <img className='qr-code' src='/img/QR.svg' alt='' />
+              {loading ? (
+                <div className='qr-loading'>
+                  <div className='spinner'></div>
+                  <p>Loading QR Code...</p>
+                </div>
+              ) : qrCode ? (
+                <Player autoplay loop src={qrCode} style={{ width: '200px', height: '200px' }} />
+              ) : (
+                <p className='error-message'>QR Code not found</p>
+              )}
               <div className='qr-content'>
                 <div className='qr-address qr-data'>
                   <span className='qr-label'>Address</span>
