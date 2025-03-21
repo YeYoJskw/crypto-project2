@@ -150,6 +150,7 @@
   border-radius: 25px;
   background-color: #77ed91;
   position: relative;
+  display: none;
 }
 
 .content-academy {
