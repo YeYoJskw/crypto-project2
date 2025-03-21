@@ -13,7 +13,7 @@ const CardsCarousel = ({ coins }) => {
       spaceBetween={14}
       freeMode={true}
       modules={[FreeMode]}
-      className='cards-carousel'
+      className='cards-carouse'
     >
       {coins.map((coin, index) => (
         <SwiperSlide key={index} className='topCoin-card'>
