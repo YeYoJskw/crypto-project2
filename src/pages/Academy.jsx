@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import './Academy.css'
 import CardRelease from '../components/CardRelease'
@@ -8,6 +7,9 @@ import MenuButtom from '../components/MenuButtom'
 import useBodyClass from '../hooks/useBodyClass'
 
 const Academy = () => {
+  const [time, setTime] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+
   const cardsData = [
     {
       image: '/img/card-release.svg',
@@ -83,7 +85,20 @@ const Academy = () => {
     },
   ]
 
-  const [isPlaying, setIsPlaying] = useState(false)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(prevTime => (prevTime >= 86399 ? 0 : prevTime + 1))
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  const formatTime = seconds => {
+    const hours = String(Math.floor(seconds / 3600)).padStart(2, '0')
+    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0')
+    const secs = String(seconds % 60).padStart(2, '0')
+    return `${hours}:${minutes}:${secs}`
+  }
 
   const togglePlay = () => {
     setIsPlaying(prev => !prev)
@@ -102,7 +117,6 @@ const Academy = () => {
           <h1 className='title-cards-release'>Live Now</h1>
           <div className='laptop'>
             <img className='laptop-img' src='/img/laptop.svg' alt='' />
-
             <div className='audio-content'>
               <div className='top-audio'>
                 <div className='you'>
@@ -122,13 +136,12 @@ const Academy = () => {
                   <img className='audio-sound' src='/img/audio2.svg' alt='' />
                   <img className='audio-sound' src='/img/audio2.svg' alt='' />
                   <img className='audio-sound' src='/img/audio2.svg' alt='' />
-                  <span className='time-audio'>01:23:34</span>
+                  <span className='time-audio'>{formatTime(time)}</span>
                 </div>
-
                 <button className='play' onClick={togglePlay}>
                   <img
                     src={isPlaying ? '/img/pause_button.svg' : '/img/play-button-rounded.svg'}
-                    alt=''
+                    alt='Play/Pause'
                   />
                 </button>
               </div>

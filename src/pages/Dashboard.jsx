@@ -216,43 +216,13 @@ const Dashboard = () => {
         }
       >
         <CardsCarousel
-          coins={[
-            {
-              logo: '/img/CompoundBadge.svg',
-              title: 'Compound',
-              price: '$27,308.00',
-              precent: '+8250%',
-              time: 'All time',
-            },
-            {
-              logo: '/img/Shibainu.svg',
-              title: 'Bitcoin',
-              price: '$0.0008827',
-              precent: '+660910%',
-              time: 'All time',
-            },
-            {
-              logo: '/img/Thetafuel.svg',
-              title: 'Ethereum',
-              price: '$0.04276',
-              precent: '-151%',
-              time: 'All time',
-            },
-            {
-              logo: '/img/CompoundBadge.svg',
-              title: 'Cardano',
-              price: '$2.30',
-              precent: '+180%',
-              time: '3 months',
-            },
-            {
-              logo: '/img/CompoundBadge.svg',
-              title: 'Polkadot',
-              price: '$35.00',
-              precent: '+90%',
-              time: '1 month',
-            },
-          ]}
+          coins={coins.map(coin => ({
+            logo: `https://www.coinlore.com/img/${coin.nameid}.png`, // Динамическая загрузка логотипов
+            title: coin.name,
+            price: `$${Number(coin.price_usd).toLocaleString('en-US')}`,
+            precent: `${coin.percent_change_24h}%`,
+            time: '24h', // Можно изменить на нужный период
+          }))}
         />
       </div>
     </div>

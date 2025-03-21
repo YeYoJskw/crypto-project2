@@ -1,6 +1,9 @@
+import React, { useState } from 'react'
 import './TableRows.css'
 
 const TableRows = ({ type }) => {
+  const [expanded, setExpanded] = useState(false)
+
   const generateRows = (count, type) => {
     const rows = []
     for (let i = 0; i < count; i++) {
@@ -27,33 +30,28 @@ const TableRows = ({ type }) => {
     return rows
   }
 
-  const rows = generateRows(7, type)
+  const rows = generateRows(expanded ? 14 : 7, type) // Если expanded=true, показываем 20 строк
 
   return (
     <div className={`table-container ${type}`}>
-      <table className="table">
+      <table className='table'>
         <thead>
-          <tr className="tr">
-            <th className="th">
-              {type === 'blocks' ? 'Latest Blocks' : 'Latest Transactions'}
-            </th>
-            <th className="th" style={{ textAlign: 'right' }}>
+          <tr className='tr'>
+            <th className='th'>{type === 'blocks' ? 'Latest Blocks' : 'Latest Transactions'}</th>
+            <th className='th' style={{ textAlign: 'right' }}>
               <button
-                className={
-                  type === 'blocks' ? 'view-blocks' : 'view-transactions'
-                }
+                className={type === 'blocks' ? 'view-blocks' : 'view-transactions'}
+                onClick={() => setExpanded(!expanded)} // Переключаем состояние
               >
-                {type === 'blocks'
+                {expanded
+                  ? 'Show short'
+                  : type === 'blocks'
                   ? 'View all blocks'
                   : 'View all transactions'}
                 <img
-                  className={
-                    type === 'blocks'
-                      ? 'view-blocks-img'
-                      : 'view-transactions-img'
-                  }
-                  src="/img/view.svg"
-                  alt=""
+                  className={type === 'blocks' ? 'view-blocks-img' : 'view-transactions-img'}
+                  src='/img/view.svg'
+                  alt=''
                 />
               </button>
             </th>
@@ -61,47 +59,46 @@ const TableRows = ({ type }) => {
         </thead>
         <tbody>
           {rows.map((row, index) => (
-            <tr key={index} className="table-row tr">
-              <td className="block-td">
-                <div className="block-info">
-                  <div className="avatar">{row.avatar}</div>
+            <tr key={index} className='table-row tr'>
+              <td className='block-td'>
+                <div className='block-info'>
+                  <div className='avatar'>{row.avatar}</div>
                   <div>
-                    <div className="item-id">{row.itemId}</div>
-                    <div className="time-ago">{row.timeAgo}</div>
+                    <div className='item-id'>{row.itemId}</div>
+                    <div className='time-ago'>{row.timeAgo}</div>
                   </div>
                 </div>
               </td>
               {type === 'blocks' ? (
                 <>
-                  <td className="validated-td">
-                    <div className="validation-info">
-                      <div className="validated">
-                        Validated By <a href="#">{row.validatedBy}</a>
+                  <td className='validated-td'>
+                    <div className='validation-info'>
+                      <div className='validated'>
+                        Validated By <a href='#'>{row.validatedBy}</a>
                       </div>
-                      <div className="time-txns">
-                        <a href="#">{row.txns}</a>
+                      <div className='time-txns'>
+                        <a href='#'>{row.txns}</a>
                       </div>
                     </div>
                   </td>
-                  <td className="amount-td">
-                    <div className="amount">{row.amount}</div>
+                  <td className='amount-td'>
+                    <div className='amount'>{row.amount}</div>
                   </td>
                 </>
               ) : (
                 <>
-                  <td className="validated-td">
-                    <div className="validation-info">
-                      <div className="validated">
-                        From <a href="#">{row.from}</a>
+                  <td className='validated-td'>
+                    <div className='validation-info'>
+                      <div className='validated'>
+                        From <a href='#'>{row.from}</a>
                       </div>
-                      <div className="time-txns">
-                        <span className="table-to">To</span>{' '}
-                        <a href="#">{row.to}</a>
+                      <div className='time-txns'>
+                        <span className='table-to'>To</span> <a href='#'>{row.to}</a>
                       </div>
                     </div>
                   </td>
-                  <td className="amount-td">
-                    <div className="amount">{row.amount}</div>
+                  <td className='amount-td'>
+                    <div className='amount'>{row.amount}</div>
                   </td>
                 </>
               )}

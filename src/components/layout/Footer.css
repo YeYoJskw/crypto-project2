@@ -57,10 +57,10 @@ footer {
   }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1540px) {
   .foot {
-    margin-left: 405px;
-    width: 955px;
+    margin-left: 325px;
+    width: 1055px;
   }
 }
 

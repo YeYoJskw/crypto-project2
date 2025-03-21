@@ -10,6 +10,15 @@
   justify-content: end;
 }
 
+.crypto-table-buttonsContent button.active {
+  background-color: #77ed91;
+  color: #000;
+}
+
+.crypto-table-buttonsContent button.active img {
+  filter: brightness(0) saturate(0);
+}
+
 .crypto-table .chart-img {
   width: 117px;
   height: 100%;

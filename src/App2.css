@@ -21,6 +21,12 @@ body {
   }
 }
 
+@media (max-width: 1540px) {
+  .container {
+    margin-left: 300px;
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     margin-left: 290px;

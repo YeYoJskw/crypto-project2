@@ -22,7 +22,10 @@
 
 .img-top-card {
   padding-bottom: 16px;
+  width: 48px;
+  height: 48px;
 }
+
 .name-top-card {
   color: #a1a1a1;
   padding-bottom: 10px;
@@ -32,11 +35,21 @@
   color: #fff;
   padding-bottom: 104px;
 }
-.precent-top-card {
+.percent-green,
+.percent-red {
   font-size: 22px;
-  color: #2dc24e;
+
   padding-left: 2px;
 }
+
+.percent-green {
+  color: #2dc24e;
+}
+
+.percent-red {
+  color: #f92c2c;
+}
+
 .time-top-card {
   color: #a1a1a1;
   font-size: 12px;

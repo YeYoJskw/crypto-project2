@@ -1,20 +1,40 @@
 import React from 'react'
 import './CryptoTable.css'
+import { useState } from 'react'
 
 const CryptoTable = ({ data, btns }) => {
+  const [activeButton, setActiveButton] = useState(null)
+
+  const handleButtonClick = button => {
+    setActiveButton(button)
+  }
+
+  const getButtonClass = button => {
+    return button === activeButton ? 'active' : ''
+  }
+
   return (
     <div className='crypto-table-container'>
       <div className='crypto-table-buttons'>
         <div className='crypto-table-buttonsContent'>
-          <button className='btn-add'>
+          <button
+            className={`btn-add ${getButtonClass('add')}`}
+            onClick={() => handleButtonClick('add')}
+          >
             <img src='/img/add-coins.svg' alt='' />
             {btns?.firstBtn || 'Add'}
           </button>
-          <button className='btn-share'>
+          <button
+            className={`btn-share ${getButtonClass('share')}`}
+            onClick={() => handleButtonClick('share')}
+          >
             <img src='/img/share.svg' alt='' />
             {btns?.secondBtn || 'Share'}
           </button>
-          <button className='btn-more'>
+          <button
+            className={`btn-more ${getButtonClass('more')}`}
+            onClick={() => handleButtonClick('more')}
+          >
             <img src='/img/more.svg' alt='' />
             {btns?.thirdBtn || 'More'}
           </button>

@@ -71,6 +71,11 @@
   width: 20px;
 }
 
+.copy-img {
+  filter: brightness(0) saturate(100%) invert(60%) sepia(100%) saturate(300%) hue-rotate(180deg);
+  transition: filter 0.3s ease-in-out;
+}
+
 .qr-address {
   position: relative;
 }

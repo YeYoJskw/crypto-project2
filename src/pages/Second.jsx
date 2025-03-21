@@ -9,6 +9,8 @@ import Footer from '../components/layout/Footer'
 import { Player } from '@lottiefiles/react-lottie-player'
 
 const Second = () => {
+  const [isClicked, setIsClicked] = useState(false)
+
   const tableData = [
     {
       timeAgo: '3 hrs ago',
@@ -159,9 +161,20 @@ const Second = () => {
                   <button
                     className='copy'
                     onClick={handleCopy}
-                    style={{ opacity: isFading ? 0.5 : 1, transition: 'opacity 0.3s ease-in-out' }}
+                    style={{
+                      transition: 'opacity 0.3s ease-in-out',
+                    }}
                   >
-                    <img className='copy-img' src='/img/file_copy_icon_134669.svg' alt='' />
+                    <img
+                      style={{
+                        filter: isFading
+                          ? 'brightness(0) saturate(100%) invert(60%) sepia(100%) saturate(300%) hue-rotate(180deg)'
+                          : 'none',
+                      }}
+                      className='copy-img'
+                      src='/img/file_copy_icon_134669.svg'
+                      alt=''
+                    />
                   </button>
                 </div>
                 <div className='qr-balance qr-data'>
