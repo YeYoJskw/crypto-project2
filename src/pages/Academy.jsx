@@ -86,12 +86,16 @@ const Academy = () => {
   ]
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(prevTime => (prevTime >= 86399 ? 0 : prevTime + 1))
-    }, 1000)
-
+    let timer
+    if (isPlaying) {
+      timer = setInterval(() => {
+        setTime(prevTime => prevTime + 1)
+      }, 1000)
+    } else {
+      setTime(0)
+    }
     return () => clearInterval(timer)
-  }, [])
+  }, [isPlaying])
 
   const formatTime = seconds => {
     const hours = String(Math.floor(seconds / 3600)).padStart(2, '0')

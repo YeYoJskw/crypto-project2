@@ -561,6 +561,30 @@
     width: calc(100% + 20px);
   }
 }
+@media screen and (max-width: 480px) {
+  .graph-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 5px);
+    max-width: calc(100% - 5px);
+    height: 256px;
+    align-items: flex-start;
+    background-color: #eff3f9;
+    background-image: url('/img/graph2.svg');
+    background-repeat: no-repeat;
+    background-position: 61px 79px;
+    margin-top: 59px;
+    position: relative;
+  }
+
+  .graph-dates {
+    padding-left: 65px;
+  }
+
+  .graph-settings {
+    left: calc(100% - 50px);
+  }
+}
 
 @media screen and (max-width: 380px) {
   .form-search {

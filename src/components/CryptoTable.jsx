@@ -1,42 +1,28 @@
-import React from 'react'
-import './CryptoTable.css'
-import { useState } from 'react'
-
-const CryptoTable = ({ data, btns }) => {
-  const [activeButton, setActiveButton] = useState(null)
-
-  const handleButtonClick = button => {
-    setActiveButton(button)
-  }
-
-  const getButtonClass = button => {
-    return button === activeButton ? 'active' : ''
-  }
-
+const CryptoTable = ({ data, btns, onSort, activeSort }) => {
   return (
     <div className='crypto-table-container'>
       <div className='crypto-table-buttons'>
         <div className='crypto-table-buttonsContent'>
           <button
-            className={`btn-add ${getButtonClass('add')}`}
-            onClick={() => handleButtonClick('add')}
+            className={`btn-add ${activeSort === 'add' ? 'active' : ''}`}
+            onClick={() => onSort('add')}
           >
             <img src='/img/add-coins.svg' alt='' />
             {btns?.firstBtn || 'Add'}
           </button>
           <button
-            className={`btn-share ${getButtonClass('share')}`}
-            onClick={() => handleButtonClick('share')}
+            className={`btn-share ${activeSort === 'stars' ? 'active' : ''}`}
+            onClick={() => onSort('stars')}
           >
             <img src='/img/share.svg' alt='' />
-            {btns?.secondBtn || 'Share'}
+            {btns?.secondBtn || 'Stars'}
           </button>
           <button
-            className={`btn-more ${getButtonClass('more')}`}
-            onClick={() => handleButtonClick('more')}
+            className={`btn-more ${activeSort === 'capital' ? 'active' : ''}`}
+            onClick={() => onSort('capital')}
           >
             <img src='/img/more.svg' alt='' />
-            {btns?.thirdBtn || 'More'}
+            {btns?.thirdBtn || 'Capital'}
           </button>
         </div>
       </div>
@@ -59,9 +45,8 @@ const CryptoTable = ({ data, btns }) => {
               <tr key={coin.id}>
                 <td className='stars'>
                   <img src='/img/star.svg' alt='' />
-                  {coin.coins}
+                  {index + 1}
                 </td>
-                <td>{index + 1}</td>
                 <td>
                   <div className='coins-name-td'>
                     <img
@@ -84,6 +69,9 @@ const CryptoTable = ({ data, btns }) => {
                 </td>
                 <td>${parseFloat(coin.market_cap_usd).toLocaleString()}</td>
                 <td>${parseFloat(coin.volume24).toLocaleString()}</td>
+                <td>
+                  <img src='/img/graph-trafic.svg' alt='' />
+                </td>
               </tr>
             ))
           ) : (

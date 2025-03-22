@@ -136,7 +136,8 @@ const Second = () => {
   useBodyClass()
   return (
     <div className='BLOCKCHAIN'>
-      <HeaderSecond />
+      <HeaderSecond transactions={tableData} />
+
       <MenuBottom />
       <div id='top'></div>
       <div className='container'>

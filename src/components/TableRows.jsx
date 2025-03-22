@@ -1,36 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './TableRows.css'
 
 const TableRows = ({ type }) => {
   const [expanded, setExpanded] = useState(false)
+  const [rows, setRows] = useState(generateRows(7, type))
 
-  const generateRows = (count, type) => {
-    const rows = []
-    for (let i = 0; i < count; i++) {
-      if (type === 'blocks') {
-        rows.push({
-          avatar: `Bk`,
-          itemId: `1494170${i}`,
-          timeAgo: `17 secs ago`,
+  function generateRows(count, type) {
+    return Array.from({ length: count }, (_, i) => createRow(i, type, Date.now()))
+  }
+
+  function createRow(index, type, timestamp) {
+    return type === 'blocks'
+      ? {
+          avatar: 'Bk',
+          itemId: `1494170${index}`,
+          timestamp,
           validatedBy: `Validator: InfStones`,
           txns: `150 txns in 3 secs`,
           amount: `1.11221 TON`,
-        })
-      } else if (type === 'transactions') {
-        rows.push({
-          avatar: `Tx`,
-          itemId: `0xd46fe8f649371...`,
-          timeAgo: `15 secs ago`,
+        }
+      : {
+          avatar: 'Tx',
+          itemId: `0xd46fe8f649371...${index}`,
+          timestamp,
           from: `0xee226379db83cffc681...`,
           to: `0x000000000000000000`,
           amount: `1.11221 TON`,
-        })
-      }
-    }
-    return rows
+        }
   }
 
-  const rows = generateRows(expanded ? 14 : 7, type) // Если expanded=true, показываем 20 строк
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRows(prevRows => [createRow(prevRows.length, type, Date.now()), ...prevRows])
+    }, 20000)
+
+    return () => clearInterval(interval)
+  }, [type])
+
+  function getTimeAgo(timestamp) {
+    const diff = Math.floor((Date.now() - timestamp) / 1000)
+    if (diff < 60) return `${diff} secs ago`
+    const mins = Math.floor(diff / 60)
+    return `${mins} min${mins > 1 ? 's' : ''} ago`
+  }
 
   return (
     <div className={`table-container ${type}`}>
@@ -41,7 +53,7 @@ const TableRows = ({ type }) => {
             <th className='th' style={{ textAlign: 'right' }}>
               <button
                 className={type === 'blocks' ? 'view-blocks' : 'view-transactions'}
-                onClick={() => setExpanded(!expanded)} // Переключаем состояние
+                onClick={() => setExpanded(!expanded)}
               >
                 {expanded
                   ? 'Show short'
@@ -58,14 +70,14 @@ const TableRows = ({ type }) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => (
+          {rows.slice(0, expanded ? 14 : 7).map((row, index) => (
             <tr key={index} className='table-row tr'>
               <td className='block-td'>
                 <div className='block-info'>
                   <div className='avatar'>{row.avatar}</div>
                   <div>
                     <div className='item-id'>{row.itemId}</div>
-                    <div className='time-ago'>{row.timeAgo}</div>
+                    <div className='time-ago'>{getTimeAgo(row.timestamp)}</div>
                   </div>
                 </div>
               </td>

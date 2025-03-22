@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Menu from '../components/Menu'
 import MenuBottom from '../components/MenuButtom'
@@ -12,16 +11,25 @@ const Trading = () => {
   const btns = {
     firstBtn: 'Add coins',
     secondBtn: 'Stars',
-    thirdBtn: 'Capital ',
+    thirdBtn: 'Capital',
   }
 
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
+  const [sortType, setSortType] = useState(null) // Состояние для сортировки
 
   const fetchData = async () => {
     try {
       const response = await axios.get('https://api.coinlore.net/api/tickers/')
-      setData(response.data.data)
+      let sortedData = response.data.data
+
+      if (sortType === 'stars') {
+        sortedData = sortedData.sort((a, b) => (b.coins || 0) - (a.coins || 0))
+      } else if (sortType === 'capital') {
+        sortedData = sortedData.sort((a, b) => b.price_usd - a.price_usd)
+      }
+
+      setData(sortedData)
       setLoading(false)
     } catch (error) {
       console.error('Ошибка при загрузке данных:', error)
@@ -30,16 +38,19 @@ const Trading = () => {
   }
 
   useEffect(() => {
-    fetchData() // Загружаем данные сразу
-
+    fetchData()
     const interval = setInterval(() => {
       fetchData()
-    }, 3000) // Обновление каждые 30 секунд
+    }, 300) // Обновление каждые 30 секунд
 
-    return () => clearInterval(interval) // Очищаем интервал при размонтировании компонента
-  }, [])
+    return () => clearInterval(interval)
+  }, [sortType]) // Перезагружаем при смене сортировки
 
   useBodyClass()
+
+  const handleSort = type => {
+    setSortType(prevType => (prevType === type ? null : type)) // Тоггл сортировки
+  }
 
   return (
     <div className='Trading'>
@@ -47,13 +58,13 @@ const Trading = () => {
         <div className='myCoins-block'>
           <div className='primary-block'>
             <div className='primary'>Primary</div>
-            <div className='coins-list'>Coins list </div>
+            <div className='coins-list'>Coins list</div>
           </div>
 
           <div className='buttons-coins'>
             <button className='button-edit button-interest'>
               <img src='/img/edit-2.svg' alt='' className='button-edit-icon' />
-              <div className='button-edit-text'>Interest </div>
+              <div className='button-edit-text'>Interest</div>
             </button>
             <button className='button-new-watchlist'>
               <img src='/img/add-watchlist.svg' alt='' className='button-watchlist-icon' />
@@ -64,7 +75,7 @@ const Trading = () => {
         <Menu />
         <Header title={'Trading'} />
 
-        <CryptoTable data={data} btns={btns} />
+        <CryptoTable data={data} btns={btns} onSort={handleSort} activeSort={sortType} />
       </div>
       <MenuBottom />
     </div>

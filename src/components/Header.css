@@ -97,6 +97,10 @@
 .open-profile-img {
   padding-left: 8px;
 }
+
+.active-users {
+  color: #77ed91;
+}
 /*                             */
 
 @media (max-width: 1200px) {

@@ -19,7 +19,9 @@ const Header = ({ title, isMobile }) => {
         <div className='name-page'>
           <div className='title-page'>{title}</div>
           <div className='updatedOn'>
-            <i>Active users: {activeUsers}</i>
+            <i>
+              Active users: <span className='active-users'>{activeUsers}</span>
+            </i>
           </div>
         </div>
         <div className='header-user'>
