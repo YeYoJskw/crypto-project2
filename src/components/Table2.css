@@ -24,6 +24,26 @@
   font-size: 14px;
   color: #5a6773;
   white-space: nowrap;
+  position: relative;
+}
+
+.copy-table {
+  position: absolute;
+  padding-left: 8px;
+}
+
+.copy-img-table {
+  width: 20px;
+}
+
+.copy-img-table {
+  filter: brightness(0) saturate(100%) invert(60%) sepia(100%) saturate(300%) hue-rotate(180deg);
+  transition: filter 0.3s ease-in-out;
+}
+
+.link-style {
+  color: #4285f4;
+  cursor: pointer;
 }
 
 .message-td,

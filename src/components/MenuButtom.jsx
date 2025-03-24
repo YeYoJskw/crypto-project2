@@ -9,7 +9,7 @@ const MenuBottom = () => {
         <div className='menu-content'>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Dashboard'
+              to='/board'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -19,7 +19,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Portfolio'
+              to='/portfolio'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -29,7 +29,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Trading'
+              to='/swap'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -39,7 +39,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Watchlist'
+              to='/watch'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -49,7 +49,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Academy'
+              to='/academy'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -59,7 +59,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Profile'
+              to='/blockchain'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }
@@ -69,7 +69,7 @@ const MenuBottom = () => {
           </div>
           <div className='menu-bottom-button'>
             <NavLink
-              to='/Wallet'
+              to='/wallet'
               className={({ isActive }) =>
                 isActive ? 'menu-bottom-link active' : 'menu-bottom-link'
               }

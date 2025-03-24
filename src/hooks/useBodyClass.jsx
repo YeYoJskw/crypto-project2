@@ -5,7 +5,7 @@ const useBodyClass = () => {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname === '/Profile' || location.pathname === '/Wallet') {
+    if (location.pathname === '/wallet' || location.pathname === '/blockchain') {
       document.body.classList.add('light-theme')
       document.body.classList.remove('dark-theme')
     } else {

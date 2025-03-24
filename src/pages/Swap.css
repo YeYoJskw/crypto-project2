@@ -1,0 +1,340 @@
+.SWAP {
+  margin-bottom: 60px;
+}
+
+.swap-content {
+  display: flex;
+  gap: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  width: fit-content;
+}
+
+.copy-address {
+  color: #fff;
+  padding: 16px 117px;
+  margin-top: 106px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 28px;
+  margin-bottom: 10px;
+}
+
+.copy-address img {
+  width: 23px;
+}
+
+.second-block-swap {
+  width: 430px;
+  text-align: center;
+}
+
+.first-block-swap {
+  width: 430px;
+}
+
+.second-block-swap {
+  padding-top: 146px;
+  position: relative;
+}
+
+.scan-img {
+  position: absolute;
+  left: 360px;
+  top: 0;
+}
+
+.share-address {
+  padding: 16px 117px;
+  background-color: #1e1a56;
+  border-radius: 35px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 28px;
+}
+
+.wallet-address-title {
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.qr-code-swap {
+  padding-bottom: 25px;
+  width: 345px;
+}
+
+.wallet-address {
+  color: #ffffff5d;
+}
+
+.you-sell {
+  width: 350px;
+  height: 111px;
+  background-color: #000;
+  border-radius: 15px;
+}
+
+.you-buy {
+  width: 350px;
+  height: 113px;
+  border-radius: 15px;
+  border: 2px solid transparent; /* Прозрачная граница */
+  background: linear-gradient(#141722, #141722) padding-box,
+    linear-gradient(90deg, #f92d8f, #2d76f9) border-box;
+}
+
+.title-you-sell,
+.balance-you-sell,
+.underName-coin-sell,
+.price-you-sell {
+  color: #707a83;
+  font-size: 13px;
+}
+
+.price-you-sell span {
+  font-size: 12px;
+}
+
+.name-coin-sell {
+  color: #fff;
+  font-size: 24px;
+  padding-left: 8px;
+  padding-right: 2.5px;
+}
+
+.balance-you-sell span {
+  color: #2d76f9;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.balance-you-sell {
+  padding-bottom: 7px;
+}
+
+.you-sell {
+  padding: 0px 20px;
+  padding-top: 17px;
+  box-sizing: border-box;
+  margin-bottom: 9px;
+}
+
+.you-buy {
+  padding: 0px 17px;
+  padding-top: 15px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+}
+
+.count-you-sell {
+  color: #fff;
+  font-size: 24px;
+  padding-bottom: 9px;
+}
+
+.down-swap {
+  padding-top: 3px;
+}
+
+.coin-swap {
+  display: flex;
+  padding-bottom: 8px;
+}
+
+.you-sell-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-you-sell {
+  padding-bottom: 7.5px;
+}
+
+.second-block-youSell {
+  text-align: end;
+}
+
+.swap-button {
+  padding: 17px 110px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #343f52, #758db8) border-box;
+  color: #fff;
+  font-size: 15px;
+}
+
+.swap-button span {
+  color: #758db8;
+}
+
+.sell-buy {
+  width: 380px;
+  height: 379px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 0px 14px;
+  padding-top: 15px;
+  background: linear-gradient(180deg, #141722, #505c8803) border-box;
+}
+
+.first-block-swap {
+  background-color: #0b0a0f;
+  padding: 0 25px;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 60px;
+  height: 915px;
+}
+
+.your-coins-address {
+  background: linear-gradient(180deg, #4670ed27, #28408711) border-box;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-top: 20px;
+  width: 430px;
+  height: 420px;
+  position: absolute;
+  left: 0;
+}
+
+.your-coin-address {
+  color: #fff;
+  padding-bottom: 8px;
+}
+.address-coin {
+  color: #878c98;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+.balance-coin-address {
+  font-size: 12px;
+  color: #878c98;
+}
+
+.balance-coin-address span {
+  color: #2d76f9;
+  font-weight: 600;
+}
+
+.coin-balance-swap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.copy-swap {
+  width: 21px;
+}
+
+.qr-btn,
+.copy-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff13;
+  box-sizing: border-box;
+  padding-left: 9px;
+  padding-top: 4px;
+}
+
+.coin-address-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 39px;
+  padding-top: 46px;
+  padding-bottom: 15px;
+}
+
+.coin-address-btns {
+  display: flex;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.retry-img {
+  margin-left: 340px;
+  margin-bottom: 7px;
+}
+
+@media (max-width: 1720px) {
+  .swap-content {
+    margin-left: 355px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .swap-content {
+    margin-left: 305px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .swap-content {
+    margin-left: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .second-block-swap {
+    display: none;
+  }
+
+  .swap-content {
+    margin-left: 0px;
+  }
+
+  .first-block-swap {
+    width: 100%;
+    height: 110%;
+    padding-top: 20px;
+    position: absolute;
+    top: 0;
+  }
+
+  .sell-buy {
+    width: 100%;
+  }
+
+  .retry-img {
+    margin-left: 94%;
+  }
+
+  .swap-button {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .you-sell {
+    width: 100%;
+  }
+
+  .you-buy {
+    width: 100%;
+  }
+
+  .your-coins-address {
+    width: 100%;
+    padding-bottom: 50px;
+  }
+
+  .header-swap {
+    display: none;
+  }
+}
+
+@media (max-width: 427px) {
+  .swap-button {
+    padding: 15px 70px;
+  }
+}
+
+@media (max-width: 360px) {
+  .swap-button {
+    padding: 14px 55px;
+  }
+}

@@ -1,15 +1,51 @@
 import { useState, useEffect } from 'react'
 import './Header.css'
 
+const emojis = [
+  '😀',
+  '😃',
+  '😄',
+  '😁',
+  '😆',
+  '😊',
+  '😎',
+  '🥳',
+  '😇',
+  '😍',
+  '🤩',
+  '😻',
+  '💖',
+  '🎉',
+  '🚀',
+  '✨',
+  '🔥',
+  '🌟',
+  '💯',
+  '👏',
+  '👍',
+  '🙌',
+  '💪',
+  '🎶',
+  '🎊',
+  '🥂',
+  '🍀',
+  '🍕',
+  '🍫',
+  '🌞',
+]
+
 const Header = ({ title, isMobile }) => {
   const [activeUsers, setActiveUsers] = useState(0)
+  const [randomEmoji, setRandomEmoji] = useState('')
 
   useEffect(() => {
     const generateRandomUsers = () => {
       return Math.floor(Math.random() * (271383 - 36790 + 1)) + 36790
     }
-
     setActiveUsers(generateRandomUsers())
+
+    const randomIndex = Math.floor(Math.random() * emojis.length)
+    setRandomEmoji(emojis[randomIndex])
   }, []) // Запустится один раз при загрузке
 
   return (
@@ -36,9 +72,7 @@ const Header = ({ title, isMobile }) => {
           <button className='notifications'>
             <img className='notification-img' src='/img/notification-bing.svg' alt='' />
           </button>
-          <div className='profile-user'>
-            <img src='/img/avatar-user.svg' className='avatar-user' alt='' />
-          </div>
+          <div className='profile-user emoji-avatar'>{randomEmoji}</div>
         </div>
       </header>
     </div>

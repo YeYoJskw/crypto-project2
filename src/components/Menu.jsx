@@ -71,13 +71,13 @@ const Menu = () => {
   }, [isOpen])
 
   const menuItems = [
-    { name: 'Dashboard', img: '/img/user.svg', path: '/Dashboard' },
-    { name: 'Portfolio', img: '/img/activity.svg', path: '/Portfolio' },
-    { name: 'Trading', img: '/img/trade.svg', path: '/Trading' },
-    { name: 'Watchlist', img: '/img/eye.svg', path: '/Watchlist' },
-    { name: 'Academy', img: '/img/book.svg', path: '/Academy' },
-    { name: 'Wallet', img: '/img/wallet-2.svg', path: '/Profile' },
-    { name: 'Blockchain', img: '/img/menu.svg', path: '/Wallet' },
+    { name: 'Dashboard', img: '/img/user.svg', path: '/board' },
+    { name: 'Portfolio', img: '/img/activity.svg', path: '/portfolio' },
+    { name: 'Swap', img: '/img/trade.svg', path: '/swap' },
+    { name: 'Watchlist', img: '/img/eye.svg', path: '/watch' },
+    { name: 'Academy', img: '/img/book.svg', path: '/academy' },
+    { name: 'Wallet', img: '/img/wallet-2.svg', path: '/wallet' },
+    { name: 'Blockchain', img: '/img/menu.svg', path: '/blockchain' },
   ]
 
   return (

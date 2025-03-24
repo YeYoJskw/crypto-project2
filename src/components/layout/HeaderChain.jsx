@@ -18,7 +18,7 @@ const HeaderChain = () => {
       <Menu />
       <div className='background-header2'></div>
       <header id='header' className='header2'>
-        <a className='logo-header' onClick={() => navigate('/Wallet')}>
+        <a className='logo-header' onClick={() => navigate('/blockchain')}>
           <b>Q</b> BLOCKCHAIN
         </a>
         <nav>
@@ -39,7 +39,7 @@ const HeaderChain = () => {
               </button>
             </li>
           </ul>
-          <button onClick={() => navigate('/Profile')} className='button-header'>
+          <button onClick={() => navigate('/wallet')} className='button-header'>
             Explorer
           </button>
         </nav>

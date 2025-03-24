@@ -134,12 +134,16 @@
   background-color: #f1f3f5;
 }
 
+.from-input {
+  color: #5b94f1;
+}
+
 .header2 .search-suggestions {
   position: absolute;
   display: block !important;
   top: 100%;
-  left: 0;
-  width: 100%;
+  left: -1px;
+  width: calc(100% + 1px);
   max-height: 300px;
   overflow-y: auto;
   background: white;

@@ -13,14 +13,24 @@ const Watchlist = () => {
 
   const btns = {
     firstBtn: 'Add coins',
-    secondBtn: 'Share',
-    thirdBtn: 'More',
+    secondBtn: 'Stars',
+    thirdBtn: 'Capital',
   }
+
+  const [sortType, setSortType] = useState(null)
 
   const fetchData = async () => {
     try {
       const response = await axios.get('https://api.coinlore.net/api/tickers/')
-      setData(response.data.data)
+      let sortedData = response.data.data
+
+      if (sortType === 'stars') {
+        sortedData = sortedData.sort((a, b) => (b.coins || 0) - (a.coins || 0))
+      } else if (sortType === 'capital') {
+        sortedData = sortedData.sort((a, b) => b.price_usd - a.price_usd)
+      }
+
+      setData(sortedData)
       setLoading(false)
     } catch (error) {
       console.error('Ошибка при загрузке данных:', error)
@@ -29,16 +39,19 @@ const Watchlist = () => {
   }
 
   useEffect(() => {
-    fetchData() // Загружаем данные сразу
-
+    fetchData()
     const interval = setInterval(() => {
       fetchData()
-    }, 3000) // Обновление каждые 30 секунд
+    }, 300) // Обновление каждые 30 секунд
 
-    return () => clearInterval(interval) // Очищаем интервал при размонтировании компонента
-  }, [])
+    return () => clearInterval(interval)
+  }, [sortType])
 
   useBodyClass()
+
+  const handleSort = type => {
+    setSortType(prevType => (prevType === type ? null : type)) // Тоггл сортировки
+  }
 
   return (
     <div>
@@ -66,7 +79,11 @@ const Watchlist = () => {
             </button>
           </div>
         </div>
-        {loading ? <p>Loading...</p> : <CryptoTable data={data} btns={btns} />}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <CryptoTable data={data} btns={btns} onSort={handleSort} activeSort={sortType} />
+        )}
       </div>
     </div>
   )

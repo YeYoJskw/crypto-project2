@@ -101,6 +101,10 @@
 .active-users {
   color: #77ed91;
 }
+
+.emoji-avatar {
+  font-size: 37px;
+}
 /*                             */
 
 @media (max-width: 1200px) {

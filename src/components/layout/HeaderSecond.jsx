@@ -26,7 +26,6 @@ const HeaderSecond = ({ transactions }) => {
     }
   }, [searchQuery, transactions])
 
-  // Функция для закрытия меню при клике вне него
   useEffect(() => {
     const handleClickOutside = event => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -40,11 +39,21 @@ const HeaderSecond = ({ transactions }) => {
     }
   }, [])
 
+  const highlightMatch = (text, query) => {
+    if (!query) return text
+    const regex = new RegExp(`(${query})`, 'gi')
+    return text
+      .split(regex)
+      .map((part, index) =>
+        part.toLowerCase() === query.toLowerCase() ? <b key={index}>{part}</b> : part
+      )
+  }
+
   return (
     <div>
       <div className='background-header2'></div>
       <header id='header' className='header2'>
-        <a className='logo-header' onClick={() => navigate('/Wallet')}>
+        <a className='logo-header' onClick={() => navigate('/blockchain')}>
           <b>Q</b> BLOCKCHAIN
         </a>
         <form className='form-search-header' action=''>
@@ -67,12 +76,14 @@ const HeaderSecond = ({ transactions }) => {
                 {filteredResults.map(tx => (
                   <li
                     key={tx.hash}
+                    className='input-prompt'
                     onClick={() => {
                       setSearchQuery(tx.hash)
                       setIsDropdownOpen(false)
                     }}
                   >
-                    {`From: ${tx.from}`}
+                    <div className='from-input'>From:</div>{' '}
+                    <div>{highlightMatch(tx.from, searchQuery)}</div>
                   </li>
                 ))}
               </ul>
