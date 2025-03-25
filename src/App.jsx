@@ -9,6 +9,7 @@ import Watchlist from './pages/Watchlist'
 import HomeBlockchain from './pages/HomeBlockchain'
 import Second from './pages/Second'
 import Swap from './pages/Swap'
+import Swape2block from './pages/Swap2block'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/swap' element={<Swap />} />
         <Route path='/wallet' element={<Second />} />
         <Route path='/blockchain' element={<HomeBlockchain />} />
+        <Route path='/swap-profile' element={<Swape2block />} />
       </Routes>
     </Router>
   )

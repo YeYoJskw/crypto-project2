@@ -4,9 +4,41 @@ import Menu from '../components/Menu'
 import Header from '../components/Header'
 import MenuBottom from '../components/MenuButtom'
 import useBodyClass from '../hooks/useBodyClass'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Swap2block from './Swap2block'
+import { Link } from 'react-router-dom'
 
 const Swap = () => {
   useBodyClass()
+
+  const isMobile = window.innerWidth <= 768
+
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(true)
+  const swipeRef = useRef(null)
+
+  const handleTouchStart = e => {
+    const touchY = e.touches[0].clientY
+    const swipeContainer = e.currentTarget.getBoundingClientRect()
+
+    if (touchY - swipeContainer.top <= 80) {
+      swipeRef.current = touchY
+    } else {
+      swipeRef.current = null // Блокируем свайп
+    }
+  }
+
+  const handleTouchEnd = e => {
+    if (!swipeRef.current) return
+
+    const touchEndY = e.changedTouches[0].clientY
+    const swipeDistance = touchEndY - swipeRef.current
+
+    if (swipeDistance > 50) {
+      setIsKeyboardVisible(prev => !prev) // Меняем блок только при свайпе вниз
+    }
+  }
+
   return (
     <div className='SWAP'>
       <div className='header-swap'>
@@ -72,86 +104,115 @@ const Swap = () => {
               <span>SWAP</span> ETH <span>TO</span> BTC
             </button>
           </div>
-          <div className='your-coins-address'>
-            <div className='coin-address-block'>
-              <div className='coin-address-data'>
-                <div className='your-coin-address'>Your Ethereum address</div>
-                <div className='address-coin'>0xF09242467c484</div>
-                <div className='coin-balance-swap'>
-                  <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                  <div className='balance-coin-address'>
-                    Balance: <span>0.939 ETH</span>
+          <div className='your-coins-container'>
+            {isMobile ? (
+              <div
+                className='swipe-container'
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
+                <AnimatePresence mode='wait'>
+                  {isKeyboardVisible ? (
+                    <motion.div
+                      key='keyboard'
+                      initial={{ y: 0, opacity: 1 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: '100%', opacity: 0 }}
+                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      className='your-coins-address'
+                    >
+                      <div className='numpad'>
+                        {[
+                          ['1', '2', '3'],
+                          ['4', '5', '6'],
+                          ['7', '8', '9'],
+                          ['.', '0', '⌫'],
+                        ].map((row, rowIndex) => (
+                          <div key={rowIndex} className='row-pad'>
+                            {row.map(key => (
+                              <button key={key} className='key'>
+                                {key}
+                              </button>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key='addresses'
+                      initial={{ y: 0, opacity: 1 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: '100%', opacity: 0 }}
+                      transition={{ duration: 0.4, ease: 'easeInOut' }}
+                      className='your-coins-address'
+                    >
+                      {[...Array(3)].map((_, index) => (
+                        <div key={index} className='coin-address-block'>
+                          <div className='coin-address-data'>
+                            <div className='your-coin-address'>Your Ethereum address</div>
+                            <div className='address-coin'>0xF09242467c484</div>
+                            <div className='coin-balance-swap'>
+                              <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
+                              <div className='balance-coin-address'>
+                                Balance: <span>0.939 ETH</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className='coin-address-btns'>
+                            <button className='qr-btn'>
+                              <Link to='/swap-profile'>
+                                <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
+                              </Link>
+                            </button>
+                            <button className='copy-btn'>
+                              <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              // Для десктопа клавиатура не отображается
+              <motion.div
+                key='addresses'
+                initial={{ y: 0, opacity: 1 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: '100%', opacity: 0 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                className='your-coins-address'
+              >
+                {[...Array(3)].map((_, index) => (
+                  <div key={index} className='coin-address-block'>
+                    <div className='coin-address-data'>
+                      <div className='your-coin-address'>Your Ethereum address</div>
+                      <div className='address-coin'>0xF09242467c484</div>
+                      <div className='coin-balance-swap'>
+                        <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
+                        <div className='balance-coin-address'>
+                          Balance: <span>0.939 ETH</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='coin-address-btns'>
+                      <button className='qr-btn'>
+                        <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
+                      </button>
+                      <button className='copy-btn'>
+                        <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className='coin-address-btns'>
-                <button className='qr-btn'>
-                  <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                </button>
-                <button className='copy-btn'>
-                  <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                </button>
-              </div>
-            </div>
-            <div className='coin-address-block'>
-              <div className='coin-address-data'>
-                <div className='your-coin-address'>Your Ethereum address</div>
-                <div className='address-coin'>0xF09242467c484</div>
-                <div className='coin-balance-swap'>
-                  <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                  <div className='balance-coin-address'>
-                    Balance: <span>0.939 ETH</span>
-                  </div>
-                </div>
-              </div>
-              <div className='coin-address-btns'>
-                <button className='qr-btn'>
-                  <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                </button>
-                <button className='copy-btn'>
-                  <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                </button>
-              </div>
-            </div>
-            <div className='coin-address-block'>
-              <div className='coin-address-data'>
-                <div className='your-coin-address'>Your Ethereum address</div>
-                <div className='address-coin'>0xF09242467c484</div>
-                <div className='coin-balance-swap'>
-                  <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                  <div className='balance-coin-address'>
-                    Balance: <span>0.939 ETH</span>
-                  </div>
-                </div>
-              </div>
-              <div className='coin-address-btns'>
-                <button className='qr-btn'>
-                  <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                </button>
-                <button className='copy-btn'>
-                  <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                </button>
-              </div>
-            </div>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
-        <div className='second-block-swap'>
-          <button className='scan-img'>
-            <img src='/img/uil_capture.svg' alt='' />
-          </button>
-          <img className='qr-code-swap' src='/img/QRcodeSwap.svg' alt='' />
-          <div className='wallet-address-title'>Wallet address</div>
-          <div className='wallet-address'>1LNXzm7G...5otzuZ5Ghu</div>
-          <div className='btns-swap'>
-            <button className='copy-address'>
-              <img src='/img/copy-swap.svg' alt='' />
-              Copy address
-            </button>
-            <button className='share-address'>
-              <img src='/img/share-swap.svg' alt='' />
-              Share address
-            </button>
-          </div>
+        <div className='block-swap2'>
+          <Swap2block />
         </div>
       </div>
     </div>

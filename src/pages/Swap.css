@@ -11,68 +11,6 @@
   width: fit-content;
 }
 
-.copy-address {
-  color: #fff;
-  padding: 16px 117px;
-  margin-top: 106px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 28px;
-  margin-bottom: 10px;
-}
-
-.copy-address img {
-  width: 23px;
-}
-
-.second-block-swap {
-  width: 430px;
-  text-align: center;
-}
-
-.first-block-swap {
-  width: 430px;
-}
-
-.second-block-swap {
-  padding-top: 146px;
-  position: relative;
-}
-
-.scan-img {
-  position: absolute;
-  left: 360px;
-  top: 0;
-}
-
-.share-address {
-  padding: 16px 117px;
-  background-color: #1e1a56;
-  border-radius: 35px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 28px;
-}
-
-.wallet-address-title {
-  color: #fff;
-  font-size: 20px;
-  padding-bottom: 10px;
-}
-
-.qr-code-swap {
-  padding-bottom: 25px;
-  width: 345px;
-}
-
-.wallet-address {
-  color: #ffffff5d;
-}
-
 .you-sell {
   width: 350px;
   height: 111px;
@@ -261,6 +199,40 @@
   margin-bottom: 7px;
 }
 
+.numpad {
+  padding-top: 74px;
+}
+
+.key {
+  font-size: 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  height: 60px;
+  text-align: center;
+  color: #fff;
+  width: 150px;
+  height: 85px;
+}
+.row-pad {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key:hover {
+  background: #00000044;
+}
+
+.your-coins-address {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.your-coins-address.hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
 @media (max-width: 1720px) {
   .swap-content {
     margin-left: 355px;
@@ -280,12 +252,12 @@
 }
 
 @media (max-width: 768px) {
-  .second-block-swap {
-    display: none;
-  }
-
   .swap-content {
     margin-left: 0px;
+  }
+
+  .block-swap2 {
+    display: none;
   }
 
   .first-block-swap {

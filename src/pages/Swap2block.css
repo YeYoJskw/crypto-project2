@@ -1,0 +1,136 @@
+.copy-address {
+  color: #fff;
+  width: 374px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 106px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.copy-address img {
+  width: 23px;
+}
+
+.second-block-swap {
+  width: 430px;
+  text-align: center;
+}
+
+.first-block-swap {
+  width: 430px;
+}
+
+.second-block-swap {
+  padding-top: 146px;
+  position: relative;
+}
+
+.scan-img {
+  position: absolute;
+  left: 360px;
+  top: 0;
+}
+
+.share-address {
+  width: 374px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e1a56;
+  border-radius: 35px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 53px;
+}
+
+.wallet-address-title {
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.back-img {
+  display: none;
+}
+
+.qr-code-swap {
+  padding-bottom: 25px;
+  width: 345px;
+}
+
+.receive {
+  display: none;
+}
+
+.wallet-address {
+  color: #ffffff5d;
+}
+
+.btns-swap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Вертикальное центрирование */
+  align-items: center; /* Горизонтальное центрирование */
+  width: 100%;
+  height: 100%; /* Или укажите конкретную высоту, чтобы элементы могли центрироваться */
+}
+
+@media (max-width: 768px) {
+  .second-block-swap {
+    background: linear-gradient(to bottom right, #000000, #040034);
+    height: 100%;
+    padding-bottom: 40px;
+    padding-top: 210px;
+    width: 100%;
+  }
+
+  .receive {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 400;
+    display: block;
+  }
+
+  .back-img {
+    display: block;
+    position: static;
+    padding-top: 5px;
+  }
+
+  .scan-img {
+    display: block;
+    position: static;
+    padding-top: 5px;
+  }
+
+  .header-swap-2 {
+    position: absolute;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+    padding-top: 43px;
+  }
+}
+
+@media (max-width: 400px) {
+  .share-address,
+  .copy-address {
+    width: 300px;
+  }
+
+  .qr-code-swap {
+    width: 310px;
+  }
+}
