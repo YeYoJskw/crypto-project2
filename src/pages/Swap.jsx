@@ -4,39 +4,74 @@ import Menu from '../components/Menu'
 import Header from '../components/Header'
 import MenuBottom from '../components/MenuButtom'
 import useBodyClass from '../hooks/useBodyClass'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Swap2block from './Swap2block'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const Swap = () => {
   useBodyClass()
 
-  const isMobile = window.innerWidth <= 768
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  const [prices, setPrices] = useState({ ETH: 0, BTC: 0 })
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(true)
+  const [isRotating, setIsRotating] = useState(false)
   const swipeRef = useRef(null)
+  const [isSwapped, setIsSwapped] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const fetchPrices = useCallback(async () => {
+    try {
+      const response = await axios.get('https://api.coinlore.net/api/tickers/?id=80,90')
+      const ethData = response.data.data.find(coin => coin.id === '80')
+      const btcData = response.data.data.find(coin => coin.id === '90')
+
+      if (ethData && btcData) {
+        setPrices({
+          ETH: parseFloat(ethData.price_usd) || 0,
+          BTC: parseFloat(btcData.price_usd) || 0,
+        })
+      }
+    } catch (error) {
+      console.error('Ошибка при загрузке курса:', error)
+      setPrices({ ETH: 0, BTC: 0 })
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchPrices()
+    const interval = setInterval(fetchPrices, 60000)
+    return () => clearInterval(interval)
+  }, [fetchPrices])
 
   const handleTouchStart = e => {
     const touchY = e.touches[0].clientY
     const swipeContainer = e.currentTarget.getBoundingClientRect()
 
-    if (touchY - swipeContainer.top <= 80) {
-      swipeRef.current = touchY
-    } else {
-      swipeRef.current = null // Блокируем свайп
-    }
+    swipeRef.current = touchY - swipeContainer.top <= 80 ? touchY : null
   }
 
   const handleTouchEnd = e => {
     if (!swipeRef.current) return
-
-    const touchEndY = e.changedTouches[0].clientY
-    const swipeDistance = touchEndY - swipeRef.current
-
-    if (swipeDistance > 50) {
-      setIsKeyboardVisible(prev => !prev) // Меняем блок только при свайпе вниз
+    if (e.changedTouches[0].clientY - swipeRef.current > 50) {
+      setIsKeyboardVisible(prev => !prev)
     }
+  }
+
+  const handleClick = async () => {
+    setIsRotating(true)
+    await fetchPrices() // Обновляем курс при нажатии
+    setTimeout(() => setIsRotating(false), 500)
+  }
+
+  const handleSwap = () => {
+    setIsSwapped(!isSwapped) // Переключаем состояние
   }
 
   return (
@@ -48,62 +83,132 @@ const Swap = () => {
       <MenuBottom />
       <div className='swap-content'>
         <div className='first-block-swap'>
-          <button className='retry-img'>
-            <img src='/img/material-symbols_refresh-rounded.svg' alt='' />
+          <button className='retry-img' onClick={handleClick}>
+            <img
+              src='/img/material-symbols_refresh-rounded.svg'
+              alt='refresh'
+              className={isRotating ? 'rotate' : ''}
+            />
           </button>
+
           <div className='sell-buy'>
-            <div className='you-sell'>
-              <div className='you-sell-content'>
-                <div className='content-sell-buy'>
-                  <div className='title-you-sell'>You sell</div>
-                  <div className='coin-swap'>
-                    <img src='/img/ETH.svg' alt='' />
-                    <div className='name-coin-sell'>ETH</div>
-                    <button className='down-swap'>
-                      <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                    </button>
+            {/* Блок "You Sell" */}
+            {isSwapped ? (
+              <div className='you-buy bottom-margin2'>
+                <div className='you-sell-content'>
+                  <div className='content-sell-buy'>
+                    <div className='title-you-sell'>You sell</div>
+                    <div className='coin-swap'>
+                      <img src='/img/BTC.svg' alt='' />
+                      <div className='name-coin-sell'>BTC</div>
+                      <button className='down-swap'>
+                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                      </button>
+                    </div>
+                    <div className='underName-coin-sell'>Bitcoin</div>
                   </div>
-                  <div className='underName-coin-sell'>Ethereum</div>
-                </div>
-                <div className='second-block-youSell'>
-                  <div className='balance-you-sell'>
-                    Balance: 0.382 <span>MAX</span>
-                  </div>
-                  <div className='count-you-sell'>0</div>
-                  <div className='price-you-sell'>
-                    1 688.23 <span>USDT</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='you-buy'>
-              <div className='you-sell-content'>
-                <div className='content-sell-buy'>
-                  <div className='title-you-sell'>You buy</div>
-                  <div className='coin-swap'>
-                    <img src='/img/BTC.svg' alt='' />
-                    <div className='name-coin-sell'>BTC</div>
-                    <button className='down-swap'>
-                      <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                    </button>
-                  </div>
-                  <div className='underName-coin-sell'>Bitcoin</div>
-                </div>
-                <div className='second-block-youSell'>
-                  <div className='balance-you-sell'>
-                    Balance: 0 <span>MAX</span>
-                  </div>
-                  <div className='count-you-sell'>0</div>
-                  <div className='price-you-sell'>
-                    98 688.23 <span>USDT</span>
+                  <div className='second-block-youSell'>
+                    <div className='balance-you-sell'>
+                      Balance: 0 <span>MAX</span>
+                    </div>
+                    <div className='count-you-sell'>0</div>
+                    <div className='price-you-sell'>
+                      {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className='you-sell bottom-margin2'>
+                <div className='you-sell-content'>
+                  <div className='content-sell-buy'>
+                    <div className='title-you-sell'>You sell</div>
+                    <div className='coin-swap'>
+                      <img src='/img/ETH.svg' alt='' />
+                      <div className='name-coin-sell'>ETH</div>
+                      <button className='down-swap'>
+                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                      </button>
+                    </div>
+                    <div className='underName-coin-sell'>Ethereum</div>
+                  </div>
+                  <div className='second-block-youSell'>
+                    <div className='balance-you-sell'>
+                      Balance: 0.382 <span>MAX</span>
+                    </div>
+                    <div className='count-you-sell'>0</div>
+                    <div className='price-you-sell'>
+                      {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Кнопка для изменения местами */}
+            <button className='change-swap' onClick={handleSwap}>
+              <img className='down-swap' src='/img/down-arrow-svgrepo-com.svg' alt='' />
+            </button>
+
+            {/* Блок "You Buy" */}
+            {isSwapped ? (
+              <div className='you-sell bottom-margin'>
+                <div className='you-sell-content'>
+                  <div className='content-sell-buy'>
+                    <div className='title-you-sell'>You buy</div>
+                    <div className='coin-swap'>
+                      <img src='/img/ETH.svg' alt='' />
+                      <div className='name-coin-sell'>ETH</div>
+                      <button className='down-swap'>
+                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                      </button>
+                    </div>
+                    <div className='underName-coin-sell'>Ethereum</div>
+                  </div>
+                  <div className='second-block-youSell'>
+                    <div className='balance-you-sell'>
+                      Balance: 0.382 <span>MAX</span>
+                    </div>
+                    <div className='count-you-sell'>0</div>
+                    <div className='price-you-sell'>
+                      {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className='you-buy bottom-margin'>
+                <div className='you-sell-content'>
+                  <div className='content-sell-buy'>
+                    <div className='title-you-sell'>You buy</div>
+                    <div className='coin-swap'>
+                      <img src='/img/BTC.svg' alt='' />
+                      <div className='name-coin-sell'>BTC</div>
+                      <button className='down-swap'>
+                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                      </button>
+                    </div>
+                    <div className='underName-coin-sell'>Bitcoin</div>
+                  </div>
+                  <div className='second-block-youSell'>
+                    <div className='balance-you-sell'>
+                      Balance: 0 <span>MAX</span>
+                    </div>
+                    <div className='count-you-sell'>0</div>
+                    <div className='price-you-sell'>
+                      {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Кнопка SWAP */}
             <button className='swap-button'>
               <span>SWAP</span> ETH <span>TO</span> BTC
             </button>
           </div>
+
           <div className='your-coins-container'>
             {isMobile ? (
               <div

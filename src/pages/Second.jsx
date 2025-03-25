@@ -9,8 +9,6 @@ import Footer from '../components/layout/Footer'
 import { Player } from '@lottiefiles/react-lottie-player'
 
 const Second = () => {
-  const [isClicked, setIsClicked] = useState(false)
-
   const tableData = [
     {
       timeAgo: '3 hrs ago',
