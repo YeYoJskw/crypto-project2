@@ -35,7 +35,7 @@ const Swap = () => {
   }, [prices, isSwapped])
 
   const handleCopy = () => {
-    navigator.clipboard.writeText('EQCuCUTCNsq2Wcmbg2oN-Jg')
+    navigator.clipboard.writeText('0xF09242467c484')
     setIsFading(true)
     setTimeout(() => {
       setIsFading(false)
