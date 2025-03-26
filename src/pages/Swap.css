@@ -390,6 +390,7 @@
 
   .your-coins-address {
     height: 420px;
+    width: 100% !important;
   }
 
   .sell-buy {
