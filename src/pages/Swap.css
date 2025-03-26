@@ -147,6 +147,33 @@
   transition: color 0.3s ease-in-out;
 }
 
+.count-you-buy,
+.count-you-sell {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.count-you-buy.active,
+.count-you-sell.active {
+  border-color: #4a90e2; /* Цвет границы для активного блока */
+  border-right: 1px solid #4a90e2;
+  height: 20px;
+  margin-bottom: 13px;
+  animation: blink-border 1s infinite; /* Анимация мигания */
+}
+
+@keyframes blink-border {
+  0% {
+    border-color: #4a90e2; /* Начальный цвет */
+  }
+  50% {
+    border-color: transparent; /* Прозрачный цвет для мигания */
+  }
+  100% {
+    border-color: #4a90e2; /* Конечный цвет */
+  }
+}
+
 .sell-buy {
   width: 380px;
   height: 379px;
@@ -237,7 +264,7 @@
 }
 
 .numpad {
-  padding-top: 74px;
+  padding-top: 24px;
 }
 
 .key {
@@ -250,9 +277,10 @@
   text-align: center;
   color: #fff;
   width: 150px;
-  height: 85px;
+  height: 75px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .row-pad {
   display: flex;
@@ -354,10 +382,14 @@
 
   .first-block-swap {
     width: 100% !important;
-    height: 109%;
     padding-top: 20px;
     position: absolute;
+    height: 875px;
     top: 0;
+  }
+
+  .your-coins-address {
+    height: 420px;
   }
 
   .sell-buy {
@@ -381,9 +413,10 @@
     width: 100%;
   }
 
-  .your-coins-address {
+  .your-coins-numpad {
     width: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
+    height: 360px;
   }
 
   .header-swap {

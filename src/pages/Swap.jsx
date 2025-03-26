@@ -24,6 +24,7 @@ const Swap = () => {
   const [isFirstInput, setIsFirstInput] = useState(true) // Какой блок активен
   const [exchangeRate, setExchangeRate] = useState(0) // Курс обмена
   const [isFading, setIsFading] = useState(false)
+  const [activeInput, setActiveInput] = useState('first')
 
   useEffect(() => {
     if (prices.BTC && prices.ETH) {
@@ -41,18 +42,61 @@ const Swap = () => {
     }, 1500)
   }
 
-  const handleKeyPress = value => {
-    if (value === '.' && (isFirstInput ? firstInput : secondInput).includes('.')) return
+  const handleKeyDown = event => {
+    const key = event.key
 
-    if (isFirstInput) {
+    // Обработка только цифр и точки
+    if ((key >= '0' && key <= '9') || key === '.') {
+      handleKeyPress(key)
+    }
+    // Обработка Backspace
+    if (key === 'Backspace') {
+      if (activeInput === 'first') {
+        const newFirstInput = firstInput.slice(0, -1)
+        setFirstInput(newFirstInput || '') // Если поле пустое, ставим пустую строку
+        setSecondInput(newFirstInput ? (parseFloat(newFirstInput) * exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
+      } else {
+        const newSecondInput = secondInput.slice(0, -1)
+        setSecondInput(newSecondInput || '') // Если поле пустое, ставим пустую строку
+        setFirstInput(newSecondInput ? (parseFloat(newSecondInput) / exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [firstInput, secondInput, isFirstInput])
+
+  const handleKeyPress = value => {
+    // Если нажимаем точку и она уже есть в поле, не даем вводить повторно
+    if (value === '.' && (activeInput === 'first' ? firstInput : secondInput).includes('.')) return
+
+    if (activeInput === 'first') {
       const newValue = firstInput + value
       setFirstInput(newValue)
       setSecondInput((parseFloat(newValue) * exchangeRate).toFixed(6) || '')
-    } else {
+    } else if (activeInput === 'second') {
       const newValue = secondInput + value
       setSecondInput(newValue)
       setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '')
     }
+  }
+
+  const handleClickCoin = input => {
+    handleSetActiveInput(input) // Изменить активный блок
+  }
+
+  const handleSetActiveInput = input => {
+    // Если меняем активный блок, очищаем противоположное поле
+    if (input === 'first') {
+      setSecondInput('') // Очищаем второй блок
+    } else {
+      setFirstInput('') // Очищаем первый блок
+    }
+    setActiveInput(input)
   }
 
   const handleAccept = () => {
@@ -103,9 +147,21 @@ const Swap = () => {
     }
   }
 
+  useEffect(() => {
+    // Если активный блок меняется, сбрасываем значение и обновляем фокус
+    if (activeInput === 'first') {
+      setFirstInput('') // Сбросим значение первого поля
+    } else if (activeInput === 'second') {
+      setSecondInput('') // Сбросим значение второго поля
+    }
+  }, [activeInput])
+
   const handleClick = async () => {
     setIsRotating(true)
     await fetchPrices() // Обновляем курс при нажатии
+    setFirstInput('') // Сбрасываем введенные значения для первого поля
+    setSecondInput('') // Сбрасываем введенные значения для второго поля
+    setActiveInput('first') // Возвращаем фокус на первое поле, если нужно
     setTimeout(() => setIsRotating(false), 500)
   }
 
@@ -150,7 +206,12 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0 <span>MAX</span>
                     </div>
-                    <div className='count-you-buy'>{secondInput || '0'}</div>
+                    <div
+                      className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
+                      onClick={() => handleClickCoin('second')}
+                    >
+                      {secondInput || '0'}
+                    </div>
                     <div className='price-you-sell'>
                       {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -175,7 +236,12 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0.382 <span>MAX</span>
                     </div>
-                    <div className='count-you-buy'>{firstInput || '0'}</div>
+                    <div
+                      className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
+                      onClick={() => handleClickCoin('first')}
+                    >
+                      {firstInput || '0'}
+                    </div>
                     <div className='price-you-sell'>
                       {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -208,7 +274,12 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0.382 <span>MAX</span>
                     </div>
-                    <div className='count-you-buy'>{firstInput || '0'}</div>
+                    <div
+                      className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
+                      onClick={() => handleClickCoin('first')}
+                    >
+                      {firstInput || '0'}
+                    </div>
                     <div className='price-you-sell'>
                       {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -233,7 +304,12 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0 <span>MAX</span>
                     </div>
-                    <div className='count-you-sell'>{secondInput || '0'}</div>
+                    <div
+                      className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
+                      onClick={() => handleClickCoin('second')}
+                    >
+                      {secondInput || '0'}
+                    </div>
                     <div className='price-you-sell'>
                       {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
                     </div>
