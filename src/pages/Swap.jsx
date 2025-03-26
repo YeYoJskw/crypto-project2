@@ -19,6 +19,45 @@ const Swap = () => {
   const [isRotating, setIsRotating] = useState(false)
   const swipeRef = useRef(null)
   const [isSwapped, setIsSwapped] = useState(false)
+  const [firstInput, setFirstInput] = useState('') // Поле ввода 1
+  const [secondInput, setSecondInput] = useState('') // Поле ввода 2
+  const [isFirstInput, setIsFirstInput] = useState(true) // Какой блок активен
+  const [exchangeRate, setExchangeRate] = useState(0) // Курс обмена
+  const [isFading, setIsFading] = useState(false)
+
+  useEffect(() => {
+    if (prices.BTC && prices.ETH) {
+      // Если продаём BTC, считаем BTC → ETH (делим)
+      // Если продаём ETH, считаем ETH → BTC (умножаем)
+      setExchangeRate(isSwapped ? prices.BTC / prices.ETH : prices.ETH / prices.BTC)
+    }
+  }, [prices, isSwapped])
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('EQCuCUTCNsq2Wcmbg2oN-Jg')
+    setIsFading(true)
+    setTimeout(() => {
+      setIsFading(false)
+    }, 1500)
+  }
+
+  const handleKeyPress = value => {
+    if (value === '.' && (isFirstInput ? firstInput : secondInput).includes('.')) return
+
+    if (isFirstInput) {
+      const newValue = firstInput + value
+      setFirstInput(newValue)
+      setSecondInput((parseFloat(newValue) * exchangeRate).toFixed(6) || '')
+    } else {
+      const newValue = secondInput + value
+      setSecondInput(newValue)
+      setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '')
+    }
+  }
+
+  const handleAccept = () => {
+    setIsFirstInput(false)
+  }
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768)
@@ -111,7 +150,7 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0 <span>MAX</span>
                     </div>
-                    <div className='count-you-sell'>0</div>
+                    <div className='count-you-buy'>{secondInput || '0'}</div>
                     <div className='price-you-sell'>
                       {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -136,7 +175,7 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0.382 <span>MAX</span>
                     </div>
-                    <div className='count-you-sell'>0</div>
+                    <div className='count-you-buy'>{firstInput || '0'}</div>
                     <div className='price-you-sell'>
                       {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -145,7 +184,7 @@ const Swap = () => {
               </div>
             )}
 
-            {/* Кнопка для изменения местами */}
+            {/* Кнопка для изменения мест */}
             <button className='change-swap' onClick={handleSwap}>
               <img className='down-swap' src='/img/down-arrow-svgrepo-com.svg' alt='' />
             </button>
@@ -169,7 +208,7 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0.382 <span>MAX</span>
                     </div>
-                    <div className='count-you-sell'>0</div>
+                    <div className='count-you-buy'>{firstInput || '0'}</div>
                     <div className='price-you-sell'>
                       {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -194,7 +233,7 @@ const Swap = () => {
                     <div className='balance-you-sell'>
                       Balance: 0 <span>MAX</span>
                     </div>
-                    <div className='count-you-sell'>0</div>
+                    <div className='count-you-sell'>{secondInput || '0'}</div>
                     <div className='price-you-sell'>
                       {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
                     </div>
@@ -203,9 +242,9 @@ const Swap = () => {
               </div>
             )}
 
-            {/* Кнопка SWAP */}
-            <button className='swap-button'>
-              <span>SWAP</span> ETH <span>TO</span> BTC
+            <button className={`swap-button ${firstInput || secondInput ? 'active' : ''}`}>
+              <span className='one-swap'>SWAP</span> <span className='two-swap'>ETH</span>{' '}
+              <span className='one-swap'>TO</span> <span className='two-swap'>BTC</span>
             </button>
           </div>
 
@@ -231,11 +270,21 @@ const Swap = () => {
                           ['1', '2', '3'],
                           ['4', '5', '6'],
                           ['7', '8', '9'],
-                          ['.', '0', '⌫'],
+                          [
+                            '.',
+                            '0',
+                            <div className='accept-btn' onClick={handleAccept}>
+                              <img src='/img/next-svgrepo-com.svg' alt='' />
+                            </div>,
+                          ],
                         ].map((row, rowIndex) => (
                           <div key={rowIndex} className='row-pad'>
-                            {row.map(key => (
-                              <button key={key} className='key'>
+                            {row.map((key, keyIndex) => (
+                              <button
+                                key={keyIndex}
+                                className='key'
+                                onClick={() => typeof key === 'string' && handleKeyPress(key)}
+                              >
                                 {key}
                               </button>
                             ))}
@@ -270,7 +319,7 @@ const Swap = () => {
                                 <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
                               </Link>
                             </button>
-                            <button className='copy-btn'>
+                            <button className='copy-btn' onClick={handleCopy}>
                               <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
                             </button>
                           </div>
