@@ -172,7 +172,7 @@
 
 .sell-buy {
   width: 380px;
-  height: 379px;
+  height: 349px;
   border-radius: 15px;
   box-sizing: border-box;
   padding: 0px 14px;
@@ -196,6 +196,7 @@
   height: 420px;
   position: absolute;
   left: 0;
+  top: 400px;
 }
 
 .your-coin-address {
@@ -247,6 +248,7 @@
   height: 280px;
   position: absolute;
   left: 0;
+  top: 400px;
 }
 .first-block-swap {
   width: 100% !important;
@@ -407,9 +409,6 @@
 }
 
 @media (max-width: 768px) {
-  .SWAP {
-  }
-
   .header-swap-main {
     position: fixed;
     right: 20px;
@@ -460,7 +459,7 @@
     position: absolute;
     top: 0;
     background-color: #0b0a0f;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .your-coins-address {
