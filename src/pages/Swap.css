@@ -195,6 +195,7 @@
   width: 430px;
   position: absolute;
   left: 0;
+  top: 420px;
 }
 
 .your-coin-address {
@@ -245,8 +246,9 @@
   width: 430px;
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 420px;
 }
+
 .first-block-swap {
   width: 100% !important;
   padding-top: 20px;
