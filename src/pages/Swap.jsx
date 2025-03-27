@@ -19,17 +19,15 @@ const Swap = () => {
   const [isRotating, setIsRotating] = useState(false)
   const swipeRef = useRef(null)
   const [isSwapped, setIsSwapped] = useState(false)
-  const [firstInput, setFirstInput] = useState('') // Поле ввода 1
-  const [secondInput, setSecondInput] = useState('') // Поле ввода 2
-  const [isFirstInput, setIsFirstInput] = useState(true) // Какой блок активен
-  const [exchangeRate, setExchangeRate] = useState(0) // Курс обмена
+  const [firstInput, setFirstInput] = useState('')
+  const [secondInput, setSecondInput] = useState('')
+  const [isFirstInput, setIsFirstInput] = useState(true)
+  const [exchangeRate, setExchangeRate] = useState(0)
   const [isFading, setIsFading] = useState(false)
   const [activeInput, setActiveInput] = useState('first')
 
   useEffect(() => {
     if (prices.BTC && prices.ETH) {
-      // Если продаём BTC, считаем BTC → ETH (делим)
-      // Если продаём ETH, считаем ETH → BTC (умножаем)
       setExchangeRate(isSwapped ? prices.BTC / prices.ETH : prices.ETH / prices.BTC)
     }
   }, [prices, isSwapped])
@@ -45,11 +43,10 @@ const Swap = () => {
   const handleKeyDown = event => {
     const key = event.key
 
-    // Обработка только цифр и точки
     if ((key >= '0' && key <= '9') || key === '.') {
       handleKeyPress(key)
     }
-    // Обработка Backspace
+
     if (key === 'Backspace') {
       if (activeInput === 'first') {
         const newFirstInput = firstInput.slice(0, -1)
@@ -63,6 +60,18 @@ const Swap = () => {
     }
   }
 
+  const handleBackspace = () => {
+    if (activeInput === 'first') {
+      const newValue = firstInput.slice(0, -1) // Удаляем последний символ
+      setFirstInput(newValue)
+      setSecondInput(newValue ? (parseFloat(newValue) * exchangeRate).toFixed(6) : '')
+    } else {
+      const newValue = secondInput.slice(0, -1)
+      setSecondInput(newValue)
+      setFirstInput(newValue ? (parseFloat(newValue) / exchangeRate).toFixed(6) : '')
+    }
+  }
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown)
     return () => {
@@ -71,7 +80,6 @@ const Swap = () => {
   }, [firstInput, secondInput, isFirstInput])
 
   const handleKeyPress = value => {
-    // Если нажимаем точку и она уже есть в поле, не даем вводить повторно
     if (value === '.' && (activeInput === 'first' ? firstInput : secondInput).includes('.')) return
 
     if (activeInput === 'first') {
@@ -81,26 +89,21 @@ const Swap = () => {
     } else if (activeInput === 'second') {
       const newValue = secondInput + value
       setSecondInput(newValue)
-      setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '')
+      setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '') // Убрал лишнюю скобку
     }
-  }
+  } // Закрываем handleKeyPress
 
   const handleClickCoin = input => {
-    handleSetActiveInput(input) // Изменить активный блок
+    handleSetActiveInput(input)
   }
 
   const handleSetActiveInput = input => {
-    // Если меняем активный блок, очищаем противоположное поле
     if (input === 'first') {
-      setSecondInput('') // Очищаем второй блок
+      setSecondInput('')
     } else {
-      setFirstInput('') // Очищаем первый блок
+      setFirstInput('')
     }
     setActiveInput(input)
-  }
-
-  const handleAccept = () => {
-    setIsFirstInput(false)
   }
 
   useEffect(() => {
@@ -148,25 +151,24 @@ const Swap = () => {
   }
 
   useEffect(() => {
-    // Если активный блок меняется, сбрасываем значение и обновляем фокус
     if (activeInput === 'first') {
-      setFirstInput('') // Сбросим значение первого поля
+      setFirstInput('')
     } else if (activeInput === 'second') {
-      setSecondInput('') // Сбросим значение второго поля
+      setSecondInput('')
     }
   }, [activeInput])
 
   const handleClick = async () => {
     setIsRotating(true)
-    await fetchPrices() // Обновляем курс при нажатии
-    setFirstInput('') // Сбрасываем введенные значения для первого поля
-    setSecondInput('') // Сбрасываем введенные значения для второго поля
-    setActiveInput('first') // Возвращаем фокус на первое поле, если нужно
+    await fetchPrices()
+    setFirstInput('')
+    setSecondInput('')
+    setActiveInput('first')
     setTimeout(() => setIsRotating(false), 500)
   }
 
   const handleSwap = () => {
-    setIsSwapped(!isSwapped) // Переключаем состояние
+    setIsSwapped(!isSwapped)
   }
 
   return (
@@ -175,7 +177,9 @@ const Swap = () => {
         <Header title={'Swap'} />
       </div>
       <Menu />
-      <MenuBottom />
+      <div className='menu-bottom-swap'>
+        <MenuBottom />
+      </div>
       <div className='swap-content'>
         <div className='first-block-swap'>
           <button className='retry-img' onClick={handleClick}>
@@ -187,7 +191,6 @@ const Swap = () => {
           </button>
 
           <div className='sell-buy'>
-            {/* Блок "You Sell" */}
             {isSwapped ? (
               <div className='you-buy bottom-margin2'>
                 <div className='you-sell-content'>
@@ -250,12 +253,10 @@ const Swap = () => {
               </div>
             )}
 
-            {/* Кнопка для изменения мест */}
             <button className='change-swap' onClick={handleSwap}>
               <img className='down-swap' src='/img/down-arrow-svgrepo-com.svg' alt='' />
             </button>
 
-            {/* Блок "You Buy" */}
             {isSwapped ? (
               <div className='you-sell bottom-margin'>
                 <div className='you-sell-content'>
@@ -349,7 +350,7 @@ const Swap = () => {
                           [
                             '.',
                             '0',
-                            <div className='accept-btn' onClick={handleAccept}>
+                            <div className='delete-btn' onClick={handleBackspace}>
                               <img src='/img/next-svgrepo-com.svg' alt='' />
                             </div>,
                           ],
@@ -406,7 +407,6 @@ const Swap = () => {
                 </AnimatePresence>
               </div>
             ) : (
-              // Для десктопа клавиатура не отображается
               <motion.div
                 key='addresses'
                 initial={{ y: 0, opacity: 1 }}

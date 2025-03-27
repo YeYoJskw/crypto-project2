@@ -1,6 +1,7 @@
 import React from 'react'
 import './MenuBottom.css'
 import { NavLink } from 'react-router-dom'
+import { Player } from '@lottiefiles/react-lottie-player'
 
 const MenuBottom = () => {
   return (
@@ -46,6 +47,16 @@ const MenuBottom = () => {
             >
               <img src='/img/eye.svg' alt='' />
             </NavLink>
+          </div>
+          <div>
+            <a href='https://iquant.store/'>
+              <Player
+                autoplay
+                loop
+                src='/img/bubble.json' // путь к JSON-файлу
+                style={{ width: '38px', height: '38px' }} // Настройка размера
+              />
+            </a>
           </div>
           <div className='menu-bottom-button'>
             <NavLink
