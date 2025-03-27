@@ -245,7 +245,7 @@
   border-top-right-radius: 50px;
   margin-top: 20px;
   width: 430px;
-  height: 280px;
+  height: 250px;
   position: absolute;
   left: 0;
   top: 400px;
@@ -295,11 +295,10 @@
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.2s;
-  height: 60px;
   text-align: center;
   color: #fff;
-  width: 150px;
-  height: 60px;
+  width: 160px;
+  height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -459,11 +458,11 @@
     position: absolute;
     top: 0;
     background-color: #0b0a0f;
-    min-height: 100vh;
+    height: 100vh;
   }
 
   .your-coins-address {
-    height: 420px;
+    height: 426px;
     width: 100% !important;
   }
 
