@@ -181,269 +181,271 @@ const Swap = () => {
         <MenuBottom />
       </div>
       <div className='swap-content'>
-        <div className='first-block-swap'>
-          <div className='background-header-swap'>
-            <div className='header-swap-main'>
-              <div className='title-swap'>Swap</div>
-              <button className='retry-img' onClick={handleClick}>
-                <img
-                  src='/img/material-symbols_refresh-rounded.svg'
-                  alt='refresh'
-                  className={isRotating ? 'rotate' : ''}
-                />
+        <div className='background-swap-first'>
+          <div className='first-block-swap'>
+            <div className='background-header-swap'>
+              <div className='header-swap-main'>
+                <div className='title-swap'>Swap</div>
+                <button className='retry-img' onClick={handleClick}>
+                  <img
+                    src='/img/material-symbols_refresh-rounded.svg'
+                    alt='refresh'
+                    className={isRotating ? 'rotate' : ''}
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div className='sell-buy'>
+              {isSwapped ? (
+                <div className='you-buy bottom-margin2'>
+                  <div className='you-sell-content'>
+                    <div className='content-sell-buy'>
+                      <div className='title-you-sell'>You sell</div>
+                      <div className='coin-swap'>
+                        <img src='/img/BTC.svg' alt='' />
+                        <div className='name-coin-sell'>BTC</div>
+                        <button className='down-swap'>
+                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                        </button>
+                      </div>
+                      <div className='underName-coin-sell'>Bitcoin</div>
+                    </div>
+                    <div className='second-block-youSell'>
+                      <div className='balance-you-sell'>
+                        Balance: 0 <span>MAX</span>
+                      </div>
+                      <div
+                        className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('second')}
+                      >
+                        {secondInput || '0'}
+                      </div>
+                      <div className='price-you-sell'>
+                        {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className='you-sell bottom-margin2'>
+                  <div className='you-sell-content'>
+                    <div className='content-sell-buy'>
+                      <div className='title-you-sell'>You sell</div>
+                      <div className='coin-swap'>
+                        <img src='/img/ETH.svg' alt='' />
+                        <div className='name-coin-sell'>ETH</div>
+                        <button className='down-swap'>
+                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                        </button>
+                      </div>
+                      <div className='underName-coin-sell'>Ethereum</div>
+                    </div>
+                    <div className='second-block-youSell'>
+                      <div className='balance-you-sell'>
+                        Balance: 0.382 <span>MAX</span>
+                      </div>
+                      <div
+                        className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('first')}
+                      >
+                        {firstInput || '0'}
+                      </div>
+                      <div className='price-you-sell'>
+                        {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <button className='change-swap' onClick={handleSwap}>
+                <img className='down-swap' src='/img/down-arrow-svgrepo-com.svg' alt='' />
+              </button>
+
+              {isSwapped ? (
+                <div className='you-sell bottom-margin'>
+                  <div className='you-sell-content'>
+                    <div className='content-sell-buy'>
+                      <div className='title-you-sell'>You buy</div>
+                      <div className='coin-swap'>
+                        <img src='/img/ETH.svg' alt='' />
+                        <div className='name-coin-sell'>ETH</div>
+                        <button className='down-swap'>
+                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                        </button>
+                      </div>
+                      <div className='underName-coin-sell'>Ethereum</div>
+                    </div>
+                    <div className='second-block-youSell'>
+                      <div className='balance-you-sell'>
+                        Balance: 0.382 <span>MAX</span>
+                      </div>
+                      <div
+                        className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('first')}
+                      >
+                        {firstInput || '0'}
+                      </div>
+                      <div className='price-you-sell'>
+                        {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className='you-buy bottom-margin'>
+                  <div className='you-sell-content'>
+                    <div className='content-sell-buy'>
+                      <div className='title-you-sell'>You buy</div>
+                      <div className='coin-swap'>
+                        <img src='/img/BTC.svg' alt='' />
+                        <div className='name-coin-sell'>BTC</div>
+                        <button className='down-swap'>
+                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
+                        </button>
+                      </div>
+                      <div className='underName-coin-sell'>Bitcoin</div>
+                    </div>
+                    <div className='second-block-youSell'>
+                      <div className='balance-you-sell'>
+                        Balance: 0 <span>MAX</span>
+                      </div>
+                      <div
+                        className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('second')}
+                      >
+                        {secondInput || '0'}
+                      </div>
+                      <div className='price-you-sell'>
+                        {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <button className={`swap-button ${firstInput || secondInput ? 'active' : ''}`}>
+                <span className='one-swap'>SWAP</span> <span className='two-swap'>ETH</span>{' '}
+                <span className='one-swap'>TO</span> <span className='two-swap'>BTC</span>
               </button>
             </div>
-          </div>
 
-          <div className='sell-buy'>
-            {isSwapped ? (
-              <div className='you-buy bottom-margin2'>
-                <div className='you-sell-content'>
-                  <div className='content-sell-buy'>
-                    <div className='title-you-sell'>You sell</div>
-                    <div className='coin-swap'>
-                      <img src='/img/BTC.svg' alt='' />
-                      <div className='name-coin-sell'>BTC</div>
-                      <button className='down-swap'>
-                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                      </button>
-                    </div>
-                    <div className='underName-coin-sell'>Bitcoin</div>
-                  </div>
-                  <div className='second-block-youSell'>
-                    <div className='balance-you-sell'>
-                      Balance: 0 <span>MAX</span>
-                    </div>
-                    <div
-                      className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
-                      onClick={() => handleClickCoin('second')}
-                    >
-                      {secondInput || '0'}
-                    </div>
-                    <div className='price-you-sell'>
-                      {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className='you-sell bottom-margin2'>
-                <div className='you-sell-content'>
-                  <div className='content-sell-buy'>
-                    <div className='title-you-sell'>You sell</div>
-                    <div className='coin-swap'>
-                      <img src='/img/ETH.svg' alt='' />
-                      <div className='name-coin-sell'>ETH</div>
-                      <button className='down-swap'>
-                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                      </button>
-                    </div>
-                    <div className='underName-coin-sell'>Ethereum</div>
-                  </div>
-                  <div className='second-block-youSell'>
-                    <div className='balance-you-sell'>
-                      Balance: 0.382 <span>MAX</span>
-                    </div>
-                    <div
-                      className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
-                      onClick={() => handleClickCoin('first')}
-                    >
-                      {firstInput || '0'}
-                    </div>
-                    <div className='price-you-sell'>
-                      {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <button className='change-swap' onClick={handleSwap}>
-              <img className='down-swap' src='/img/down-arrow-svgrepo-com.svg' alt='' />
-            </button>
-
-            {isSwapped ? (
-              <div className='you-sell bottom-margin'>
-                <div className='you-sell-content'>
-                  <div className='content-sell-buy'>
-                    <div className='title-you-sell'>You buy</div>
-                    <div className='coin-swap'>
-                      <img src='/img/ETH.svg' alt='' />
-                      <div className='name-coin-sell'>ETH</div>
-                      <button className='down-swap'>
-                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                      </button>
-                    </div>
-                    <div className='underName-coin-sell'>Ethereum</div>
-                  </div>
-                  <div className='second-block-youSell'>
-                    <div className='balance-you-sell'>
-                      Balance: 0.382 <span>MAX</span>
-                    </div>
-                    <div
-                      className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
-                      onClick={() => handleClickCoin('first')}
-                    >
-                      {firstInput || '0'}
-                    </div>
-                    <div className='price-you-sell'>
-                      {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className='you-buy bottom-margin'>
-                <div className='you-sell-content'>
-                  <div className='content-sell-buy'>
-                    <div className='title-you-sell'>You buy</div>
-                    <div className='coin-swap'>
-                      <img src='/img/BTC.svg' alt='' />
-                      <div className='name-coin-sell'>BTC</div>
-                      <button className='down-swap'>
-                        <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                      </button>
-                    </div>
-                    <div className='underName-coin-sell'>Bitcoin</div>
-                  </div>
-                  <div className='second-block-youSell'>
-                    <div className='balance-you-sell'>
-                      Balance: 0 <span>MAX</span>
-                    </div>
-                    <div
-                      className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
-                      onClick={() => handleClickCoin('second')}
-                    >
-                      {secondInput || '0'}
-                    </div>
-                    <div className='price-you-sell'>
-                      {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <button className={`swap-button ${firstInput || secondInput ? 'active' : ''}`}>
-              <span className='one-swap'>SWAP</span> <span className='two-swap'>ETH</span>{' '}
-              <span className='one-swap'>TO</span> <span className='two-swap'>BTC</span>
-            </button>
-          </div>
-
-          <div className='your-coins-container'>
-            {isMobile ? (
-              <div
-                className='swipe-container'
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-              >
-                <AnimatePresence mode='wait'>
-                  {isKeyboardVisible ? (
-                    <motion.div
-                      key='keyboard'
-                      initial={{ y: 0, opacity: 1 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: '100%', opacity: 0 }}
-                      transition={{ duration: 0.4, ease: 'easeInOut' }}
-                      className={!isKeyboardVisible ? 'your-coins-address' : 'numpad-container'}
-                    >
-                      <div className='numpad'>
-                        {[
-                          ['1', '2', '3'],
-                          ['4', '5', '6'],
-                          ['7', '8', '9'],
-                          [
-                            '.',
-                            '0',
-                            <div className='delete-btn' onClick={handleBackspace}>
-                              <img src='/img/next-svgrepo-com.svg' alt='' />
-                            </div>,
-                          ],
-                        ].map((row, rowIndex) => (
-                          <div key={rowIndex} className='row-pad'>
-                            {row.map((key, keyIndex) => (
-                              <button
-                                key={keyIndex}
-                                className='key'
-                                onClick={() => typeof key === 'string' && handleKeyPress(key)}
-                              >
-                                {key}
-                              </button>
-                            ))}
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key='addresses'
-                      initial={{ y: 0, opacity: 1 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={{ y: '100%', opacity: 0 }}
-                      transition={{ duration: 0.4, ease: 'easeInOut' }}
-                      className='your-coins-address'
-                    >
-                      {[...Array(3)].map((_, index) => (
-                        <div key={index} className='coin-address-block'>
-                          <div className='coin-address-data'>
-                            <div className='your-coin-address'>Your Ethereum address</div>
-                            <div className='address-coin'>0xF09242467c484</div>
-                            <div className='coin-balance-swap'>
-                              <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                              <div className='balance-coin-address'>
-                                Balance: <span>0.939 ETH</span>
+            <div className='your-coins-container'>
+              {isMobile ? (
+                <div
+                  className='swipe-container'
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <AnimatePresence mode='wait'>
+                    {isKeyboardVisible ? (
+                      <motion.div
+                        key='keyboard'
+                        initial={{ y: 0, opacity: 1 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: '100%', opacity: 0 }}
+                        transition={{ duration: 0.4, ease: 'easeInOut' }}
+                        className={!isKeyboardVisible ? 'your-coins-address' : 'numpad-container'}
+                      >
+                        <div className='numpad'>
+                          {[
+                            ['1', '2', '3'],
+                            ['4', '5', '6'],
+                            ['7', '8', '9'],
+                            [
+                              '.',
+                              '0',
+                              <div className='delete-btn' onClick={handleBackspace}>
+                                <img src='/img/next-svgrepo-com.svg' alt='' />
+                              </div>,
+                            ],
+                          ].map((row, rowIndex) => (
+                            <div key={rowIndex} className='row-pad'>
+                              {row.map((key, keyIndex) => (
+                                <button
+                                  key={keyIndex}
+                                  className='key'
+                                  onClick={() => typeof key === 'string' && handleKeyPress(key)}
+                                >
+                                  {key}
+                                </button>
+                              ))}
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key='addresses'
+                        initial={{ y: 0, opacity: 1 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: '100%', opacity: 0 }}
+                        transition={{ duration: 0.4, ease: 'easeInOut' }}
+                        className='your-coins-address'
+                      >
+                        {[...Array(3)].map((_, index) => (
+                          <div key={index} className='coin-address-block'>
+                            <div className='coin-address-data'>
+                              <div className='your-coin-address'>Your Ethereum address</div>
+                              <div className='address-coin'>0xF09242467c484</div>
+                              <div className='coin-balance-swap'>
+                                <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
+                                <div className='balance-coin-address'>
+                                  Balance: <span>0.939 ETH</span>
+                                </div>
                               </div>
                             </div>
+                            <div className='coin-address-btns'>
+                              <button className='qr-btn'>
+                                <Link to='/swap-profile'>
+                                  <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
+                                </Link>
+                              </button>
+                              <button className='copy-btn' onClick={handleCopy}>
+                                <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
+                              </button>
+                            </div>
                           </div>
-                          <div className='coin-address-btns'>
-                            <button className='qr-btn'>
-                              <Link to='/swap-profile'>
-                                <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                              </Link>
-                            </button>
-                            <button className='copy-btn' onClick={handleCopy}>
-                              <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                            </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <motion.div
+                  key='addresses'
+                  initial={{ y: 0, opacity: 1 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: '100%', opacity: 0 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  className='your-coins-address'
+                >
+                  {[...Array(3)].map((_, index) => (
+                    <div key={index} className='coin-address-block'>
+                      <div className='coin-address-data'>
+                        <div className='your-coin-address'>Your Ethereum address</div>
+                        <div className='address-coin'>0xF09242467c484</div>
+                        <div className='coin-balance-swap'>
+                          <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
+                          <div className='balance-coin-address'>
+                            Balance: <span>0.939 ETH</span>
                           </div>
-                        </div>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ) : (
-              <motion.div
-                key='addresses'
-                initial={{ y: 0, opacity: 1 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: '100%', opacity: 0 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className='your-coins-address'
-              >
-                {[...Array(3)].map((_, index) => (
-                  <div key={index} className='coin-address-block'>
-                    <div className='coin-address-data'>
-                      <div className='your-coin-address'>Your Ethereum address</div>
-                      <div className='address-coin'>0xF09242467c484</div>
-                      <div className='coin-balance-swap'>
-                        <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                        <div className='balance-coin-address'>
-                          Balance: <span>0.939 ETH</span>
                         </div>
                       </div>
+                      <div className='coin-address-btns'>
+                        <button className='qr-btn'>
+                          <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
+                        </button>
+                        <button className='copy-btn'>
+                          <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
+                        </button>
+                      </div>
                     </div>
-                    <div className='coin-address-btns'>
-                      <button className='qr-btn'>
-                        <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                      </button>
-                      <button className='copy-btn'>
-                        <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            )}
+                  ))}
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
         <div className='block-swap2'>
