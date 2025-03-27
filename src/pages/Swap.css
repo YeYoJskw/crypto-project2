@@ -256,6 +256,14 @@
   height: 884px;
 }
 
+.coin-list {
+  display: block; /* Убедитесь, что элемент видим */
+  position: absolute;
+  background-color: white;
+  z-index: 10;
+  /* Другие стили */
+}
+
 .coin-address-block {
   display: flex;
   justify-content: space-between;
