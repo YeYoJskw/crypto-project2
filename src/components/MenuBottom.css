@@ -36,6 +36,10 @@
   transition: all 0.1s ease-in-out;
 }
 
+.bubble {
+  padding-bottom: 5px;
+}
+
 .menu-bottom-button:hover {
   filter: blur(1px);
 }

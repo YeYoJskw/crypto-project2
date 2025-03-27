@@ -182,13 +182,18 @@ const Swap = () => {
       </div>
       <div className='swap-content'>
         <div className='first-block-swap'>
-          <button className='retry-img' onClick={handleClick}>
-            <img
-              src='/img/material-symbols_refresh-rounded.svg'
-              alt='refresh'
-              className={isRotating ? 'rotate' : ''}
-            />
-          </button>
+          <div className='background-header-swap'>
+            <div className='header-swap-main'>
+              <div className='title-swap'>Swap</div>
+              <button className='retry-img' onClick={handleClick}>
+                <img
+                  src='/img/material-symbols_refresh-rounded.svg'
+                  alt='refresh'
+                  className={isRotating ? 'rotate' : ''}
+                />
+              </button>
+            </div>
+          </div>
 
           <div className='sell-buy'>
             {isSwapped ? (
@@ -340,7 +345,7 @@ const Swap = () => {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: '100%', opacity: 0 }}
                       transition={{ duration: 0.4, ease: 'easeInOut' }}
-                      className='your-coins-address'
+                      className={!isKeyboardVisible ? 'your-coins-address' : 'numpad-container'}
                     >
                       <div className='numpad'>
                         {[

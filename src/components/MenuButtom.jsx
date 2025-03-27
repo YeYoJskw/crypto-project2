@@ -48,13 +48,13 @@ const MenuBottom = () => {
               <img src='/img/eye.svg' alt='' />
             </NavLink>
           </div>
-          <div>
+          <div className='bubble'>
             <a href='https://iquant.store/'>
               <Player
                 autoplay
                 loop
                 src='/img/bubble.json' // путь к JSON-файлу
-                style={{ width: '38px', height: '38px' }} // Настройка размера
+                style={{ width: '38px', height: '38px' }}
               />
             </a>
           </div>

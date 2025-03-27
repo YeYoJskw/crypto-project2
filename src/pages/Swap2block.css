@@ -88,8 +88,17 @@
     background: linear-gradient(to bottom right, #000000, #040034);
     height: 100%;
     padding-bottom: 40px;
-    padding-top: 210px;
+    padding-top: 110px;
     width: 100%;
+    height: 100%;
+  }
+
+  .btns-swap {
+    padding-top: 95px;
+  }
+
+  .copy-address {
+    margin: 0;
   }
 
   .receive {
@@ -112,7 +121,7 @@
   }
 
   .header-swap-2 {
-    position: absolute;
+    position: fixed;
     top: 0;
     box-sizing: border-box;
     width: 100%;
@@ -121,6 +130,9 @@
     justify-content: space-between;
     padding: 0px 20px;
     padding-top: 3px;
+    background: rgba(0, 0, 0, 0.3); /* Полупрозрачный чёрный */
+    backdrop-filter: blur(10px); /* Размытие */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень для отделения */
   }
 }
 
