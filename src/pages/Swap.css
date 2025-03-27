@@ -188,7 +188,7 @@
 }
 
 .your-coins-address {
-  background: linear-gradient(180deg, #4670ed27, #28408711) border-box;
+  background: linear-gradient(180deg, #1b2136, #0f1320) border-box;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   margin-top: 20px;
@@ -240,7 +240,7 @@
 }
 
 .numpad-container {
-  background: linear-gradient(180deg, #4670ed27, #28408711) border-box;
+  background: linear-gradient(180deg, #1b2136, #0f1320) border-box;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   margin-top: 20px;
@@ -456,10 +456,10 @@
   .first-block-swap {
     width: 100% !important;
     padding-top: 20px;
-    position: absolute;
+    position: relative;
     top: 0;
     background-color: #0b0a0f;
-    height: calc(100%) !important;
+    height: 100% !important;
   }
 
   .background-swap-first {
