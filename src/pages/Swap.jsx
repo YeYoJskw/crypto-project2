@@ -140,7 +140,7 @@ const Swap = () => {
     const touchY = e.touches[0].clientY
     const swipeContainer = e.currentTarget.getBoundingClientRect()
 
-    swipeRef.current = touchY - swipeContainer.top <= 220 ? touchY : null
+    swipeRef.current = touchY - swipeContainer.top <= 80 ? touchY : null
   }
 
   const handleTouchEnd = e => {
