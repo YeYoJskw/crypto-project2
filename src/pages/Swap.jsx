@@ -83,15 +83,25 @@ const Swap = () => {
     if (value === '.' && (activeInput === 'first' ? firstInput : secondInput).includes('.')) return
 
     if (activeInput === 'first') {
-      const newValue = firstInput + value
+      let newValue = firstInput + value
+
+      if (newValue === '0') {
+        newValue = '0.'
+      }
+
       setFirstInput(newValue)
       setSecondInput((parseFloat(newValue) * exchangeRate).toFixed(6) || '')
     } else if (activeInput === 'second') {
-      const newValue = secondInput + value
+      let newValue = secondInput + value
+
+      if (newValue === '0') {
+        newValue = '0.'
+      }
+
       setSecondInput(newValue)
-      setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '') // Убрал лишнюю скобку
+      setFirstInput((parseFloat(newValue) / exchangeRate).toFixed(6) || '')
     }
-  } // Закрываем handleKeyPress
+  }
 
   const handleClickCoin = input => {
     handleSetActiveInput(input)
