@@ -24,10 +24,6 @@ input {
   all: unset;
 }
 
-body {
-  overflow: hidden; /* Отключить прокрутку на уровне всего тела */
-}
-
 html,
 body {
   margin: 0;
@@ -35,8 +31,20 @@ body {
   height: 100%; /* Чтобы body занимал всю высоту страницы */
 }
 
+.container {
+  scrollbar-width: none; /* Скрывает полоску прокрутки в Firefox */
+}
+
 ::-webkit-scrollbar {
   display: none;
+}
+
+.container {
+  overflow: scroll; /* Убедитесь, что прокрутка разрешена */
+}
+
+.container::-webkit-scrollbar {
+  display: none; /* Скрывает полоску прокрутки */
 }
 
 button {
