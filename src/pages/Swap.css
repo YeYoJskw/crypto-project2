@@ -212,7 +212,7 @@
   color: #878c98;
   font-size: 13px;
   padding-bottom: 10px;
-  max-width: 250px; /* Ограничение ширины */
+  max-width: 210px; /* Ограничение ширины */
   word-wrap: break-word; /* Разрыв слов при необходимости */
   overflow-wrap: break-word; /* Альтернативное свойство для переносов */
   white-space: normal; /* Разрешаем перенос строк */
