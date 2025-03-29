@@ -201,6 +201,7 @@
   left: 0;
   top: 420px;
   height: 430px;
+  padding-top: 30px;
 }
 
 .your-coin-address {
@@ -296,7 +297,7 @@
 .numpad {
   padding-top: 24px;
   padding-bottom: 15px;
-  height: 380px;
+  height: 320px;
 }
 
 .dropdown {
