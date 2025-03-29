@@ -201,16 +201,22 @@
   left: 0;
   top: 420px;
   height: 430px;
+  overflow-y: auto;
 }
 
 .your-coin-address {
   color: #fff;
   padding-bottom: 8px;
 }
+
 .address-coin {
   color: #878c98;
-  font-size: 14px;
+  font-size: 13px;
   padding-bottom: 10px;
+  max-width: 250px; /* Ограничение ширины */
+  word-wrap: break-word; /* Разрыв слов при необходимости */
+  overflow-wrap: break-word; /* Альтернативное свойство для переносов */
+  white-space: normal; /* Разрешаем перенос строк */
 }
 .balance-coin-address {
   font-size: 12px;
@@ -274,8 +280,8 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 39px;
-  padding-top: 46px;
-  padding-bottom: 15px;
+  padding-top: 35px;
+  padding-bottom: 0px;
 }
 
 .coin-address-btns {
@@ -310,8 +316,8 @@
   transition: background 0.2s;
   text-align: center;
   color: #fff;
-  width: 160px;
-  height: 80px;
+  width: 150px;
+  height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -506,6 +512,8 @@
 
   .your-coins-address {
     background: linear-gradient(180deg, #1b2136, #0f1320) border-box;
+    padding-bottom: 40px;
+    height: 410px;
   }
 
   .numpad-container {

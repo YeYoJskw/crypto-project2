@@ -36,6 +36,59 @@ const Swap = () => {
   const dropdownRef = useRef(null)
   const buttonRef = useRef(null)
 
+  const dataCoin = [
+    {
+      yourCoinAddress: 'Your Solana address',
+      addressWallet: '9uYdV3L4ZwTx9o2qzF2fJtnsKq5NkRtY3uwTfTSkD3eB',
+      balance: '0.939 SOL',
+    },
+    {
+      yourCoinAddress: 'Your Ethereum address',
+      addressWallet: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+      balance: '0.939 ETH',
+    },
+    {
+      yourCoinAddress: 'Your Bitcoin address',
+      addressWallet: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+      balance: '0.939 BTC',
+    },
+    {
+      yourCoinAddress: 'Your BNB address',
+      addressWallet: '0x28C6c06298d514Db089934071355E5743bf21d60',
+      balance: '0.939 BNB',
+    },
+    {
+      yourCoinAddress: 'Your Tether address',
+      addressWallet: 'TSmu9uGvRjTZgmVwK8qeqgFM3HKNKDmLAd',
+      balance: '0.939 USDT',
+    },
+    {
+      yourCoinAddress: 'Your Polygon address',
+      addressWallet: '0x8d12A197cB00D4747a1fe03395095ce2A5CC6819',
+      balance: '0.939 MATIC',
+    },
+    {
+      yourCoinAddress: 'Your Litecoin address',
+      addressWallet: 'LcHKZ8u6v8XyR47e7tBEYcKsaRR3kmaWmV',
+      balance: '0.939 LTC',
+    },
+    {
+      yourCoinAddress: 'Your Dogecoin address',
+      addressWallet: 'D9nWnZxC5fZ1dpUpNg2vZsPaMPkmkK42Xe',
+      balance: '0.939 DOGE',
+    },
+    {
+      yourCoinAddress: 'Your XRP Ledger address',
+      addressWallet: 'rEb8TK3gBgk5auZkwc6sHnwrGVJH8DuaLh',
+      balance: '0.939 XRP',
+    },
+    {
+      yourCoinAddress: 'Your Avalanche address',
+      addressWallet: '0x45fC6b9d8b47D5C7813F1E1F69c61e30Ff0FfF1e',
+      balance: '0.939 AVAX',
+    },
+  ]
+
   const handleClickDropdown = dropdownId => {
     switch (dropdownId) {
       case 1:
@@ -626,15 +679,15 @@ const Swap = () => {
                         transition={{ duration: 0.4, ease: 'easeInOut' }}
                         className='your-coins-address'
                       >
-                        {[...Array(3)].map((_, index) => (
-                          <div key={index} className='coin-address-block'>
+                        {dataCoin.map(coin => (
+                          <div key={coin.index} className='coin-address-block'>
                             <div className='coin-address-data'>
-                              <div className='your-coin-address'>Your Ethereum address</div>
-                              <div className='address-coin'>0xF09242467c484</div>
+                              <div className='your-coin-address'>{coin.yourCoinAddress}</div>
+                              <div className='address-coin'>{coin.addressWallet}</div>
                               <div className='coin-balance-swap'>
                                 <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
                                 <div className='balance-coin-address'>
-                                  Balance: <span>0.939 ETH</span>
+                                  Balance: <span>{coin.balance}</span>
                                 </div>
                               </div>
                             </div>
@@ -644,7 +697,7 @@ const Swap = () => {
                                   <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
                                 </Link>
                               </button>
-                              <button className='copy-btn' onClick={handleCopy}>
+                              <button className='copy-btn'>
                                 <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
                               </button>
                             </div>
@@ -663,15 +716,15 @@ const Swap = () => {
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
                   className='your-coins-address'
                 >
-                  {[...Array(3)].map((_, index) => (
-                    <div key={index} className='coin-address-block'>
+                  {dataCoin.map(coin => (
+                    <div key={coin.index} className='coin-address-block'>
                       <div className='coin-address-data'>
-                        <div className='your-coin-address'>Your Ethereum address</div>
-                        <div className='address-coin'>0xF09242467c484</div>
+                        <div className='your-coin-address'>{coin.yourCoinAddress}</div>
+                        <div className='address-coin'>{coin.addressWallet}</div>
                         <div className='coin-balance-swap'>
                           <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
                           <div className='balance-coin-address'>
-                            Balance: <span>0.939 ETH</span>
+                            Balance: <span>{coin.balance}</span>
                           </div>
                         </div>
                       </div>

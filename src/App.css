@@ -31,6 +31,10 @@ body {
   height: 100%; /* Чтобы body занимал всю высоту страницы */
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 button {
   cursor: pointer;
 }
