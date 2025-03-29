@@ -52,6 +52,10 @@
   padding-bottom: 7px;
 }
 
+.change-swap {
+  z-index: 100;
+}
+
 .you-sell {
   padding: 0px 20px;
   padding-top: 17px;
@@ -287,7 +291,15 @@
 .numpad {
   padding-top: 24px;
   padding-bottom: 15px;
-  height: 390px;
+  height: 380px;
+}
+
+.dropdown {
+  display: block; /* убедись, что блок видим */
+  z-index: 10000; /* на всякий случай чтобы не загораживали другие элементы */
+}
+.dropdown.hidden {
+  display: none; /* скрыть, если не открыт */
 }
 
 .key {
@@ -389,6 +401,79 @@
   box-sizing: border-box;
   padding-bottom: 1px;
 }
+
+.coin-swap {
+  position: relative;
+}
+
+/* Стили для контейнера выпадающего списка */
+.dropdown {
+  width: 120px;
+  position: absolute;
+  top: 40px;
+  background-color: #0b0a0f;
+  border: 1px solid #000000;
+}
+
+.you-buy {
+  position: relative;
+}
+.name-coin-swap {
+  color: #707a83;
+  font-size: 20px;
+}
+
+/* Когда dropdown открыт */
+.dropdown.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Стили для каждого элемента в списке */
+.dropdown-item {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* При наведении на элемент */
+.dropdown-item:hover {
+  background-color: #15141d;
+  color: #007bff;
+}
+
+/* Стили для иконки монеты */
+.dropdown-item img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.coin-logo-swap {
+  width: 30px;
+  height: 30px;
+}
+
+.dropdown-list {
+  max-height: 250px; /* Ограничиваем высоту (4 монеты по ~40px) */
+  overflow-y: auto; /* Включаем скролл */
+  scrollbar-width: none; /* Убираем скролл для Firefox */
+}
+
+/* Отступы для заголовка и кнопки */
+.title-dropdown {
+  font-weight: bold;
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Кнопка для закрытия */
 
 @media (max-width: 1720px) {
   .swap-content {

@@ -4,7 +4,7 @@ import Menu from '../components/Menu'
 import Header from '../components/Header'
 import MenuBottom from '../components/MenuButtom'
 import useBodyClass from '../hooks/useBodyClass'
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Swap2block from './Swap2block'
 import { Link } from 'react-router-dom'
@@ -14,7 +14,6 @@ const Swap = () => {
   useBodyClass()
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
-  const [prices, setPrices] = useState({ ETH: 0, BTC: 0 })
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(true)
   const [isRotating, setIsRotating] = useState(false)
   const swipeRef = useRef(null)
@@ -23,61 +22,37 @@ const Swap = () => {
   const [secondInput, setSecondInput] = useState('')
   const [isFirstInput, setIsFirstInput] = useState(true)
   const [exchangeRate, setExchangeRate] = useState(0)
-  const [isFading, setIsFading] = useState(false)
   const [activeInput, setActiveInput] = useState('first')
+  const [coins, setCoins] = useState([]) // Хранит список монет
+  const [selectedCoins, setSelectedCoins] = useState([
+    { id: null, name: '', symbol: '' },
+    { id: null, name: '', symbol: '' },
+  ])
+  const [openDropdown1, setOpenDropdown1] = useState(false)
+  const [openDropdown2, setOpenDropdown2] = useState(false)
+  const [openDropdown3, setOpenDropdown3] = useState(false)
+  const [openDropdown4, setOpenDropdown4] = useState(false)
+  const dropdownRef = useRef(null)
+  const buttonRef = useRef(null)
 
-  useEffect(() => {
-    if (prices.BTC && prices.ETH) {
-      setExchangeRate(isSwapped ? prices.BTC / prices.ETH : prices.ETH / prices.BTC)
-    }
-  }, [prices, isSwapped])
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText('0xF09242467c484')
-    setIsFading(true)
-    setTimeout(() => {
-      setIsFading(false)
-    }, 1500)
-  }
-
-  const handleKeyDown = event => {
-    const key = event.key
-
-    if ((key >= '0' && key <= '9') || key === '.') {
-      handleKeyPress(key)
-    }
-
-    if (key === 'Backspace') {
-      if (activeInput === 'first') {
-        const newFirstInput = firstInput.slice(0, -1)
-        setFirstInput(newFirstInput || '') // Если поле пустое, ставим пустую строку
-        setSecondInput(newFirstInput ? (parseFloat(newFirstInput) * exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
-      } else {
-        const newSecondInput = secondInput.slice(0, -1)
-        setSecondInput(newSecondInput || '') // Если поле пустое, ставим пустую строку
-        setFirstInput(newSecondInput ? (parseFloat(newSecondInput) / exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
-      }
+  const handleClickDropdown = dropdownId => {
+    switch (dropdownId) {
+      case 1:
+        setOpenDropdown1(prev => !prev)
+        break
+      case 2:
+        setOpenDropdown2(prev => !prev)
+        break
+      case 3:
+        setOpenDropdown3(prev => !prev)
+        break
+      case 4:
+        setOpenDropdown4(prev => !prev)
+        break
+      default:
+        break
     }
   }
-
-  const handleBackspace = () => {
-    if (activeInput === 'first') {
-      const newValue = firstInput.slice(0, -1) // Удаляем последний символ
-      setFirstInput(newValue)
-      setSecondInput(newValue ? (parseFloat(newValue) * exchangeRate).toFixed(6) : '')
-    } else {
-      const newValue = secondInput.slice(0, -1)
-      setSecondInput(newValue)
-      setFirstInput(newValue ? (parseFloat(newValue) / exchangeRate).toFixed(6) : '')
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [firstInput, secondInput, isFirstInput])
 
   const handleKeyPress = value => {
     if (value === '.' && (activeInput === 'first' ? firstInput : secondInput).includes('.')) return
@@ -103,6 +78,115 @@ const Swap = () => {
     }
   }
 
+  const handleClickOutside = event => {
+    // Проверяем каждый выпадающий список
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      // Если клик вне выпадающего списка и кнопки, закрываем его
+      setOpenDropdown1(false)
+      setOpenDropdown2(false)
+      setOpenDropdown3(false)
+      setOpenDropdown4(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const fetchCoins = async () => {
+    try {
+      const response = await axios.get('https://api.coinlore.net/api/tickers/')
+      const topCoins = response.data.data.slice(0, 10) // Берем 10 топовых монет
+
+      const formattedCoins = topCoins.map(coin => ({
+        id: coin.id,
+        name: coin.name,
+        symbol: coin.symbol,
+        price: parseFloat(coin.price_usd).toFixed(2),
+      }))
+
+      setCoins(formattedCoins) // Сохраняем список монет
+
+      // Если не выбрана монета, то устанавливаем Bitcoin по умолчанию
+      if (!selectedCoins[0].id) {
+        setSelectedCoins(prev => {
+          const newSelectedCoins = [...prev]
+          newSelectedCoins[0] = formattedCoins[0] // Устанавливаем Tether
+          return newSelectedCoins
+        })
+      }
+      if (!selectedCoins[1].id) {
+        setSelectedCoins(prev => {
+          const newSelectedCoins = [...prev]
+          newSelectedCoins[1] = formattedCoins[1] // Устанавливаем Tether
+          return newSelectedCoins
+        })
+      }
+    } catch (error) {
+      console.error('Ошибка загрузки монет:', error)
+    }
+  }
+
+  const handleKeyDown = event => {
+    const key = event.key
+
+    if ((key >= '0' && key <= '9') || key === '.') {
+      handleKeyPress(key)
+    }
+
+    if (key === 'Backspace') {
+      if (activeInput === 'first') {
+        const newFirstInput = firstInput.slice(0, -1)
+        setFirstInput(newFirstInput || '') // Если поле пустое, ставим пустую строку
+        setSecondInput(newFirstInput ? (parseFloat(newFirstInput) * exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
+      } else {
+        const newSecondInput = secondInput.slice(0, -1)
+        setSecondInput(newSecondInput || '') // Если поле пустое, ставим пустую строку
+        setFirstInput(newSecondInput ? (parseFloat(newSecondInput) / exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
+      }
+    }
+  }
+
+  const handleSelectCoin = (coin, index) => {
+    const updatedSelectedCoins = [...selectedCoins]
+    updatedSelectedCoins[index] = coin // Обновляем монету по индексу
+    setSelectedCoins(updatedSelectedCoins) // Сохраняем обновленное состояние
+  }
+
+  const handleBackspace = () => {
+    if (activeInput === 'first') {
+      const newValue = firstInput.slice(0, -1) // Удаляем последний символ
+      setFirstInput(newValue)
+      setSecondInput(newValue ? (parseFloat(newValue) * exchangeRate).toFixed(6) : '')
+    } else {
+      const newValue = secondInput.slice(0, -1)
+      setSecondInput(newValue)
+      setFirstInput(newValue ? (parseFloat(newValue) / exchangeRate).toFixed(6) : '')
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [firstInput, secondInput, isFirstInput])
+
   const handleClickCoin = input => {
     handleSetActiveInput(input)
   }
@@ -117,34 +201,8 @@ const Swap = () => {
   }
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    fetchCoins()
   }, [])
-
-  const fetchPrices = useCallback(async () => {
-    try {
-      const response = await axios.get('https://api.coinlore.net/api/tickers/?id=80,90')
-      const ethData = response.data.data.find(coin => coin.id === '80')
-      const btcData = response.data.data.find(coin => coin.id === '90')
-
-      if (ethData && btcData) {
-        setPrices({
-          ETH: parseFloat(ethData.price_usd) || 0,
-          BTC: parseFloat(btcData.price_usd) || 0,
-        })
-      }
-    } catch (error) {
-      console.error('Ошибка при загрузке курса:', error)
-      setPrices({ ETH: 0, BTC: 0 })
-    }
-  }, [])
-
-  useEffect(() => {
-    fetchPrices()
-    const interval = setInterval(fetchPrices, 60000)
-    return () => clearInterval(interval)
-  }, [fetchPrices])
 
   const handleTouchStart = e => {
     const touchY = e.touches[0].clientY
@@ -170,7 +228,7 @@ const Swap = () => {
 
   const handleClick = async () => {
     setIsRotating(true)
-    await fetchPrices()
+    await fetchCoins()
     setFirstInput('')
     setSecondInput('')
     setActiveInput('first')
@@ -211,28 +269,72 @@ const Swap = () => {
                 <div className='you-buy bottom-margin2'>
                   <div className='you-sell-content'>
                     <div className='content-sell-buy'>
-                      <div className='title-you-sell'>You sell</div>
-                      <div className='coin-swap'>
-                        <img src='/img/BTC.svg' alt='' />
-                        <div className='name-coin-sell'>BTC</div>
-                        <button className='down-swap'>
-                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                        </button>
+                      <div className='title-you-sell'>You buy1</div>
+                      <div>
+                        <div className='coin-swap'>
+                          <img
+                            src={`https://www.coinlore.com/img/${selectedCoins[0].name
+                              .toLowerCase()
+                              .replace(/ /g, '-')}.png`}
+                            alt=''
+                            className='coin-logo-swap'
+                          />
+
+                          <div className='name-coin-sell'>{selectedCoins[0]?.symbol || '...'}</div>
+                          <button
+                            className='down-swap'
+                            onClick={e => {
+                              e.stopPropagation() // Останавливаем всплытие
+                              handleClickDropdown(1)
+                            }}
+                            ref={buttonRef}
+                          >
+                            <img
+                              src='/img/material-symbols_keyboard-arrow-down-rounded.svg'
+                              alt=''
+                            />
+                          </button>
+
+                          {/* Выпадающий список */}
+                          {openDropdown1 && (
+                            <div ref={dropdownRef} className='dropdown'>
+                              <div className='dropdown-list'>
+                                {coins.map(coin => (
+                                  <div
+                                    key={coin.id}
+                                    className='dropdown-item'
+                                    onClick={() => handleSelectCoin(coin, 0)}
+                                  >
+                                    <img
+                                      alt=''
+                                      src={`https://www.coinlore.com/img/${coin.name
+                                        .toLowerCase()
+                                        .replace(/ /g, '-')}.png`}
+                                    />
+                                    <div className='name-coin-swap'>{coin.symbol}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className='underName-coin-sell'>Bitcoin</div>
+
+                      <div className='underName-coin-sell'>{selectedCoins[0]?.name}</div>
                     </div>
+
                     <div className='second-block-youSell'>
                       <div className='balance-you-sell'>
                         Balance: 0 <span>MAX</span>
                       </div>
                       <div
                         className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('second')}
+                        onClick={() => handleClickCoin('second')} // При клике активируем второй инпут
                       >
-                        {secondInput || '0'}
+                        {secondInput || '0'} {/* Отображаем второй инпут */}
                       </div>
                       <div className='price-you-sell'>
-                        {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                        {selectedCoins[0]?.price ? selectedCoins[0].price : '...'} <span>USDT</span>
                       </div>
                     </div>
                   </div>
@@ -241,28 +343,67 @@ const Swap = () => {
                 <div className='you-sell bottom-margin2'>
                   <div className='you-sell-content'>
                     <div className='content-sell-buy'>
-                      <div className='title-you-sell'>You sell</div>
+                      <div className='title-you-sell'>You sell2</div>
+
                       <div className='coin-swap'>
-                        <img src='/img/ETH.svg' alt='' />
-                        <div className='name-coin-sell'>ETH</div>
-                        <button className='down-swap'>
+                        <img
+                          src={`https://www.coinlore.com/img/${selectedCoins[1].name
+                            .toLowerCase()
+                            .replace(/ /g, '-')}.png`}
+                          alt=''
+                          className='coin-logo-swap'
+                        />
+                        <div className='name-coin-sell'>{selectedCoins[1]?.symbol || '...'}</div>
+                        <button
+                          className='down-swap'
+                          onClick={e => {
+                            e.stopPropagation() // Останавливаем всплытие
+                            handleClickDropdown(2)
+                          }}
+                          ref={buttonRef}
+                        >
                           <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
                         </button>
+
+                        {/* Выпадающий список */}
+                        {openDropdown2 && (
+                          <div ref={dropdownRef} className='dropdown'>
+                            <div className='dropdown-list'>
+                              {coins.map(coin => (
+                                <div
+                                  key={coin.id}
+                                  className='dropdown-item'
+                                  onClick={() => handleSelectCoin(coin, 1)}
+                                >
+                                  <img
+                                    alt=''
+                                    src={`https://www.coinlore.com/img/${coin.name
+                                      .toLowerCase()
+                                      .replace(/ /g, '-')}.png`}
+                                  />
+                                  <div className='name-coin-swap'>{coin.symbol}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div className='underName-coin-sell'>Ethereum</div>
+
+                      <div className='underName-coin-sell'>{selectedCoins[1]?.name}</div>
                     </div>
+
                     <div className='second-block-youSell'>
                       <div className='balance-you-sell'>
-                        Balance: 0.382 <span>MAX</span>
+                        Balance: 0 <span>MAX</span>
                       </div>
                       <div
-                        className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('first')}
+                        className={`count-you-sell ${activeInput === 'first' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('first')} // При клике активируем второй инпут
                       >
-                        {firstInput || '0'}
+                        {secondInput || '0'} {/* Отображаем второй инпут */}
                       </div>
                       <div className='price-you-sell'>
-                        {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                        {selectedCoins[1]?.price ? selectedCoins[1].price : '...'} <span>USDT</span>
                       </div>
                     </div>
                   </div>
@@ -277,28 +418,72 @@ const Swap = () => {
                 <div className='you-sell bottom-margin'>
                   <div className='you-sell-content'>
                     <div className='content-sell-buy'>
-                      <div className='title-you-sell'>You buy</div>
-                      <div className='coin-swap'>
-                        <img src='/img/ETH.svg' alt='' />
-                        <div className='name-coin-sell'>ETH</div>
-                        <button className='down-swap'>
-                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                        </button>
+                      <div className='title-you-sell'>You sell3</div>
+                      <div>
+                        <div className='coin-swap'>
+                          <img
+                            src={`https://www.coinlore.com/img/${selectedCoins[1].name
+                              .toLowerCase()
+                              .replace(/ /g, '-')}.png`}
+                            alt=''
+                            className='coin-logo-swap'
+                          />
+
+                          <div className='name-coin-sell'>{selectedCoins[1]?.symbol || '...'}</div>
+                          <button
+                            className='down-swap'
+                            onClick={e => {
+                              e.stopPropagation() // Останавливаем всплытие
+                              handleClickDropdown(3)
+                            }}
+                            ref={buttonRef}
+                          >
+                            <img
+                              src='/img/material-symbols_keyboard-arrow-down-rounded.svg'
+                              alt=''
+                            />
+                          </button>
+
+                          {/* Выпадающий список */}
+                          {openDropdown3 && (
+                            <div ref={dropdownRef} className='dropdown'>
+                              <div className='dropdown-list'>
+                                {coins.map(coin => (
+                                  <div
+                                    key={coin.id}
+                                    className='dropdown-item'
+                                    onClick={() => handleSelectCoin(coin, 1)}
+                                  >
+                                    <img
+                                      alt=''
+                                      src={`https://www.coinlore.com/img/${coin.name
+                                        .toLowerCase()
+                                        .replace(/ /g, '-')}.png`}
+                                    />
+                                    <div className='name-coin-swap'>{coin.symbol}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className='underName-coin-sell'>Ethereum</div>
+
+                      <div className='underName-coin-sell'>{selectedCoins[1]?.name}</div>
                     </div>
+
                     <div className='second-block-youSell'>
                       <div className='balance-you-sell'>
-                        Balance: 0.382 <span>MAX</span>
+                        Balance: 0 <span>MAX</span>
                       </div>
                       <div
-                        className={`count-you-buy ${activeInput === 'first' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('first')}
+                        className={`count-you-sell ${activeInput === 'first' ? 'active' : ''}`}
+                        onClick={() => handleClickCoin('first')} // При клике активируем второй инпут
                       >
-                        {firstInput || '0'}
+                        {secondInput || '0'} {/* Отображаем второй инпут */}
                       </div>
                       <div className='price-you-sell'>
-                        {prices.ETH ? prices.ETH.toFixed(2) : '...'} <span>USDT</span>
+                        {selectedCoins[1]?.price ? selectedCoins[1].price : '...'} <span>USDT</span>
                       </div>
                     </div>
                   </div>
@@ -307,16 +492,60 @@ const Swap = () => {
                 <div className='you-buy bottom-margin'>
                   <div className='you-sell-content'>
                     <div className='content-sell-buy'>
-                      <div className='title-you-sell'>You buy</div>
-                      <div className='coin-swap'>
-                        <img src='/img/BTC.svg' alt='' />
-                        <div className='name-coin-sell'>BTC</div>
-                        <button className='down-swap'>
-                          <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
-                        </button>
+                      <div className='title-you-sell'>You buy4</div>
+                      <div>
+                        <div className='coin-swap'>
+                          <img
+                            src={`https://www.coinlore.com/img/${selectedCoins[0].name
+                              .toLowerCase()
+                              .replace(/ /g, '-')}.png`}
+                            alt=''
+                            className='coin-logo-swap'
+                          />
+
+                          <div className='name-coin-sell'>{selectedCoins[0]?.symbol || '...'}</div>
+                          <button
+                            className='down-swap'
+                            onClick={e => {
+                              e.stopPropagation() // Останавливаем всплытие
+                              handleClickDropdown(4)
+                            }}
+                            ref={buttonRef}
+                          >
+                            <img
+                              src='/img/material-symbols_keyboard-arrow-down-rounded.svg'
+                              alt=''
+                            />
+                          </button>
+
+                          {/* Выпадающий список */}
+                          {openDropdown4 && (
+                            <div ref={dropdownRef} className='dropdown'>
+                              <div className='dropdown-list'>
+                                {coins.map(coin => (
+                                  <div
+                                    key={coin.id}
+                                    className='dropdown-item'
+                                    onClick={() => handleSelectCoin(coin, 0)}
+                                  >
+                                    <img
+                                      alt=''
+                                      src={`https://www.coinlore.com/img/${coin.name
+                                        .toLowerCase()
+                                        .replace(/ /g, '-')}.png`}
+                                    />
+                                    <div className='name-coin-swap'>{coin.symbol}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className='underName-coin-sell'>Bitcoin</div>
+
+                      <div className='underName-coin-sell'>{selectedCoins[0]?.name}</div>
                     </div>
+
                     <div className='second-block-youSell'>
                       <div className='balance-you-sell'>
                         Balance: 0 <span>MAX</span>
@@ -328,7 +557,8 @@ const Swap = () => {
                         {secondInput || '0'}
                       </div>
                       <div className='price-you-sell'>
-                        {prices.BTC ? prices.BTC.toFixed(2) : '...'} <span>USDT</span>
+                        {selectedCoins[0]?.price ? selectedCoins[0]?.price : '...'}{' '}
+                        <span>USDT</span>
                       </div>
                     </div>
                   </div>
