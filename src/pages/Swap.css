@@ -519,7 +519,7 @@
     backdrop-filter: blur(10px); /* Размытие */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Тень для отделения */
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     width: 100%;
     left: 0;
   }

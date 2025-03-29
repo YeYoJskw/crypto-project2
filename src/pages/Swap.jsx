@@ -24,7 +24,7 @@ const Swap = () => {
   const [exchangeRate, setExchangeRate] = useState(0)
   const [isFading, setIsFading] = useState(false)
   const [activeInput, setActiveInput] = useState('first')
-  const [coins, setCoins] = useState([]) // Хранит список монет
+  const [coins, setCoins] = useState([])
   const [selectedCoins, setSelectedCoins] = useState([
     { id: null, name: '', symbol: '' },
     { id: null, name: '', symbol: '' },
@@ -80,14 +80,12 @@ const Swap = () => {
   }
 
   const handleClickOutside = event => {
-    // Проверяем каждый выпадающий список
     if (
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target) &&
       buttonRef.current &&
       !buttonRef.current.contains(event.target)
     ) {
-      // Если клик вне выпадающего списка и кнопки, закрываем его
       setOpenDropdown1(false)
       setOpenDropdown2(false)
       setOpenDropdown3(false)
@@ -129,20 +127,19 @@ const Swap = () => {
         price: parseFloat(coin.price_usd).toFixed(2),
       }))
 
-      setCoins(formattedCoins) // Сохраняем список монет
+      setCoins(formattedCoins)
 
-      // Если не выбрана монета, то устанавливаем Bitcoin по умолчанию
       if (!selectedCoins[0].id) {
         setSelectedCoins(prev => {
           const newSelectedCoins = [...prev]
-          newSelectedCoins[0] = formattedCoins[0] // Устанавливаем Tether
+          newSelectedCoins[0] = formattedCoins[0]
           return newSelectedCoins
         })
       }
       if (!selectedCoins[1].id) {
         setSelectedCoins(prev => {
           const newSelectedCoins = [...prev]
-          newSelectedCoins[1] = formattedCoins[1] // Устанавливаем Tether
+          newSelectedCoins[1] = formattedCoins[1]
           return newSelectedCoins
         })
       }
@@ -161,11 +158,11 @@ const Swap = () => {
     if (key === 'Backspace') {
       if (activeInput === 'first') {
         const newFirstInput = firstInput.slice(0, -1)
-        setFirstInput(newFirstInput || '') // Если поле пустое, ставим пустую строку
+        setFirstInput(newFirstInput || '')
         setSecondInput(newFirstInput ? (parseFloat(newFirstInput) * exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
       } else {
         const newSecondInput = secondInput.slice(0, -1)
-        setSecondInput(newSecondInput || '') // Если поле пустое, ставим пустую строку
+        setSecondInput(newSecondInput || '')
         setFirstInput(newSecondInput ? (parseFloat(newSecondInput) / exchangeRate).toFixed(6) : '') // Если пусто, ставим пустую строку
       }
     }
@@ -173,13 +170,13 @@ const Swap = () => {
 
   const handleSelectCoin = (coin, index) => {
     const updatedSelectedCoins = [...selectedCoins]
-    updatedSelectedCoins[index] = coin // Обновляем монету по индексу
-    setSelectedCoins(updatedSelectedCoins) // Сохраняем обновленное состояние
+    updatedSelectedCoins[index] = coin
+    setSelectedCoins(updatedSelectedCoins)
   }
 
   const handleBackspace = () => {
     if (activeInput === 'first') {
-      const newValue = firstInput.slice(0, -1) // Удаляем последний символ
+      const newValue = firstInput.slice(0, -1)
       setFirstInput(newValue)
       setSecondInput(newValue ? (parseFloat(newValue) * exchangeRate).toFixed(6) : '')
     } else {
@@ -293,7 +290,7 @@ const Swap = () => {
                           <button
                             className='down-swap'
                             onClick={e => {
-                              e.stopPropagation() // Останавливаем всплытие
+                              e.stopPropagation()
                               handleClickDropdown(1)
                             }}
                             ref={buttonRef}
@@ -304,7 +301,6 @@ const Swap = () => {
                             />
                           </button>
 
-                          {/* Выпадающий список */}
                           {openDropdown1 && (
                             <div ref={dropdownRef} className='dropdown'>
                               <div className='dropdown-list'>
@@ -338,9 +334,9 @@ const Swap = () => {
                       </div>
                       <div
                         className={`count-you-sell ${activeInput === 'second' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('second')} // При клике активируем второй инпут
+                        onClick={() => handleClickCoin('second')}
                       >
-                        {secondInput || '0'} {/* Отображаем второй инпут */}
+                        {secondInput || '0'}
                       </div>
                       <div className='price-you-sell'>
                         {selectedCoins[0]?.price ? selectedCoins[0].price : '...'} <span>USDT</span>
@@ -366,7 +362,7 @@ const Swap = () => {
                         <button
                           className='down-swap'
                           onClick={e => {
-                            e.stopPropagation() // Останавливаем всплытие
+                            e.stopPropagation()
                             handleClickDropdown(2)
                           }}
                           ref={buttonRef}
@@ -374,7 +370,6 @@ const Swap = () => {
                           <img src='/img/material-symbols_keyboard-arrow-down-rounded.svg' alt='' />
                         </button>
 
-                        {/* Выпадающий список */}
                         {openDropdown2 && (
                           <div ref={dropdownRef} className='dropdown'>
                             <div className='dropdown-list'>
@@ -407,9 +402,9 @@ const Swap = () => {
                       </div>
                       <div
                         className={`count-you-sell ${activeInput === 'first' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('first')} // При клике активируем второй инпут
+                        onClick={() => handleClickCoin('first')}
                       >
-                        {secondInput || '0'} {/* Отображаем второй инпут */}
+                        {secondInput || '0'}
                       </div>
                       <div className='price-you-sell'>
                         {selectedCoins[1]?.price ? selectedCoins[1].price : '...'} <span>USDT</span>
@@ -442,7 +437,7 @@ const Swap = () => {
                           <button
                             className='down-swap'
                             onClick={e => {
-                              e.stopPropagation() // Останавливаем всплытие
+                              e.stopPropagation()
                               handleClickDropdown(3)
                             }}
                             ref={buttonRef}
@@ -453,7 +448,6 @@ const Swap = () => {
                             />
                           </button>
 
-                          {/* Выпадающий список */}
                           {openDropdown3 && (
                             <div ref={dropdownRef} className='dropdown'>
                               <div className='dropdown-list'>
@@ -487,9 +481,9 @@ const Swap = () => {
                       </div>
                       <div
                         className={`count-you-sell ${activeInput === 'first' ? 'active' : ''}`}
-                        onClick={() => handleClickCoin('first')} // При клике активируем второй инпут
+                        onClick={() => handleClickCoin('first')}
                       >
-                        {secondInput || '0'} {/* Отображаем второй инпут */}
+                        {secondInput || '0'}
                       </div>
                       <div className='price-you-sell'>
                         {selectedCoins[1]?.price ? selectedCoins[1].price : '...'} <span>USDT</span>
@@ -516,7 +510,7 @@ const Swap = () => {
                           <button
                             className='down-swap'
                             onClick={e => {
-                              e.stopPropagation() // Останавливаем всплытие
+                              e.stopPropagation()
                               handleClickDropdown(4)
                             }}
                             ref={buttonRef}
@@ -527,7 +521,6 @@ const Swap = () => {
                             />
                           </button>
 
-                          {/* Выпадающий список */}
                           {openDropdown4 && (
                             <div ref={dropdownRef} className='dropdown'>
                               <div className='dropdown-list'>
