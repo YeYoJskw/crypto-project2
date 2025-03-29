@@ -22,6 +22,7 @@ const Swap = () => {
   const [secondInput, setSecondInput] = useState('')
   const [isFirstInput, setIsFirstInput] = useState(true)
   const [exchangeRate, setExchangeRate] = useState(0)
+  const [isFading, setIsFading] = useState(false)
   const [activeInput, setActiveInput] = useState('first')
   const [coins, setCoins] = useState([]) // Хранит список монет
   const [selectedCoins, setSelectedCoins] = useState([
@@ -107,6 +108,14 @@ const Swap = () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('0xF09242467c484')
+    setIsFading(true)
+    setTimeout(() => {
+      setIsFading(false)
+    }, 1500)
+  }
 
   const fetchCoins = async () => {
     try {
