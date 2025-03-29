@@ -201,7 +201,6 @@
   left: 0;
   top: 420px;
   height: 430px;
-  overflow-y: auto;
 }
 
 .your-coin-address {
@@ -280,8 +279,8 @@
   display: flex;
   justify-content: space-between;
   padding: 0px 39px;
-  padding-top: 35px;
-  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 30px;
 }
 
 .coin-address-btns {
@@ -479,6 +478,11 @@
   border-bottom: 1px solid #ddd;
 }
 
+.scroll-address {
+  height: 430px;
+  overflow-y: auto;
+}
+
 /* Кнопка для закрытия */
 
 @media (max-width: 1720px) {
@@ -514,6 +518,7 @@
     background: linear-gradient(180deg, #1b2136, #0f1320) border-box;
     padding-bottom: 40px;
     height: 410px;
+    padding-top: 30px;
   }
 
   .numpad-container {

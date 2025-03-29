@@ -679,30 +679,40 @@ const Swap = () => {
                         transition={{ duration: 0.4, ease: 'easeInOut' }}
                         className='your-coins-address'
                       >
-                        {dataCoin.map(coin => (
-                          <div key={coin.index} className='coin-address-block'>
-                            <div className='coin-address-data'>
-                              <div className='your-coin-address'>{coin.yourCoinAddress}</div>
-                              <div className='address-coin'>{coin.addressWallet}</div>
-                              <div className='coin-balance-swap'>
-                                <img className='logo-coin-address' src='/img/ETHmini.svg' alt='' />
-                                <div className='balance-coin-address'>
-                                  Balance: <span>{coin.balance}</span>
+                        <div className='scroll-address'>
+                          {dataCoin.map(coin => (
+                            <div key={coin.index} className='coin-address-block'>
+                              <div className='coin-address-data'>
+                                <div className='your-coin-address'>{coin.yourCoinAddress}</div>
+                                <div className='address-coin'>{coin.addressWallet}</div>
+                                <div className='coin-balance-swap'>
+                                  <img
+                                    className='logo-coin-address'
+                                    src='/img/ETHmini.svg'
+                                    alt=''
+                                  />
+                                  <div className='balance-coin-address'>
+                                    Balance: <span>{coin.balance}</span>
+                                  </div>
                                 </div>
                               </div>
+                              <div className='coin-address-btns'>
+                                <button className='qr-btn'>
+                                  <Link to='/swap-profile'>
+                                    <img
+                                      className='copy-swap'
+                                      src='/img/carbon_qr-code.svg'
+                                      alt=''
+                                    />
+                                  </Link>
+                                </button>
+                                <button className='copy-btn'>
+                                  <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
+                                </button>
+                              </div>
                             </div>
-                            <div className='coin-address-btns'>
-                              <button className='qr-btn'>
-                                <Link to='/swap-profile'>
-                                  <img className='copy-swap' src='/img/carbon_qr-code.svg' alt='' />
-                                </Link>
-                              </button>
-                              <button className='copy-btn'>
-                                <img className='copy-swap' src='/img/copy-swap.svg' alt='' />
-                              </button>
-                            </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
