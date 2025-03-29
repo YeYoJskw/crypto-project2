@@ -24,6 +24,10 @@ input {
   all: unset;
 }
 
+body {
+  overflow: hidden; /* Отключить прокрутку на уровне всего тела */
+}
+
 html,
 body {
   margin: 0;
